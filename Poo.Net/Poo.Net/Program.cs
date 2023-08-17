@@ -57,6 +57,7 @@ namespace Poo.Net
 
             } while (omnibusNumero <= 5);
 
+          
 
             Console.Clear();
             Console.WriteLine("\n");
@@ -79,8 +80,13 @@ namespace Poo.Net
 
                 contador++;
             }
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("\n\n Presiona enter para finalizar");
 
-   
+            Console.ReadLine();
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("           _ _,---._ \r\n       ,-','       `-.___ \r\n      /-;'               `._ \r\n     /\\/          ._   _,'o \\ \r\n    ( /\\       _,--'\\,','\"`. ) \r\n     |\\      ,'o     \\'    //\\ \r\n     |      \\        /   ,--'\"\"`-. \r\n     :       \\_    _/ ,-'         `-._ \r\n      \\        `--'  /                ) \r\n       `.  \\`._    ,'     ________,',' \r\n         .--`     ,'  ,--` __\\___,;' \r\n          \\`.,-- ,' ,`_)--'  /`.,' \r\n           \\( ;  | | )      (`-/      _________________________\r\n             `--'| |)       |-/      /                         \\\r\n               | | |        | |     <  Buenas practicaaaasss!!  >\r\n               | | |,.,-.   | |_     \\_________________________/\r\n               | `./ /   )---`  ) \r\n              _|  /    ,',   ,-' \r\n             ,'|_(    /-<._,' |--, \r\n             |    `--'---.     \\/ \\ \r\n             |          / \\    /\\  \\ \r\n           ,-^---._     |  \\  /  \\  \\ \r\n        ,-'        \\----'   \\/    \\--`.   "); 
             Console.ReadLine();
 
 
