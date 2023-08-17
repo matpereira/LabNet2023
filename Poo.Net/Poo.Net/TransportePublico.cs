@@ -18,4 +18,5 @@ namespace Poo.Net
         public abstract string Avanzar();
         public abstract string Detenerse();
     }
+
 }

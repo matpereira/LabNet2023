@@ -20,6 +20,8 @@ namespace Poo.Net
             List<Taxi> taxis = new List<Taxi>();
             List<Omnibus> omnibuses = new List<Omnibus>();
 
+            List<TransportePublico> transportes = new List<TransportePublico>();
+
 
             do
             {
@@ -29,13 +31,13 @@ namespace Poo.Net
 
                 if (esEnteroValido)
                 {
-                    taxis.Add(new Taxi (cant));
+                    transportes.Add(new Taxi(cant));
                     taxiNumero++;
                     Console.Clear();
                 }
-                    
 
-            } while ( taxiNumero <=  5);
+
+            } while (taxiNumero <= 5);
 
 
 
@@ -47,7 +49,7 @@ namespace Poo.Net
 
                 if (esEnteroValido)
                 {
-                    omnibuses.Add(new Omnibus(cant));
+                    transportes.Add(new Omnibus(cant));
                     omnibusNumero++;
                     Console.Clear();
                 }
@@ -60,35 +62,30 @@ namespace Poo.Net
             Console.WriteLine("\n");
 
             Console.ForegroundColor = ConsoleColor.Cyan;
-            int contador=1;
-            foreach (var taxi in taxis )
-	        {
-                if(taxi.CantPasajeros == 1)
-                    Console.WriteLine($"Taxi {contador}: {taxi.CantPasajeros} pasajero");
-
-                else
-                    Console.WriteLine($"Taxi {contador}: {taxi.CantPasajeros} pasajeros");
-
-                contador++;
-            }
-
-            Console.WriteLine("\n");
-
-            contador = 1;
-            foreach (var omnibus in omnibuses)
+            int contador = 1;
+            foreach (var transporte in transportes)
             {
-               
-                if (omnibus.CantPasajeros == 1)
-                    Console.WriteLine($"Omnibus {contador}: {omnibus.CantPasajeros} pasajero");
+                if (contador == 6)
+                {
+                    contador++;
+                    Console.WriteLine("\n");
+                }
+
+                if (transporte.CantPasajeros == 1)
+                    Console.WriteLine($"{transporte.GetType().Name } {contador%6}: {transporte.CantPasajeros} pasajero");
+
                 else
-                    Console.WriteLine($"Omnibus {contador}: {omnibus.CantPasajeros} pasajeros");
+                    Console.WriteLine($"{transporte.GetType().Name} {contador%6}: {transporte.CantPasajeros} pasajeros");
+
                 contador++;
             }
+
+   
             Console.ReadLine();
-          
 
 
-            bool validarEntero (string input, int pasajerosMinimos, int pasajerosMaximos, out int resultado )
+
+            bool validarEntero(string input, int pasajerosMinimos, int pasajerosMaximos, out int resultado)
             {
                 bool inputValido = int.TryParse(input, out resultado);
 
@@ -99,9 +96,9 @@ namespace Poo.Net
                 }
                 else
                     transporte = "taxi";
-                
-               Console.ForegroundColor = ConsoleColor.Red;
-                    if (inputValido)
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                if (inputValido)
                 {
                     if (resultado < pasajerosMinimos || resultado > pasajerosMaximos)
                     {
@@ -112,7 +109,7 @@ namespace Poo.Net
                 }
                 else
                     Console.WriteLine("Por favor ingresar solo numeros");
-                
+
                 return inputValido;
             }
         }
