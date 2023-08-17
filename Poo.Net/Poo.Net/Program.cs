@@ -23,6 +23,7 @@ namespace Poo.Net
 
             do
             {
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine($"Ingresa la cantidad de pasajeros del taxi {taxiNumero}:");
                 esEnteroValido = validarEntero(Console.ReadLine(), 1, 4, out cant);
 
@@ -40,6 +41,7 @@ namespace Poo.Net
 
             do
             {
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine($"Ingresa la cantidad de pasajeros del Omnibus {omnibusNumero}:");
                 esEnteroValido = validarEntero(Console.ReadLine(), 1, 100, out cant);  // Asumo que la cantidad maxima de pasajeros admitidos es 100
 
@@ -57,14 +59,15 @@ namespace Poo.Net
             Console.Clear();
             Console.WriteLine("\n");
 
+            Console.ForegroundColor = ConsoleColor.Cyan;
             int contador=1;
             foreach (var taxi in taxis )
 	        {
-                if(taxi.cantPasajeros == 1)
-                    Console.WriteLine($"Taxi {contador}: {taxi.cantPasajeros} pasajero");
+                if(taxi.CantPasajeros == 1)
+                    Console.WriteLine($"Taxi {contador}: {taxi.CantPasajeros} pasajero");
 
                 else
-                    Console.WriteLine($"Taxi {contador}: {taxi.cantPasajeros} pasajeros");
+                    Console.WriteLine($"Taxi {contador}: {taxi.CantPasajeros} pasajeros");
 
                 contador++;
             }
@@ -74,18 +77,18 @@ namespace Poo.Net
             contador = 1;
             foreach (var omnibus in omnibuses)
             {
-                if(omnibus.cantPasajeros == 1)
-                    Console.WriteLine($"Omnibus {contador}: {omnibus.cantPasajeros} pasajero");
-
+               
+                if (omnibus.CantPasajeros == 1)
+                    Console.WriteLine($"Omnibus {contador}: {omnibus.CantPasajeros} pasajero");
                 else
-                    Console.WriteLine($"Omnibus {contador}: {omnibus.cantPasajeros} pasajeros");
+                    Console.WriteLine($"Omnibus {contador}: {omnibus.CantPasajeros} pasajeros");
                 contador++;
             }
             Console.ReadLine();
           
 
 
-             bool validarEntero (string input, int pasajerosMinimos, int pasajerosMaximos, out int resultado )
+            bool validarEntero (string input, int pasajerosMinimos, int pasajerosMaximos, out int resultado )
             {
                 bool inputValido = int.TryParse(input, out resultado);
 
@@ -96,18 +99,20 @@ namespace Poo.Net
                 }
                 else
                     transporte = "taxi";
-
-                if (inputValido)
+                
+               Console.ForegroundColor = ConsoleColor.Red;
+                    if (inputValido)
                 {
                     if (resultado < pasajerosMinimos || resultado > pasajerosMaximos)
                     {
+
                         Console.WriteLine($"Cantidad incorrecta, el {transporte} solo puede llevar entre {pasajerosMinimos} y {pasajerosMaximos} pasajeros");
                         inputValido = false;
                     }
                 }
                 else
                     Console.WriteLine("Por favor ingresar solo numeros");
-
+                
                 return inputValido;
             }
         }

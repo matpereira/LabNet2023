@@ -8,11 +8,11 @@ namespace Poo.Net
 {
     public abstract class TransportePublico
     {
-        public int cantPasajeros { get; set; }
+        public int CantPasajeros { get; }
 
         public TransportePublico (int cantPasajeros)
         {
-            this.cantPasajeros = cantPasajeros;
+            this.CantPasajeros = cantPasajeros;
         }
 
         public abstract string Avanzar();
