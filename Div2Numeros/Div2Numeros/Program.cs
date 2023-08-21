@@ -11,9 +11,16 @@ namespace Div2Numeros
     {
         static void Main(string[] args)
         {
+            try
+            {
+                DivExceptions.DivisionDosNum();
+            } 
+            catch (Exception ex) 
+            {
+                Console.WriteLine($"Mensaje de la Excepcion : {ex.Message}");
+                Console.ReadLine();
 
-            DivExceptions.DivisionDosNum();
-
+            }
         }
     }
 }

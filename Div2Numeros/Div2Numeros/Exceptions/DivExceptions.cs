@@ -29,7 +29,6 @@ namespace Div2Numeros.Exceptions
             catch (DivideByZeroException ex)
             {
                 Console.WriteLine("¡Solo Chuck Norris divide por cero!");
-                Console.WriteLine("\nMensaje de la Excepcion : {ex.Message}");
                 throw ex;
             }
             catch (FormatException ex)
@@ -40,7 +39,6 @@ namespace Div2Numeros.Exceptions
             finally
             {
                 Console.WriteLine("Fin del programa");
-                Console.ReadLine();
             }
         }
     }
