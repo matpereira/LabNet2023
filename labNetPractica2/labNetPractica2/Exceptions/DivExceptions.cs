@@ -13,18 +13,19 @@ namespace labNetPractica2.Exceptions
             try
             {
                 Console.WriteLine("Introduce el numero que sera dividido por cero");
-                double dividendo = double.Parse(Console.ReadLine());
-                double resultado = dividendo / 0;
+                int dividendo = int.Parse(Console.ReadLine());
+                int resultado = dividendo / 0;
  
                 Console.WriteLine($"El resultado es:{resultado}");
             }
-            catch (DivideByZeroException)
+            catch (DivideByZeroException ex)
             {
-                Console.WriteLine("No se puede dividir por cero");
+                Console.WriteLine($"No se puede dividir por cero \nMensaje de la Excepcion : {ex.Message}");
+              
             }
-            catch (FormatException)
+            catch (FormatException ex)
             {
-                Console.WriteLine("El valor introducido no es un número");
+                Console.WriteLine($"El valor introducido no es un número \nMensaje de la Excepcion : {ex.Message}");
             }
             finally
             {
@@ -39,17 +40,17 @@ namespace labNetPractica2.Exceptions
             try
             {
                 Console.WriteLine("Introduce el numero que sera dividido");
-                double dividendo = double.Parse(Console.ReadLine());
+                int dividendo = int.Parse(Console.ReadLine());
                 Console.WriteLine("Introduce el numero que sera divisor");
-                double divisor = double.Parse(Console.ReadLine());
-                double resultado = dividendo / divisor;
+                int divisor = int.Parse(Console.ReadLine());
+                int resultado = dividendo / divisor;
 
                 Console.WriteLine($"El resultado es:{resultado}");
             }
-            catch (DivideByZeroException)
+            catch (DivideByZeroException ex)
             {
                 Console.WriteLine("¡Solo Chuck Norris divide por cero!");
-                Console.WriteLine("¡No se puede dividir por cero!");
+                Console.WriteLine("\nMensaje de la Excepcion : {ex.Message}");
             }
             catch (FormatException)
             {
