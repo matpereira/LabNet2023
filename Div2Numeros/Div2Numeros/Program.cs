@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Div2Numeros.Exceptions;
 
 namespace Div2Numeros
 {
@@ -10,6 +11,9 @@ namespace Div2Numeros
     {
         static void Main(string[] args)
         {
+
+            DivExceptions.DivisionDosNum();
+
         }
     }
 }

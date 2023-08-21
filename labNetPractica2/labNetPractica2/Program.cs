@@ -11,34 +11,8 @@ namespace labNetPractica2
     {
         static void Main(string[] args)
         {
-           DivExceptions.DivisionPorCero();
-            // DivExceptions.DivisionDosNum();
-            // LogicException();
-
+            DivExceptions.DivisionPorCero();
 
         }
-
-        private static void LogicException()
-        {
-            try
-            {
-                Logic.ThrowException();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Se capturó una excepción:");
-                Console.WriteLine("Tipo de excepción: " + ex.GetType());
-                Console.WriteLine("Mensaje de excepción: " + ex.Message);
-
-            }
-            finally
-            {
-                Console.ReadLine();
-            }
-
-        }
-
-       
-
     }
 }

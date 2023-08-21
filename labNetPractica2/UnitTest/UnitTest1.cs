@@ -1,4 +1,4 @@
-namespace NunitPractica2
+namespace UnitTest
 {
     public class Tests
     {

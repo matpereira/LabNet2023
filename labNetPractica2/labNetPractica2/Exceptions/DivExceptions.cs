@@ -33,39 +33,5 @@ namespace labNetPractica2.Exceptions
                 Console.ReadLine();
             }
         }
-
-        public static void DivisionDosNum()
-        {
-
-            try
-            {
-                Console.WriteLine("Introduce el numero que sera dividido");
-                int dividendo = int.Parse(Console.ReadLine());
-                Console.WriteLine("Introduce el numero que sera divisor");
-                int divisor = int.Parse(Console.ReadLine());
-                int resultado = dividendo / divisor;
-
-                Console.WriteLine($"El resultado es:{resultado}");
-            }
-            catch (DivideByZeroException ex)
-            {
-                Console.WriteLine("¡Solo Chuck Norris divide por cero!");
-                Console.WriteLine("\nMensaje de la Excepcion : {ex.Message}");
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("¡Seguro Ingreso una letra o no ingreso nada!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"¡Error! {ex.Message}");
-            }
-            finally
-            {
-                Console.WriteLine("Fin del programa");
-                Console.ReadLine();
-            }
-        }
-
     }
 }
