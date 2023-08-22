@@ -1,38 +1,36 @@
 ﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Div2Numeros.Exceptions
 {
     public class DivExceptions
     {
-
-        public static int DivisionDosNum()
+        public static double DivisionDosNum()
         {
-
             try
-            {
+            {   
                 Console.WriteLine("Introduce el numero que sera dividido");
-                int dividendo = int.Parse(Console.ReadLine());
+                double dividendo = double.Parse(Console.ReadLine());
                 Console.WriteLine("Introduce el numero que sera divisor");
-                int divisor = int.Parse(Console.ReadLine());
-
-                int resultado = dividendo / divisor;
-
-
+                double divisor = double.Parse(Console.ReadLine());
+                if(divisor==0)
+                {
+                    throw new DivideByZeroException();
+                }
+                double resultado = dividendo / divisor;
                 Console.WriteLine($"El resultado es:{resultado}");
                 return resultado;
             }
             catch (DivideByZeroException ex)
             {
-                Console.WriteLine("¡Solo Chuck Norris divide por cero!");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("¡CUIDADO!");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Si este programa lo utiliza Chuck Norris y divide por cero en una computadora, esta explota y se convierte en una mini supernova.");
                 throw ex;
             }
             catch (FormatException ex)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("¡Seguro Ingreso una letra o no ingreso nada!");
                 throw ex;
             }

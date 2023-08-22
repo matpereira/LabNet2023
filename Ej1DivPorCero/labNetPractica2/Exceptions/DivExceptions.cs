@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace labNetPractica2.Exceptions
 {
@@ -15,7 +12,6 @@ namespace labNetPractica2.Exceptions
                 Console.WriteLine("Introduce el numero que sera dividido por cero");
                 int dividendo = int.Parse(Console.ReadLine());
                 int resultado = dividendo / 0;
- 
                 Console.WriteLine($"El resultado es:{resultado}");
             }
             catch (DivideByZeroException ex)

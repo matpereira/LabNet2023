@@ -1,17 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EjLogic
 {
     internal class Logic
     {
-
-        public static void ThrowException()
+        public static void LogicException()
         {
-            throw new Exception("Mensaje de excepcion de prueba!");
+            Console.ForegroundColor = ConsoleColor.Green;
+            try
+            {
+                ThrowException();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Mensaje de la excepcion: {ex.Message}");
+                Console.WriteLine($"Tipo de excepcion: {ex.GetType().ToString()}");
+            }
+            finally
+            {
+                Console.ReadLine();
+            }
         }
+
+        private static void ThrowException()
+        {
+            throw new Exception("Excepcion de prueba!");
+        }
+
+
+
     }
 }

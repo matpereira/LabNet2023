@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Div2Numeros.Exceptions;
 
 namespace Div2Numeros
@@ -11,6 +7,7 @@ namespace Div2Numeros
     {
         static void Main(string[] args)
         {
+            //Try-Catch para capturar la excepcion y poder realizar las pruebas unitarias
             try
             {
                 DivExceptions.DivisionDosNum();
@@ -18,9 +15,9 @@ namespace Div2Numeros
             catch (Exception ex) 
             {
                 Console.WriteLine($"Mensaje de la Excepcion : {ex.Message}");
-                Console.ReadLine();
-
             }
+            Console.ReadLine();
+            
         }
     }
 }
