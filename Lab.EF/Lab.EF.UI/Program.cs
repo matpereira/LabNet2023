@@ -31,14 +31,7 @@ namespace Lab.EF.UI
                             ModificarShipper(shipperLogic);
                             break;
                         case 3:
-                            Console.Clear();
-                            Console.WriteLine("Selecciona el id a eliminar");
-                            if (int.TryParse(Console.ReadLine(), out borrar))
-                                shipperLogic.Delete(borrar);
-                            else
-                            {
-                                Console.WriteLine("Entrada no válida. Intente nuevamente.");
-                            }
+                            BorrarShipper(shipperLogic);
                             break;
                         case 4:
                             Console.Clear();
@@ -125,7 +118,30 @@ namespace Lab.EF.UI
 
         }
 
+        public static void BorrarShipper(ShippersLogic shipperLogic)
+        {
+            UIFunctions uiFunction = new UIFunctions();
 
+            Console.Clear();
+            Console.WriteLine("Selecciona el id a eliminar");
+            int id;
+            if (int.TryParse(Console.ReadLine(), out id))
+            {
+                if (shipperLogic.Find(id) != 0)
+                {
+                    Console.WriteLine("Esta seguro que desea eliminar el registro? (S/N)");
+                    var confirmacion = Console.ReadLine();
+                    if (confirmacion == "S" || confirmacion == "s")
+                    {
+                        shipperLogic.Delete(id);
+                    }
+                }
+            }
+            else
+            {
+                const string mensaje = "El id ingresado no existe";
+            }
+        }
 
     }
 
