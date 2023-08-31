@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseLogic.cs" />
     <Compile Include="CustomersLogic.cs" />
     <Compile Include="ShippersLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

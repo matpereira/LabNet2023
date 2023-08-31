@@ -1,21 +1,11 @@
-﻿using Lab.EF.Data;
-using Lab.EF.Entities;
-using System;
+﻿using Lab.EF.Entities;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab.EF.Logic
 {
-    public class CustomersLogic
+    public class CustomersLogic : BaseLogic
     {
-        private readonly NorthwindContext context;
-
-        public CustomersLogic()
-        {
-            context = new NorthwindContext();
-        }
 
         public List<Customers> GetAll()
         {
