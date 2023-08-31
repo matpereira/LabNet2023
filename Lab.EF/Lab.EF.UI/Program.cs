@@ -73,7 +73,7 @@ namespace Lab.EF.UI
             UIFunctions uiLogic = new UIFunctions();
             Console.WriteLine("Ingrese el nombre de la compañia");
             var nombre = Console.ReadLine();
-            Console.WriteLine("Ingrese numero de telefono formato Argentina (codigo de area obligatorio)");
+            Console.WriteLine("Ingrese numero de telefono formato Argentina ");
             var numeroTelefono = Console.ReadLine();
 
             if (uiLogic.EsNumeroTelefonoValido(numeroTelefono))
