@@ -12,7 +12,6 @@ namespace Lab.EF.UI
         static void Main(string[] args)
         {
             int seleccion;
-            int borrar;
             UIFunctions uiFunctions = new UIFunctions();
             ShippersLogic shipperLogic = new ShippersLogic();
             CustomersLogic customersLogic = new CustomersLogic();
