@@ -1,7 +1,4 @@
 ﻿using System;
-using System.ComponentModel.Design;
-using System.Data.SqlClient;
-using System.Security.Policy;
 using Lab.EF.Entities;
 using Lab.EF.Logic;
 
@@ -54,21 +51,19 @@ namespace Lab.EF.UI
                 }
                Console.WriteLine(); 
             } while (seleccion != 0);
-
-
             Console.ReadLine();
         }
 
 
-        public static void NuevoShipper(ShippersLogic shipperLogic)
+        private static void NuevoShipper(ShippersLogic shipperLogic)
         {
-            UIFunctions uiLogic = new UIFunctions();
+            UIFunctions uiFunction = new UIFunctions();
             Console.WriteLine("Ingrese el nombre de la compañia");
             var nombre = Console.ReadLine();
             Console.WriteLine("Ingrese numero de telefono formato Argentina ");
             var numeroTelefono = Console.ReadLine();
 
-            if (uiLogic.EsNumeroTelefonoValido(numeroTelefono))
+            if (uiFunction.EsNumeroTelefonoValido(numeroTelefono))
             {
                 shipperLogic.Add(new Shippers
                {
@@ -79,9 +74,9 @@ namespace Lab.EF.UI
         }
 
 
-        public static void ModificarShipper(ShippersLogic shipperLogic)
+        private static void ModificarShipper(ShippersLogic shipperLogic)
         {
-            UIFunctions uiLogic = new UIFunctions();
+            UIFunctions uiFunction = new UIFunctions();
             Console.WriteLine("Ingrese el id a modificar");
             int id;
 
@@ -94,7 +89,7 @@ namespace Lab.EF.UI
                     Console.WriteLine("Ingrese numero de telefono formato Argentina (codigo de area obligatorio)");
                     var numeroTelefono = Console.ReadLine();
 
-                    if (uiLogic.EsNumeroTelefonoValido(numeroTelefono))
+                    if (uiFunction.EsNumeroTelefonoValido(numeroTelefono))
                     {
                         shipperLogic.Update(new Shippers
                         {
@@ -113,14 +108,11 @@ namespace Lab.EF.UI
             {
                 Console.WriteLine("solo se aceptan numeros para el ID");
             }
-
-
         }
 
-        public static void BorrarShipper(ShippersLogic shipperLogic)
+        private static void BorrarShipper(ShippersLogic shipperLogic)
         {
             UIFunctions uiFunction = new UIFunctions();
-
             Console.Clear();
             Console.WriteLine("Selecciona el id a eliminar");
             int id;
@@ -138,7 +130,7 @@ namespace Lab.EF.UI
             }
             else
             {
-                const string mensaje = "El id ingresado no existe";
+                Console.WriteLine("solo se aceptan numeros para el ID");
             }
         }
 

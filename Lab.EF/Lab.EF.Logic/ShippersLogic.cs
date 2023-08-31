@@ -1,5 +1,4 @@
-﻿using Lab.EF.Data;
-using Lab.EF.Entities;
+﻿using Lab.EF.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

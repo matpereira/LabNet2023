@@ -1,5 +1,4 @@
-﻿using Lab.EF.Entities;
-using Lab.EF.Logic;
+﻿using Lab.EF.Logic;
 using System;
 using System.Text.RegularExpressions;
 
@@ -24,13 +23,17 @@ namespace Lab.EF.UI
 
         public void ObtenerCustomers(CustomersLogic customerLogic)
         {
-            Console.WriteLine("ID\t|\tNombre de la compania\t|\tTelefono");
+            Console.WriteLine("ID\t|\tNombre de la compania\t\t\t|\tTelefono");
 
             var customers = customerLogic.GetAll();
             foreach (var customer in customers)
             {
-                Console.WriteLine();
+                if (customer.CompanyName.Length < 30)
+                    Console.WriteLine($"{customer.CustomerID}\t|\t{customer.CompanyName}\t\t\t\t|\t{customer.Phone}");
+                else
+                    Console.WriteLine($"{customer.CustomerID}\t|\t{customer.CompanyName}\t|\t{customer.Phone}");
             }
+            Console.WriteLine("Faltan los demas campos");
         }
 
         public void mostrarMenu()
