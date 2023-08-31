@@ -50,6 +50,7 @@ namespace Lab.EF.Logic
          var shipper = context.Shippers.Find(id);
             if (shipper != null)
             {
+                Console.Clear();
                 Console.WriteLine("Shipper encontrado");
                 Console.WriteLine("ID\t|\tNombre de la compania\t|\tTelefono");
                 Console.WriteLine($"{shipper.ShipperID}\t|\t{shipper.CompanyName}\t|\t{shipper.Phone}");

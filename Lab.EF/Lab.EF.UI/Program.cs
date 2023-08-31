@@ -25,7 +25,7 @@ namespace Lab.EF.UI
                     switch (seleccion)
                     {
                         case 1:
-                            NuevoShipper();
+                            NuevoShipper(shipperLogic);
                             break;
                         case 2:
                             ModificarShipper(shipperLogic);
@@ -68,10 +68,9 @@ namespace Lab.EF.UI
         }
 
 
-        public static void NuevoShipper( )
+        public static void NuevoShipper(ShippersLogic shipperLogic)
         {
             UIFunctions uiLogic = new UIFunctions();
-            ShippersLogic shipperLogic = new ShippersLogic();
             Console.WriteLine("Ingrese el nombre de la compañia");
             var nombre = Console.ReadLine();
             Console.WriteLine("Ingrese numero de telefono formato Argentina (codigo de area obligatorio)");
