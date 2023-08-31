@@ -107,6 +107,7 @@ namespace Lab.EF.UI
                     {
                         shipperLogic.Update(new Shippers
                         {
+                            ShipperID = id,
                             CompanyName = nombre,
                             Phone = numeroTelefono
                         });
