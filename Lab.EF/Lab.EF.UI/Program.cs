@@ -66,11 +66,11 @@ namespace Lab.EF.UI
                 while(nombre.Length>40)
                   {  
                 Console.Clear();
-                     Console.WriteLine("El nombre dela compania no puede superar los 40 caracteres");
+                     Console.WriteLine("El nombre de la compania no puede superar los 40 caracteres");
                      Console.WriteLine("por favor ingrese nuevamente el nombre de la compania");
                      nombre = Console.ReadLine();
                    }
-                  Console.WriteLine("Ingrese numero de telefono formato Argentina ");
+                  Console.WriteLine("Ingrese numero de telefono (Max 24 digitos)  ");
                 var numeroTelefono = Console.ReadLine();
 
                 if (uiFunction.EsNumeroTelefonoValido(numeroTelefono))
