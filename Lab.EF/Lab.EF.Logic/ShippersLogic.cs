@@ -31,22 +31,26 @@ namespace Lab.EF.Logic
 
         public void Delete(int id)
         {
-            var shipperToDelete = context.Shippers.Find(id);
-            try
+           try
             {
+               var shipperToDelete = context.Shippers.FirstOrDefault(x => x.ShipperID == id);  
                 context.Shippers.Remove(shipperToDelete);
                 context.SaveChanges();
-            }
-            catch (Exception)
+           }
+           catch (Exception)
             {
-                Console.WriteLine($"{id} no encontrado");
+              Console.WriteLine("No se puede eliminar un shipper que este asociado a un pedido");
             }
-            
+
         }
 
         public int Find(int id)
         {
+            
          var shipper = context.Shippers.Find(id);
+
+            shipper = context.Shippers.FirstOrDefault(x => x.ShipperID == id);
+          
             if (shipper != null)
             {
                 Console.Clear();
@@ -57,6 +61,7 @@ namespace Lab.EF.Logic
             }
             else
             {
+                Console.WriteLine($"No se encontro el shipper para el id: {id}");
                 return 0;
             }
         }

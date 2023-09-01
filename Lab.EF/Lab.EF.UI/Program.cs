@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Policy;
 using Lab.EF.Entities;
 using Lab.EF.Logic;
 
@@ -38,6 +39,7 @@ namespace Lab.EF.UI
                             uiFunctions.ObtenerCustomers(customersLogic);
                             break;
                         case 0:
+                            Console.ForegroundColor = ConsoleColor.Magenta;
                             Console.WriteLine("Saliendo del programa...");
                             break;
                         default:
@@ -58,19 +60,29 @@ namespace Lab.EF.UI
         private static void NuevoShipper(ShippersLogic shipperLogic)
         {
             UIFunctions uiFunction = new UIFunctions();
-            Console.WriteLine("Ingrese el nombre de la compañia");
-            var nombre = Console.ReadLine();
-            Console.WriteLine("Ingrese numero de telefono formato Argentina ");
-            var numeroTelefono = Console.ReadLine();
+      
+            
+                Console.WriteLine("Ingrese el nombre de la compañia");
+                var nombre = Console.ReadLine();
+                while(nombre.Length>40)
+                  {  
+                Console.Clear();
+                     Console.WriteLine("El nombre dela compania no puede superar los 40 caracteres");
+                     Console.WriteLine("por favor ingrese nuevamente el nombre de la compania");
+                     nombre = Console.ReadLine();
+                   }
+                  Console.WriteLine("Ingrese numero de telefono formato Argentina ");
+                var numeroTelefono = Console.ReadLine();
 
-            if (uiFunction.EsNumeroTelefonoValido(numeroTelefono))
-            {
-                shipperLogic.Add(new Shippers
-               {
-                    CompanyName = nombre,
-                    Phone = numeroTelefono
-                });
-            }
+                if (uiFunction.EsNumeroTelefonoValido(numeroTelefono))
+                {
+                    shipperLogic.Add(new Shippers
+                    {
+                        CompanyName = nombre,
+                        Phone = numeroTelefono
+                    });
+                }
+            
         }
 
 
@@ -79,25 +91,58 @@ namespace Lab.EF.UI
             UIFunctions uiFunction = new UIFunctions();
             Console.WriteLine("Ingrese el id a modificar");
             int id;
+            string nombreCompania;
 
             if (int.TryParse(Console.ReadLine(), out id))
             {
                 if (shipperLogic.Find(id) != 0)
                 {
-                    Console.WriteLine("Ingrese el nombre de la compañia");
-                    var nombre = Console.ReadLine();
-                    Console.WriteLine("Ingrese numero de telefono formato Argentina (codigo de area obligatorio)");
-                    var numeroTelefono = Console.ReadLine();
+                    Console.WriteLine("Modificar el nombre de la compañia? (S/N)");
+                    var confirmar = Console.ReadLine();
+                    if(confirmar == "S" || confirmar == "s")
+                    {
+                        Console.WriteLine("Ingrese el nombre de la compañia");
+                        nombreCompania = Console.ReadLine();
+                        while (nombreCompania.Length > 40)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("El nombre de la compania no puede superar los 40 caracteres");
+                            Console.WriteLine("por favor ingrese nuevamente el nombre de la compania");
+                            nombreCompania = Console.ReadLine();
+                        }
+                    }
+                    else
+                    {
+                      nombreCompania = shipperLogic.GetAll().Find(x => x.ShipperID == id).CompanyName;
+                    }
+                        
 
-                    if (uiFunction.EsNumeroTelefonoValido(numeroTelefono))
+                    Console.WriteLine("Modificar el numero de telefono?");
+                    confirmar = Console.ReadLine();
+                    if (confirmar == "S" || confirmar == "s")
+                    {
+                        Console.WriteLine("Ingrese numero de telefono (Max 24 digitos)");
+                        var numeroTelefono = Console.ReadLine();
+                        if (uiFunction.EsNumeroTelefonoValido(numeroTelefono))
+                        {
+                            shipperLogic.Update(new Shippers
+                            {
+                                ShipperID = id,
+                                CompanyName = nombreCompania,
+                                Phone = numeroTelefono
+                            });
+                        }
+                    }
+                    else
                     {
                         shipperLogic.Update(new Shippers
                         {
                             ShipperID = id,
-                            CompanyName = nombre,
-                            Phone = numeroTelefono
-                        });
+                            CompanyName = nombreCompania,
+                            Phone = shipperLogic.GetAll().Find(x => x.ShipperID == id).Phone
+                    }) ;
                     }
+  
                 }
                 else
                 {

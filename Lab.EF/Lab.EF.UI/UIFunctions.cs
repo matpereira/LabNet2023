@@ -23,17 +23,12 @@ namespace Lab.EF.UI
 
         public void ObtenerCustomers(CustomersLogic customerLogic)
         {
-            Console.WriteLine("ID\t|\tNombre de la compania\t\t\t|\tTelefono");
-
             var customers = customerLogic.GetAll();
             foreach (var customer in customers)
             {
-                if (customer.CompanyName.Length < 30)
-                    Console.WriteLine($"{customer.CustomerID}\t|\t{customer.CompanyName}\t\t\t\t|\t{customer.Phone}");
-                else
-                    Console.WriteLine($"{customer.CustomerID}\t|\t{customer.CompanyName}\t|\t{customer.Phone}");
+
+                    Console.WriteLine($"{customer.CustomerID}\t| {customer.CompanyName}\t| {customer.ContactName}\t| {customer.ContactTitle}\t| {customer.City}\t| {customer.Phone}");
             }
-            Console.WriteLine("Faltan los demas campos");
         }
 
         public void mostrarMenu()
@@ -49,8 +44,7 @@ namespace Lab.EF.UI
         public bool EsNumeroTelefonoValido(string numero)
         {
             bool esValido = false;
-            string patron = @"^(?:(\+54|0)(?:(?:(?:11|[2368]\d)(?:\s*[ -]?\d{4}){2})|(?:(?:[2368]\d\s*[-]?)?(?:\s*[ -]?\d{3}\s*[ -]?)?\d{4})))|(11\d{8})$";
-
+            string patron = @"^(?:(\+54|0)(?:(?:(?:11|[2368]\d)(?:\s*[ -]?\d{4}){2})|(?:(?:[2368]\d\s*[-]?)?(?:\s*[ -]?\d{3}\s*[ -]?)?\d{4})))|(11\d{8})(?:\s*[ -]?\d{4}){0,5}$";
             esValido = Regex.IsMatch(numero, patron);
 
             if(esValido == false)
@@ -61,7 +55,6 @@ namespace Lab.EF.UI
                 Console.WriteLine("(+54) 91123456789 (celular)\r\n011 2345 6789 (fijo)\r\n236 123 4567 (fijo)\r\n1161234567 (celular)");
                 Console.WriteLine();
             }
-
             return esValido;
         }
 
