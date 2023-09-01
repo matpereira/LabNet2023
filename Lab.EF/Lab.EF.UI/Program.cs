@@ -113,7 +113,10 @@ namespace Lab.EF.UI
                     }
                     else
                     {
-                      nombreCompania = shipperLogic.GetAll().Find(x => x.ShipperID == id).CompanyName;
+                     //no lo veo eficiente ya que tengo que volver a leer la base de datos
+                     //para obtener el nombre de la compania si paso por aqui
+
+                        nombreCompania = shipperLogic.GetAll().Find(x => x.ShipperID == id).CompanyName;
                     }
                         
 
@@ -135,6 +138,8 @@ namespace Lab.EF.UI
                     }
                     else
                     {
+                        //no lo veo eficiente ya que tengo que volver a leer la base de datos
+                        //para obtener el telefono de la compania si paso por aqui
                         shipperLogic.Update(new Shippers
                         {
                             ShipperID = id,
