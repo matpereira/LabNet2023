@@ -1,6 +1,5 @@
 ﻿using Lab.EF.Logic;
 using System;
-using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 
 namespace Lab.EF.UI
