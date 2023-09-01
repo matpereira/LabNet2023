@@ -1,10 +1,11 @@
 ﻿using Lab.EF.Logic;
 using System;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 
 namespace Lab.EF.UI
 {
-    internal class UIFunctions
+    public class UIFunctions
     {
         
         public void ObtenerShippers(ShippersLogic shipperLogic)
@@ -43,20 +44,24 @@ namespace Lab.EF.UI
 
         public bool EsNumeroTelefonoValido(string numero)
         {
-            bool esValido = false;
-            string patron = @"^(?:(\+54|0)(?:(?:(?:11|[2368]\d)(?:\s*[ -]?\d{4}){2})|(?:(?:[2368]\d\s*[-]?)?(?:\s*[ -]?\d{3}\s*[ -]?)?\d{4})))|(11\d{8})(?:\s*[ -]?\d{4}){0,5}$";
-            esValido = Regex.IsMatch(numero, patron);
+            //Aclaracion sobre esta Regex:
 
-            if(esValido == false)
+            //Permite un símbolo "+" opcional antes de dos dígitos.
+            //Permite paréntesis opcionales alrededor del código de país.
+            //Acepta guiones intermedios opcionales.
+            //Acepta formatos como "(+54)911-2233-5544" o "+5491122335544".
+            //Verifica que la longitud total sea de hasta 24 caracteres.
+            string patron = @"^(?=\(?\+?\d{1,3}\)?)(?=.{1,24}$)\(?\+?\d{1,3}\)?[\s-]?\d{1,24}$";
+
+            bool esValido = Regex.IsMatch(numero, patron);
+
+            if (esValido == false)
             {
                 Console.WriteLine("Número de teléfono no válido.");
-                Console.WriteLine();
-                Console.WriteLine("Formatos de numero validos: ");
-                Console.WriteLine("(+54) 91123456789 (celular)\r\n011 2345 6789 (fijo)\r\n236 123 4567 (fijo)\r\n1161234567 (celular)");
-                Console.WriteLine();
+                
             }
             return esValido;
         }
 
     }
-}
+}   

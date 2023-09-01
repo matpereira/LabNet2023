@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Policy;
 using Lab.EF.Entities;
 using Lab.EF.Logic;
 
