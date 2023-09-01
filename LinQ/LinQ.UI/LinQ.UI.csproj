@@ -57,5 +57,19 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LinQ.Data\LinQ.Data.csproj">
+      <Project>{BEE52703-00E8-4196-8E91-BA7595669ABD}</Project>
+      <Name>LinQ.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LinQ.Entities\LinQ.Entities.csproj">
+      <Project>{1a7703c1-9f4a-491e-a38b-0712427506e9}</Project>
+      <Name>LinQ.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LinQ.Logic\LinQ.Logic.csproj">
+      <Project>{cdaa77fc-d3c2-41b2-846e-29af946798ea}</Project>
+      <Name>LinQ.Logic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

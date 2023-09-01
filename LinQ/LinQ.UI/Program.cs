@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
-//using LinQ.Entities;
-
+using LinQ.Data;
+using LinQ.Entities;
+using LinQ.Logic;
+ 
 namespace LinQ.UI
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            int seleccion;
+            //int seleccion;
             /*  do
               {
                   // Leer la opción del usuario
@@ -47,17 +50,22 @@ namespace LinQ.UI
                   Console.WriteLine();
               } while (seleccion != 0);
             */
-            /*
-            var query = from Region in 
-                        where Region.RegionID == 1 || Region.RegionID == 2
-                        select Region;
 
-            seleccion = query.Count();
-            Console.WriteLine($"Cantidad de regiones: {seleccion}");
-            Console.WriteLine();
+          //  Database.SetInitializer(new DropCreateDatabaseIfModelChanges<LinQDb>());
 
-            */
+            var db = new NorthwindContext();
 
+            var query = from customer in db.Customers
+                        orderby customer.CustomerID
+                        select customer;
+
+            foreach (var customer in query)
+            {
+                Console.WriteLine($"CustomerID: {customer.CustomerID}");
+            }
+            
+            Console.WriteLine("Presione una tecla para salir...");
+            Console.ReadLine();
         }
 
     }
