@@ -11,5 +11,7 @@ namespace Lab.EF.Logic
         {
             return context.Customers.ToList();
         }
+
+        //Aqui faltaria implementar los demas metodos de la interfaz ILogic
     }
 }
