@@ -68,8 +68,8 @@ public class UIFunctions
     public void NuevoShipper(ShippersLogic shipperLogic)
     {
         UIFunctions uiFunction = new UIFunctions();
-
-
+            var nombre = IngresarCompania();
+            /*
         Console.WriteLine("Ingrese el nombre de la compañia");
         var nombre = Console.ReadLine();
         while (nombre.Length > 40)
@@ -78,7 +78,7 @@ public class UIFunctions
             Console.WriteLine("El nombre de la compania no puede superar los 40 caracteres");
             Console.WriteLine("por favor ingrese nuevamente el nombre de la compania");
             nombre = Console.ReadLine();
-        }
+        }*/
         Console.WriteLine("Ingrese numero de telefono (Max 24 digitos)  ");
         var numeroTelefono = Console.ReadLine();
 
@@ -110,15 +110,7 @@ public class UIFunctions
                 var confirmar = Console.ReadLine();
                 if (confirmar == "S" || confirmar == "s")
                 {
-                    Console.WriteLine("Ingrese el nombre de la compañia");
-                    nombreCompania = Console.ReadLine();
-                    while (nombreCompania.Length > 40)
-                    {
-                        Console.Clear();
-                        Console.WriteLine("El nombre de la compania no puede superar los 40 caracteres");
-                        Console.WriteLine("por favor ingrese nuevamente el nombre de la compania");
-                        nombreCompania = Console.ReadLine();
-                    }
+                  nombreCompania = IngresarCompania();
                 }
                 else
                 {
@@ -129,7 +121,7 @@ public class UIFunctions
                 }
 
 
-                Console.WriteLine("Modificar el numero de telefono?");
+                Console.WriteLine("Modificar el numero de telefono? (S/N)");
                 confirmar = Console.ReadLine();
                 if (confirmar == "S" || confirmar == "s")
                 {
@@ -168,6 +160,23 @@ public class UIFunctions
             Console.WriteLine("solo se aceptan numeros para el ID");
         }
     }
+
+
+    private string IngresarCompania()
+        {
+
+            Console.WriteLine("Ingrese el nombre de la compañia");
+            var nombre = Console.ReadLine();
+            while (nombre.Length > 40)
+            {
+                Console.Clear();
+                Console.WriteLine("El nombre de la compania no puede superar los 40 caracteres");
+                Console.WriteLine("por favor ingrese nuevamente el nombre de la compania");
+                nombre = Console.ReadLine();
+            }
+            return nombre;
+        }
+
 
 
     public  void BorrarShipper(ShippersLogic shipperLogic)
