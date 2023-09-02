@@ -18,7 +18,7 @@ public class UIFunctions
             if(shipper.CompanyName.Length < 16)
                 Console.WriteLine($"{shipper.ShipperID}\t|\t{shipper.CompanyName}\t\t\t|\t{shipper.Phone}");
             else
-            Console.WriteLine($"{shipper.ShipperID}\t|\t{shipper.CompanyName}\t|\t{shipper.Phone}");
+                Console.WriteLine($"{shipper.ShipperID}\t|\t{shipper.CompanyName}\t|\t{shipper.Phone}");
         }
     }
 
@@ -27,8 +27,7 @@ public class UIFunctions
         var customers = customerLogic.GetAll();
         foreach (var customer in customers)
         {
-
-        Console.WriteLine($"{customer.CustomerID}\t| {customer.CompanyName}\t| {customer.ContactName}\t| {customer.ContactTitle}\t| {customer.City}\t| {customer.Phone}");
+            Console.WriteLine($"{customer.CustomerID}\t| {customer.CompanyName}\t| {customer.ContactName}\t| {customer.ContactTitle}\t| {customer.City}\t| {customer.Phone}");
         }
     }
 
@@ -68,7 +67,7 @@ public class UIFunctions
     public void NuevoShipper(ShippersLogic shipperLogic)
     {
         UIFunctions uiFunction = new UIFunctions();
-            var nombre = IngresarCompania();
+        var nombre = IngresarCompania();
             /*
         Console.WriteLine("Ingrese el nombre de la compañia");
         var nombre = Console.ReadLine();
@@ -110,7 +109,7 @@ public class UIFunctions
                 var confirmar = Console.ReadLine();
                 if (confirmar == "S" || confirmar == "s")
                 {
-                  nombreCompania = IngresarCompania();
+                    nombreCompania = IngresarCompania();
                 }
                 else
                 {
