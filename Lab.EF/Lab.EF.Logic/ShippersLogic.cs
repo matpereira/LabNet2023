@@ -13,13 +13,12 @@ public class ShippersLogic : BaseLogic, ILogic<Shippers>
     {
         return context.Shippers.ToList();
     }
+
     public void Add(Shippers shipper)
     {
         context.Shippers.Add(shipper);
         context.SaveChanges();
     }
-
- 
             
     public void Update(Shippers shipper)
     {
