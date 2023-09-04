@@ -1,6 +1,4 @@
 ﻿using LinQ.Data;
-using System.Data.Entity;
-using System.Linq;
 
 namespace LinQ.Logic
 {
@@ -11,8 +9,6 @@ namespace LinQ.Logic
         {
             context = new NorthwindContext();
         }
-
-        
 
     }
 }

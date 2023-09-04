@@ -1,8 +1,6 @@
 ﻿using System;
 using LinQ.Logic;
 using LinQ.Entities;
-using LinQ.Data;
-using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,7 +11,7 @@ namespace LinQ.UI
         public static void MostrarMenu()
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("1. Mostrar customer");//ok
+            Console.WriteLine("1. Mostrar customer");
             Console.WriteLine("2. Todos los productos sin stock");
             Console.WriteLine("3. Todos los productos que tienen stock y que cuestan más de 3 por nunidad");
             Console.WriteLine("4. Todos los customers de la Región WA");

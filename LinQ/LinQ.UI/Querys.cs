@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Text;
-using System.Threading.Tasks;
 using LinQ.Entities;
-using LinQ.Data;
-using LinQ.Logic;
 using LinQ.UI;
-using System.Net.NetworkInformation;
 
 namespace LinQ.Logic
 {

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Data.Entity;
-using System.Linq;
-using LinQ.Data;
-using LinQ.Entities;
 using LinQ.Logic;
  
 namespace LinQ.UI
@@ -14,6 +10,7 @@ namespace LinQ.UI
             int seleccion;
             do
               {
+                  Console.Clear();
                   UIFunctions.MostrarMenu();
                   if (int.TryParse(Console.ReadLine(), out seleccion))
                   {
@@ -65,7 +62,8 @@ namespace LinQ.UI
                               break;
                           default:
                               Console.WriteLine("Opción no válida. Intente nuevamente.");
-                              break;
+                              Console.ReadLine();
+                            break;
                       }
                   }
                   else
