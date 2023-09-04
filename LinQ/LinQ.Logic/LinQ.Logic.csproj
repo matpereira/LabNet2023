@@ -49,8 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseLogic.cs" />
-    <Compile Include="CustomerLogic.cs" />
     <Compile Include=".cs" />
+    <Compile Include="CustomerLogic.cs" />
+    <Compile Include="ILogic.cs" />
+    <Compile Include="ProductsLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,30 +11,37 @@ namespace LinQ.UI
     {
         static void Main(string[] args)
         {
-            //int seleccion;
-            /*  do
+            int seleccion;
+            do
               {
+                  UIFunctions.MostrarMenu();
                   // Leer la opción del usuario
                   if (int.TryParse(Console.ReadLine(), out seleccion))
                   {
                       switch (seleccion)
                       {
                           case 1:
-                              Console.Clear();
-                              break;
+                            UIFunctions.SeleccionarCustomer();
+                            break;
                           case 2:
-                              Console.Clear();
+                            Querys.ProductosSinStock();
                               break;
                           case 3:
-                              Console.Clear();
+                            Querys.StockMasDeTres();
                               break;
                           case 4:
-                              Console.Clear();
+                            Querys.CustomersWA();
                               break;
                           case 5:
-                              Console.Clear();
+                            Querys.ObtenerProductoPorID();
                               break;
-                          case 0:
+                          case 6:
+                            Querys.CustomerMayusMinus();
+                            break;
+                          case 7:
+                            Querys.JoinCustomersOrders();
+                            break;
+                        case 0:
                               Console.ForegroundColor = ConsoleColor.Magenta;
                               Console.WriteLine("Saliendo del programa...");
                               break;
@@ -47,23 +54,9 @@ namespace LinQ.UI
                   {
                       Console.WriteLine("Por favor, seleccione un digito.");
                   }
-                  Console.WriteLine();
-              } while (seleccion != 0);
-            */
-
-          //  Database.SetInitializer(new DropCreateDatabaseIfModelChanges<LinQDb>());
-
-            var db = new NorthwindContext();
-
-            var query = from customer in db.Customers
-                        orderby customer.CustomerID
-                        select customer;
-
-            foreach (var customer in query)
-            {
-                Console.WriteLine($"CustomerID: {customer.CustomerID}");
-            }
-            
+                Console.WriteLine();
+            } while (seleccion != 0);
+         
             Console.WriteLine("Presione una tecla para salir...");
             Console.ReadLine();
         }
