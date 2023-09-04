@@ -16,7 +16,6 @@ namespace LinQ.Logic
     {
         public static void ConsultarCustomer(string id)
         {
-            //  var customer = context.Customers.FirstOrDefault(c => c.CustomerID == id.ToString());
             CustomerLogic customerLogic = new CustomerLogic();
             var customer = customerLogic.ObtenerCustomerPorId(id);
 
@@ -57,7 +56,6 @@ namespace LinQ.Logic
                 foreach (var producto in productosSinStock)
                 {
                     UIFunctions.MostrarProducto(producto);
-
                 }
             }
             Console.ReadLine();
@@ -84,7 +82,6 @@ namespace LinQ.Logic
                 }
             }
             Console.ReadLine();
-
         }
 
         public static void CustomersWA()
@@ -92,13 +89,19 @@ namespace LinQ.Logic
             var customersLogic = new CustomerLogic();
             var customerWA = customersLogic.ObtenerCustomersWA();
             Console.Clear();
-            Console.WriteLine("Clientes de la región WA:");
-            foreach (var customer in customerWA)
+            if (customerWA != null)
             {
-                UI.UIFunctions.MostrarCustomer(customer);
+                Console.WriteLine("Clientes de la región WA:");
+                foreach (var customer in customerWA)
+                {
+                    UI.UIFunctions.MostrarCustomer(customer);
+                }
+            }
+            else
+            {
+                Console.WriteLine("No hay clientes de la región WA");
             }
             Console.ReadLine();
-
         }
 
         public static void ObtenerProductoPorID()
@@ -116,7 +119,6 @@ namespace LinQ.Logic
                 Console.WriteLine("Producto no encontrado");
             }
             Console.ReadLine();
-
         }
 
         public static void CustomerMayusMinus()
@@ -124,32 +126,129 @@ namespace LinQ.Logic
             var customersLogic = new CustomerLogic();
             var customers = customersLogic.ObtenerCustomerMayusMinus();
             Console.Clear();
-            Console.WriteLine("Clientes con nombre en mayúscula y minúscula:");
-
-            foreach (var customer in customers)
+            if(customers != null)
             {
-                Console.WriteLine($"{customer}");
+                Console.WriteLine("Clientes con nombre en mayúscula y minúscula:");
+                foreach (var customer in customers)
+                {
+                    Console.WriteLine($"{customer}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No hay customers cargados");
             }
             Console.ReadLine();
-
         }
 
         public static void JoinCustomersOrders()
         {
             var customersLogic = new CustomerLogic();
-            var clientesYOrdenesWA = customersLogic.ObtenerClientesYOrdenes();
-
-            Console.WriteLine("Customer WA y Orden posteriores al 1 de enero de 1997:");
-            foreach (var clienteOrden in clientesYOrdenesWA)
+            var clientesYOrdenesWA = customersLogic.ObtenerCustomersYOrders();
+            Console.Clear();
+            if(clientesYOrdenesWA!= null)
             {
-                Console.WriteLine($"Customer ID: {clienteOrden.CustomerID}");
-                Console.WriteLine($"Company Name: {clienteOrden.CompanyName}");
-                Console.WriteLine($"OrderID: {clienteOrden.OrderID}");
-                Console.WriteLine($"OrderDate: {clienteOrden.OrderDate}");
-                Console.WriteLine();
+                Console.WriteLine("Customer WA y Orden posteriores al 1 de enero de 1997:");
+                foreach (var clienteOrden in clientesYOrdenesWA)
+                {
+                    Console.WriteLine($"Customer ID: {clienteOrden.CustomerID}");
+                    Console.WriteLine($"Company Name: {clienteOrden.CompanyName}");
+                    Console.WriteLine($"OrderID: {clienteOrden.OrderID}");
+                    Console.WriteLine($"OrderDate: {clienteOrden.OrderDate}");
+                    Console.WriteLine();
+                }
             }
+            else
+            {
+                Console.WriteLine("No hay clientes de la región WA con ordenes posteriores al 1 de enero de 1997");
+            }
+            Console.ReadLine();
         }
 
+        public static void PrimerosTresCustomerWA()
+        {             
+            var customersLogic = new CustomerLogic();
+            var primerosTresCustomerWA = customersLogic.ObtenerPrimerosTresCustomerWA();
+            Console.Clear();
+        if (primerosTresCustomerWA != null)
+            {
+                Console.WriteLine("Primeros 3 clientes de la región WA:");
+                foreach (var customer in primerosTresCustomerWA)
+                {
+                  UI.UIFunctions.MostrarCustomer(customer);
+                }
+            }
+            else
+            {
+                Console.WriteLine("No hay clientes de la región WA");
+            }             
+            Console.ReadLine();
+        }
+
+        public static void ProductosOrdenadosPorNombre()
+        {
+            var productsLogic = new ProductsLogic();
+            List <Products> productosOrdenadosPorNombre = productsLogic.ObtenerProductosOrdenadosPorNombre();
+            Console.Clear();
+            UIFunctions.ValidarListaProductos(productosOrdenadosPorNombre);
+            Console.ReadLine();
+        }
+
+        public static void ProductosOrdenadosPorMayorStock()
+        {
+            var productsLogic = new ProductsLogic();
+            List<Products> productosOrdenadosPorMayorStock = productsLogic.ObtenerProductosOrdenadosPorMayorStock();
+            Console.Clear();
+            UIFunctions.ValidarListaProductos(productosOrdenadosPorMayorStock);
+            Console.ReadLine();
+        }
+
+        public static void CategoriasAsociadasAProductos()
+        {
+            var productsLogic = new ProductsLogic();
+            var categoriasAsociadasAProductos = productsLogic.ObtenerCategoriasDistintas();
+            Console.Clear();
+            Console.WriteLine("Categorías distintas asociadas a productos:");
+            foreach (var categoria in categoriasAsociadasAProductos)
+            {
+                Console.WriteLine(categoria);
+            }
+            Console.ReadLine();
+        }
+
+        public static void PrimerProducto()
+        {             
+            var productsLogic = new ProductsLogic();
+            var primerProducto = productsLogic.ObtenerPrimerProducto();
+            Console.Clear();
+            if(primerProducto != null)
+            {
+                Console.WriteLine("Primer producto:");
+                UI.UIFunctions.MostrarProducto(primerProducto);
+            }
+            else
+            {
+                Console.WriteLine("No hay productos");
+            }
+            Console.ReadLine();
+        }
+
+
+        public static void JoindClientesCantOrdenes()
+        {
+            var customersLogic = new CustomerLogic();
+            var clientesConOrdenes = customersLogic.ObtenerCustomersConCantidadDeOrdenes();
+
+            Console.WriteLine("Clientes con cantidad de órdenes asociadas:");
+            foreach (var resultado in clientesConOrdenes)
+            {
+                Console.WriteLine($"CustomerID: {resultado.Customer.CustomerID}");
+                Console.WriteLine($"CompanyName: {resultado.Customer.CompanyName}");
+                Console.WriteLine($"OrderCount: {resultado.OrderCount}");
+                Console.WriteLine();
+            }
+            Console.ReadLine();
+        }
 
     }
 }

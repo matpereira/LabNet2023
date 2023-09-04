@@ -2,8 +2,9 @@
 using LinQ.Logic;
 using LinQ.Entities;
 using LinQ.Data;
-
-
+using System.Xml.Serialization;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LinQ.UI
 {
@@ -19,6 +20,12 @@ namespace LinQ.UI
             Console.WriteLine("5. Primer elemento o nulo de una lista de productos donde el ID de producto sea igual a 789");
             Console.WriteLine("6. Nombre de todos los Customers, mayuscula y minuscula");
             Console.WriteLine("7. Join entre Customers y Orders donde los customers sean de la Región WA y la fecha de orden sea mayor a 1/1/1997");
+            Console.WriteLine("8. Los primeros 3 customers de la Región WA");
+            Console.WriteLine("9. Lista de productos orddenados por nombre");
+            Console.WriteLine("10. Lista de productos ordenados por mayor stock");
+            Console.WriteLine("11. Consultar las distintas categorías asociadas a los productos");
+            Console.WriteLine("12. Consultar el primer elemento de una lista de productos");
+            Console.WriteLine("13. Consultar customers y la cantidad de ordenes asociadas");
             Console.WriteLine("0. Salir");
             Console.WriteLine();
             Console.WriteLine("Seleccione una opción: ");
@@ -58,7 +65,39 @@ namespace LinQ.UI
             Console.WriteLine($"Discontinued: {producto.Discontinued}");
             Console.WriteLine();
         }
-             
+
+        public static void ValidarListaProductos(List<Products> productos )
+        {
+            if(productos.Count==0)
+            {
+                Console.WriteLine("No hay productos cargados");
+            }
+            else
+            {
+                foreach (var producto in productos)
+                {
+                    MostrarProducto(producto);
+                }
+
+            }
+        }
+
+        public static void ValidarListaProductos(IQueryable<Products> productos)
+        {
+            if (productos == null)
+            {
+                Console.WriteLine("No hay productos cargados");
+            }
+            else
+            {
+                foreach (var producto in productos)
+                {
+                    MostrarProducto(producto);
+                }
+            }
+        }
+
+
         public static void MostrarCustomer(Customers customer)
         {
             Console.WriteLine($"Customer ID: {customer.CustomerID}");
@@ -74,6 +113,9 @@ namespace LinQ.UI
             Console.WriteLine($"Fax: {customer.Fax}");
             Console.WriteLine();
         }
+
+
+
     }
 
 }

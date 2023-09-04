@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using LinQ.Entities;
 
@@ -17,27 +18,27 @@ namespace LinQ.Logic
 
         public IQueryable<Customers> ObtenerCustomersWA ()
         {
-            var clientesRegionWA = from c in context.Customers
-                                   where c.Region == "WA"
-                                   select c;
+            var clientesRegionWA = from customer in context.Customers
+                                   where customer.Region == "WA"
+                                   select customer;
 
             return clientesRegionWA;
         }
 
         public IQueryable<string> ObtenerCustomerMayusMinus()
         {
-            var nombresClientes = from c in context.Customers
-                                  select c.CompanyName.ToUpper() + " | " + c.CompanyName.ToLower();
+            var nombresCustomers = from customer in context.Customers
+                                  select customer.CompanyName.ToUpper() + " | " + customer.CompanyName.ToLower();
 
-            return nombresClientes;
+            return nombresCustomers;
         }
 
-        public IQueryable<ClienteYOrden> ObtenerClientesYOrdenes()
+        public IQueryable<JoinCustomerOrden> ObtenerCustomersYOrders()
         {
-            var clientesYOrdenesWA = from customer in context.Customers
+            var customersYOrdersWA = from customer in context.Customers
                                      join order in context.Orders on customer.CustomerID equals order.CustomerID
                                      where customer.Region == "WA" && order.OrderDate > new DateTime(1997, 1, 1)
-                                     select new ClienteYOrden
+                                     select new JoinCustomerOrden
                                      {
                                          CustomerID = customer.CustomerID,
                                          CompanyName = customer.CompanyName,
@@ -45,16 +46,32 @@ namespace LinQ.Logic
                                          OrderDate = (DateTime)order.OrderDate
                                      };
 
-            return clientesYOrdenesWA;
+            return customersYOrdersWA;
         }
 
-        public class ClienteYOrden
+        public IQueryable<Customers> ObtenerPrimerosTresCustomerWA()
         {
-            public string CustomerID { get; set; }
-            public string CompanyName { get; set; }
-            public int OrderID { get; set; }
-            public DateTime OrderDate { get; set; }
+            var primerosTresCustomersWA = (  from customer in context.Customers
+                                            where customer.Region == "WA"
+                                            select customer).Take(3);
+            return primerosTresCustomersWA;
         }
 
+        public List<JoinCustomerOrden> ObtenerCustomersConCantidadDeOrdenes()
+        {
+            var customersOrders = (from customer in context.Customers
+                                      join order in context.Orders on customer.CustomerID equals order.CustomerID
+                                      group order by customer into g
+                                      select new JoinCustomerOrden
+                                      {
+                                          Customer = g.Key,
+                                          OrderCount = g.Count()
+                                      }).ToList();
+
+            return customersOrders;
+        }
     }
+
+
 }
+

@@ -15,7 +15,6 @@ namespace LinQ.UI
             do
               {
                   UIFunctions.MostrarMenu();
-                  // Leer la opción del usuario
                   if (int.TryParse(Console.ReadLine(), out seleccion))
                   {
                       switch (seleccion)
@@ -41,6 +40,25 @@ namespace LinQ.UI
                           case 7:
                             Querys.JoinCustomersOrders();
                             break;
+                          case 8:
+                            Querys.PrimerosTresCustomerWA();
+                            break;
+                          case 9:
+                            Querys.ProductosOrdenadosPorNombre();
+                            break;
+                          case 10:
+                            Querys.ProductosOrdenadosPorMayorStock();
+                            break;
+                          case 11:
+                            Querys.CategoriasAsociadasAProductos();
+                            break;
+                          case 12:
+                            Querys.PrimerProducto();
+                            break;
+                          case 13:
+                            Querys.JoindClientesCantOrdenes();
+                            break;
+
                         case 0:
                               Console.ForegroundColor = ConsoleColor.Magenta;
                               Console.WriteLine("Saliendo del programa...");
@@ -54,7 +72,6 @@ namespace LinQ.UI
                   {
                       Console.WriteLine("Por favor, seleccione un digito.");
                   }
-                Console.WriteLine();
             } while (seleccion != 0);
          
             Console.WriteLine("Presione una tecla para salir...");
