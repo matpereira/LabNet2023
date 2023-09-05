@@ -116,7 +116,7 @@ namespace LinQ.UI
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Cuando es tu primer dia de trabajo y se te olvida poner el WHERE luego del DELETE FROM");
+            Console.WriteLine("Cuando es tu primer dia de trabajo y ejecutas un DELETE sin el WHERE");
             Console.ForegroundColor= ConsoleColor.Yellow;
             Console.WriteLine("                             __\r\n                   _ ,___,-'\",-=-.\r\n       __,-- _ _,-'_)_  (\"\"`'-._\\ `.\r\n    _,'  __ |,' ,-' __)  ,-     /. |\r\n  ,'_,--'   |     -'  _)/         `\\\r\n,','      ,'       ,-'_,`           :\r\n,'     ,-'       ,(,-(              :\r\n     ,'       ,-' ,    _            ;\r\n    /        ,-._/`---'            /\r\n   /        (____)(----. )       ,'\r\n  /         (      `.__,     /\\ /,\r\n :           ;-.___         /__\\/|\r\n |         ,'      `--.      -,\\ |\r\n :        /            \\    .__/\r\n  \\      (__            \\    |_\r\n   \\       ,`-, *       /   _|,\\\r\n    \\    ,'   `-.     ,'_,-'    \\\r\n   (_\\,-'    ,'\\\")--,'-'       __\\\r\n    \\       /  // ,'|      ,--'  `-.\r\n     `-.    `-/ \\'  |   _,'         `.\r\n        `-._ /      `--'/             \\\r\n           ,'           |              \\\r\n          /             |               \\\r\n       ,-'              |               /\r\n      /                 |             -'");
             Console.ReadLine();
