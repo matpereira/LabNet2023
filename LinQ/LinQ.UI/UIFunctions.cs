@@ -44,7 +44,7 @@ namespace LinQ.UI
                 Console.WriteLine("Escribir el Id del customer deseado");
                 id = Console.ReadLine();
             }
-
+            Console.Clear();
             Querys.ConsultarCustomer(id);
 
         }
@@ -110,6 +110,19 @@ namespace LinQ.UI
             Console.WriteLine($"Phone: {customer.Phone}");
             Console.WriteLine($"Fax: {customer.Fax}");
             Console.WriteLine();
+        }
+
+        public static void PresioneUnaTeclaParaSalir()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Cuando es tu primer dia de trabajo y se te olvida poner el WHERE en el DELETE FROM");
+            Console.ForegroundColor= ConsoleColor.Yellow;
+            Console.WriteLine("                             __\r\n                   _ ,___,-'\",-=-.\r\n       __,-- _ _,-'_)_  (\"\"`'-._\\ `.\r\n    _,'  __ |,' ,-' __)  ,-     /. |\r\n  ,'_,--'   |     -'  _)/         `\\\r\n,','      ,'       ,-'_,`           :\r\n,'     ,-'       ,(,-(              :\r\n     ,'       ,-' ,    _            ;\r\n    /        ,-._/`---'            /\r\n   /        (____)(----. )       ,'\r\n  /         (      `.__,     /\\ /,\r\n :           ;-.___         /__\\/|\r\n |         ,'      `--.      -,\\ |\r\n :        /            \\    .__/\r\n  \\      (__            \\    |_\r\n   \\       ,`-, *       /   _|,\\\r\n    \\    ,'   `-.     ,'_,-'    \\\r\n   (_\\,-'    ,'\\\")--,'-'       __\\\r\n    \\       /  // ,'|      ,--'  `-.\r\n     `-.    `-/ \\'  |   _,'         `.\r\n        `-._ /      `--'/             \\\r\n           ,'           |              \\\r\n          /             |               \\\r\n       ,-'              |               /\r\n      /                 |             -'");
+            Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("       /  Fue un placer \\\r\n       \\  trabajar aqui /    \r\n                     __\r\n            O      _//\\-\\\r\n             O    /      \\\r\n              o  /       |\r\n               (.(.) /|\\/\r\n                (___    ,)\r\n                /   \\   \\\r\n     _          \\o  /   |\r\n   _( \\_         _| _____\\\r\n  (___  \\_______/\\_/______\\\r\n  (___         /    /    \\|\r\n  (___________/     |____||\r\n             /      |    ||\r\n            /_______|    |_\\\r\n            \\      _|    | /\r\n             |    (_     \\/\r\n             | \\__  | | | |\r\n             |    \\ |_|_|_|\r\n             |     |     |\r\n             |     |     |\r\n             |     |     |\r\n             |_____|_____|\r\n             |_____|_____|\r\n            /_____//_____|");
+       
         }
 
 

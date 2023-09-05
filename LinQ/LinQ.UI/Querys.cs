@@ -14,6 +14,7 @@ namespace LinQ.Logic
 
             if (customer != null)
             {
+                Console.WriteLine("Customer seleccionado:\n");
                 Console.WriteLine($"Customer ID: {customer.CustomerID}");
                 Console.WriteLine($"Company Name: {customer.CompanyName}");
                 Console.WriteLine($"Contact Title: {customer.ContactTitle}");
@@ -29,7 +30,6 @@ namespace LinQ.Logic
             {
                 Console.WriteLine("Customer no encontrado");
             }
-            Console.ReadLine();
         }
 
         public static void ProductosSinStock()
@@ -51,8 +51,6 @@ namespace LinQ.Logic
                     UIFunctions.MostrarProducto(producto);
                 }
             }
-            Console.ReadLine();
-
         }
 
         public static void StockMasDeTres()
@@ -74,7 +72,6 @@ namespace LinQ.Logic
                     UIFunctions.MostrarProducto(producto);
                 }
             }
-            Console.ReadLine();
         }
 
         public static void CustomersWA()
@@ -94,7 +91,6 @@ namespace LinQ.Logic
             {
                 Console.WriteLine("No hay clientes de la región WA");
             }
-            Console.ReadLine();
         }
 
         public static void ObtenerProductoPorID()
@@ -111,7 +107,6 @@ namespace LinQ.Logic
             {
                 Console.WriteLine("Producto no encontrado");
             }
-            Console.ReadLine();
         }
 
         public static void CustomerMayusMinus()
@@ -131,7 +126,6 @@ namespace LinQ.Logic
             {
                 Console.WriteLine("No hay customers cargados");
             }
-            Console.ReadLine();
         }
 
         public static void JoinCustomersOrders()
@@ -155,7 +149,6 @@ namespace LinQ.Logic
             {
                 Console.WriteLine("No hay clientes de la región WA con ordenes posteriores al 1 de enero de 1997");
             }
-            Console.ReadLine();
         }
 
         public static void PrimerosTresCustomerWA()
@@ -175,7 +168,6 @@ namespace LinQ.Logic
             {
                 Console.WriteLine("No hay clientes de la región WA");
             }             
-            Console.ReadLine();
         }
 
         public static void ProductosOrdenadosPorNombre()
@@ -184,7 +176,6 @@ namespace LinQ.Logic
             List <Products> productosOrdenadosPorNombre = productsLogic.ObtenerProductosOrdenadosPorNombre();
             Console.Clear();
             UIFunctions.ValidarListaProductos(productosOrdenadosPorNombre);
-            Console.ReadLine();
         }
 
         public static void ProductosOrdenadosPorMayorStock()
@@ -193,7 +184,6 @@ namespace LinQ.Logic
             List<Products> productosOrdenadosPorMayorStock = productsLogic.ObtenerProductosOrdenadosPorMayorStock();
             Console.Clear();
             UIFunctions.ValidarListaProductos(productosOrdenadosPorMayorStock);
-            Console.ReadLine();
         }
 
         public static void CategoriasAsociadasAProductos()
@@ -206,7 +196,6 @@ namespace LinQ.Logic
             {
                 Console.WriteLine(categoria);
             }
-            Console.ReadLine();
         }
 
         public static void PrimerProducto()
@@ -223,7 +212,6 @@ namespace LinQ.Logic
             {
                 Console.WriteLine("No hay productos");
             }
-            Console.ReadLine();
         }
 
 
@@ -240,7 +228,6 @@ namespace LinQ.Logic
                 Console.WriteLine($"OrderCount: {resultado.OrderCount}");
                 Console.WriteLine();
             }
-            Console.ReadLine();
         }
 
     }

@@ -33,12 +33,12 @@ namespace LinQ.Logic
             return nombresCustomers;
         }
 
-        public IQueryable<JoinCustomerOrden> ObtenerCustomersYOrders()
+        public IQueryable<CustomerDto> ObtenerCustomersYOrders()
         {
             var customersYOrdersWA = from customer in context.Customers
                                      join order in context.Orders on customer.CustomerID equals order.CustomerID
                                      where customer.Region == "WA" && order.OrderDate > new DateTime(1997, 1, 1)
-                                     select new JoinCustomerOrden
+                                     select new CustomerDto
                                      {
                                          CustomerID = customer.CustomerID,
                                          CompanyName = customer.CompanyName,
@@ -57,12 +57,12 @@ namespace LinQ.Logic
             return primerosTresCustomersWA;
         }
 
-        public List<JoinCustomerOrden> ObtenerCustomersConCantidadDeOrdenes()
+        public List<CustomerDto> ObtenerCustomersConCantidadDeOrdenes()
         {
             var customersOrders = (from customer in context.Customers
                                       join order in context.Orders on customer.CustomerID equals order.CustomerID
                                       group order by customer into g
-                                      select new JoinCustomerOrden
+                                      select new CustomerDto
                                       {
                                           Customer = g.Key,
                                           OrderCount = g.Count()

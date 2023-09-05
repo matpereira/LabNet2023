@@ -2,7 +2,7 @@
 
 namespace LinQ.Entities
 {
-    public class JoinCustomerOrden
+    public class CustomerDto
     {
         public string CustomerID { get; set; }
         public string CompanyName { get; set; }

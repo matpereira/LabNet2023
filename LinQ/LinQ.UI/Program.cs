@@ -62,17 +62,16 @@ namespace LinQ.UI
                               break;
                           default:
                               Console.WriteLine("Opción no válida. Intente nuevamente.");
-                              Console.ReadLine();
                             break;
                       }
-                  }
-                  else
+                Console.ReadLine();
+                }
+                else
                   {
                       Console.WriteLine("Por favor, seleccione un digito.");
                   }
             } while (seleccion != 0);
-         
-            Console.WriteLine("Presione una tecla para salir...");
+            UIFunctions.PresioneUnaTeclaParaSalir();
             Console.ReadLine();
         }
 
