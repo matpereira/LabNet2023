@@ -13,14 +13,13 @@ const botonAdivinar = document.getElementById("botonAdivinar");
 const botonReiniciar = document.getElementById("botonReiniciar");
 const valorMaximoElement = document.getElementById("valorMaximo");
 const mensaje = document.getElementById("mensaje");
-const mensaje2 = document.getElementById("mensajePuntajeMaximo");
 const comenzarJuegoButton = document.getElementById('botonStart');
-const reiniciarJuegoButton = document.getElementById('botonAdivinar');
-const otroBotonButton = document.getElementById('botonReiniciar');
+const adivinarButton = document.getElementById('botonAdivinar');
+const reiniciarJuegoButton = document.getElementById('botonReiniciar');
 const juegoStartDiv = document.getElementById('Juego-Start');
 juegoStartDiv.style.display = 'none';
 reiniciarJuegoButton.style.display = 'none';
-otroBotonButton.style.display = 'none';
+adivinarButton.style.display = 'none';
 
 
 comenzarJuegoButton.addEventListener('click', function() {
@@ -30,7 +29,7 @@ comenzarJuegoButton.addEventListener('click', function() {
 
     // Muestra los otros dos botones
     reiniciarJuegoButton.style.display = 'inline-block';
-    otroBotonButton.style.display = 'inline-block';
+    adivinarButton.style.display = 'inline-block';
     reiniciarJuego();
 });
 
@@ -94,10 +93,10 @@ function generarNumeroAleatorio() {
 }
 
 function proximoNivel() {
-    mensaje.textContent = "¡Adivinaste! El número era " + numeroAleatorio;
+    nivelDificultad++; 
+    mensaje.textContent = "Excelente, avanzas al sig nivel: Nivel " + nivelDificultad;
     numeroAleatorio = generarNumeroAleatorio();
     puntos += (nivelDificultad*2)+10;
-    nivelDificultad++; 
     actualizarDificultad();
 
     if (puntos > puntajeMaximo) {
@@ -115,7 +114,6 @@ function perdiste() {
             nivelDificultad = 1; 
             reiniciarJuego(); 
             mensaje.textContent = "Perdiste, el número era " + numeroAleatorio;
-          //  mensaje2.textContent = "Tu puntaje máximo fue de " + puntajeMaximoPartida;
     }
 
 
