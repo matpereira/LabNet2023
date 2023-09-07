@@ -116,12 +116,4 @@ function perdiste() {
             mensaje.textContent = "Perdiste, el número era " + numeroAleatorio;
     }
 
-
-// script.js
-//document.addEventListener('DOMContentLoaded', function() {
-
-
-//});
-
 botonReiniciar.addEventListener("click", reiniciarJuego);
-botonStart.addEventListener("click", iniciarJuego);
