@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina el número</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="juego-container">
+        <h1>Adivina el Número</h1>
+        <div class="cuadroInicial">
+            <p>Puntaje Máximo: <span id="puntajeMaximo">0</span></p>
+            <p>Puntos: <span id="puntos">0</span></p>
+            <div id="Juego-Start">
+                <label for="entradaNumero">Adivina el número entre 1 y <span id="valorMaximo"></span>:</label>
+                <br><br>
+                <label for="entradaNumero">Ingresa un número:</label>
+                <input type="number" id="entradaNumero" min="1" max="">
+                <p id="mensaje"></p>
+            </div>
+        </div>
+    </div>
+    <div class="contenedorBotones">
+        <button class="bubbly-button" id="botonStart">START</button>
+        <button class="bubbly-button" id="botonAdivinar">Adivinar</button>
+        <button class="bubbly-button" id="botonReiniciar">Reiniciar</button>
+    </div>
+
+    <div class="cuadroReglas">
+            <p>Reglas del juego:</p>
+            <p>El juego consiste en adivinar un numero aleatorio que se encuentra entre un rango que va variando a medida subimos de nivel.</p>
+            <p>A medida que subimos de nivel cada fallo tiene mayor penalización de puntaje</p>
+            <p>Este es un juego de adivinanza por lo tanto, un mayor nivel no te garantizara que obtengas mayor puntaje, sino los aciertos consecutivos</p>
+            <p>Solo se admiten numeros positivos</p>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
