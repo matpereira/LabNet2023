@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
-
 namespace Lab.EF.Logic
 {
-    public interface ILogic<T>
+    public interface ILogic<TEntity,TDTO>
     {
-        List<T> GetAll();
-        void Add(T entity);
-        void Update(T entity);
-        void Delete(int id);
-        int Find(int id);
-    }
+        List<TDTO> GetAll();
+        void Add(TDTO entity);
+        void Update(TDTO entity);
 
+    }
 }

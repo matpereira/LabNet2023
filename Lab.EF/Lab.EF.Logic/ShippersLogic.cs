@@ -2,35 +2,48 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Lab.EF.Logic.DTO;
 
 namespace Lab.EF.Logic
 {
-public class ShippersLogic : BaseLogic, ILogic<Shippers>
+    public class ShippersLogic : BaseLogic, ILogic<Shippers, ShippersDTO>
     {
 
-    public  List<Shippers> GetAll()
-    {
-        return context.Shippers.ToList();
-    }
+        public List<ShippersDTO> GetAll()
+        {
+            return context.Shippers
+                .Select(shipper => new ShippersDTO
+                {
+                    ShipperID = shipper.ShipperID,
+                    CompanyName = shipper.CompanyName,
+                    Phone = shipper.Phone
+                })
+                .ToList();
+        }
 
-    public void Add(Shippers shipper)
-    {
-        context.Shippers.Add(shipper);
-        context.SaveChanges();
-    }
-            
-    public void Update(Shippers shipper)
-    {
-        var shipperToUpdate = context.Shippers.Find(shipper.ShipperID);
-        shipperToUpdate.CompanyName = shipper.CompanyName;
-        shipperToUpdate.Phone = shipper?.Phone;
-        context.SaveChanges();
-    }
+        public void Add(ShippersDTO shipper)
+        {
+            var shipperToAdd = new Shippers
+            {
+                ShipperID = shipper.ShipperID,
+                CompanyName = shipper.CompanyName,
+                Phone = shipper.Phone
+            };
+            context.Shippers.Add(shipperToAdd);
+            context.SaveChanges();
+        }
 
-    public void Delete(int id)
-    {
-        try
+        public void Update(ShippersDTO shipper)
+        {
+            var shipperToUpdate = context.Shippers.Find(shipper.ShipperID);
+            shipperToUpdate.CompanyName = shipper.CompanyName;
+            shipperToUpdate.Phone = shipper?.Phone;
+            context.SaveChanges();
+        }
+        
+        public void Delete(int id)
+        {
+            try
         {
             var shipperToDelete = context.Shippers.FirstOrDefault(x => x.ShipperID == id);  
             context.Shippers.Remove(shipperToDelete);
@@ -43,26 +56,27 @@ public class ShippersLogic : BaseLogic, ILogic<Shippers>
 
     }
 
-    public int Find(int id)
-    {
-            
-        var shipper = context.Shippers.Find(id);
+       
 
-        shipper = context.Shippers.FirstOrDefault(x => x.ShipperID == id);
-          
-        if (shipper != null)
+        public ShippersDTO Find(int id)
         {
-            Console.Clear();
-            Console.WriteLine("Shipper encontrado");
-            Console.WriteLine("ID\t|\tNombre de la compania\t|\tTelefono");
-            Console.WriteLine($"{shipper.ShipperID}\t|\t{shipper.CompanyName}\t|\t{shipper.Phone}");
-            return shipper.ShipperID;
+            var shipper = context.Shippers.Find(id);
+
+            if (shipper != null)
+            {
+                return new ShippersDTO
+                {
+                    ShipperID = shipper.ShipperID,
+                    CompanyName = shipper.CompanyName,
+                    Phone = shipper.Phone
+                };
+            }
+            else
+            {
+                // Puedes devolver null o un valor predeterminado en lugar de 0
+                return null;
+            }
         }
-        else
-        {
-            Console.WriteLine($"No se encontro el shipper para el id: {id}");
-            return 0;
-        }
+
     }
-}
 }

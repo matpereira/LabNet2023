@@ -32,10 +32,19 @@ internal class Program
                         uiFunctions.ObtenerShippers(shipperLogic);
                         break;
                     case 5:
+                        uiFunctions.NuevoCustomer(customersLogic);
+                        break;
+                    case 6:
+                        uiFunctions.ModificarCustomer(customersLogic);
+                        break;
+                    case 7:
+                        uiFunctions.BorrarCustomer(customersLogic);
+                        break;
+                    case 8:
                         Console.Clear();
                         uiFunctions.ObtenerCustomers(customersLogic);
                         break;
-                    case 0:
+                        case 0:
                         Console.ForegroundColor = ConsoleColor.Magenta;
                         Console.WriteLine("Saliendo del programa...");
                         break;

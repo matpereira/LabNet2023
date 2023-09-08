@@ -2,25 +2,57 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Lab.EF.Logic.DTO;
 
 namespace Lab.EF.Logic
 {
-    public class CustomersLogic : BaseLogic
+    public class CustomersLogic : BaseLogic, ILogic<Customers, CustomersDTO>
     {
-
-        public List<Customers> GetAll()
+        public List<CustomersDTO> GetAll()
         {
-            return context.Customers.ToList();
+            // Mapea la lista de entidades Customers a una lista de DTOs CustomersDTO
+            return context.Customers
+                .Select(customer => new CustomersDTO
+                {
+
+                    CustomerID = customer.CustomerID,
+                    CompanyName = customer.CompanyName,
+                    ContactName = customer.ContactName,
+                    ContactTitle = customer.ContactTitle,
+                    Address = customer.Address,
+                    City = customer.City,
+                    Region = customer.Region,
+                    PostalCode = customer.PostalCode,
+                    Country = customer.Country,
+                    Phone = customer.Phone,
+                    Fax = customer.Fax
+                })
+                .ToList();
         }
 
-        public void Add(Customers customer)
+        public void Add(CustomersDTO customer)
         {
-            context.Customers.Add(customer);
+            var customerToAdd = new Customers
+            {
+                CustomerID = customer.CustomerID,
+                CompanyName = customer.CompanyName,
+                ContactName = customer?.ContactName,
+                ContactTitle = customer?.ContactTitle,
+                Address = customer?.Address,
+                City = customer?.City,
+                Region = customer?.Region,
+                PostalCode = customer?.PostalCode,
+                Country = customer?.Country,
+                Phone = customer?.Phone,
+                Fax = customer?.Fax
+            };
+            context.Customers.Add(customerToAdd);
             context.SaveChanges();
         }
 
-        public void Update(Customers customer)
+        public void Update(CustomersDTO customer)
         {
+            // Mapea el DTO a una entidad Customers
             var customerToUpdate = context.Customers.Find(customer.CustomerID);
             customerToUpdate.CompanyName = customer.CompanyName;
             customerToUpdate.ContactName = customer?.ContactName;
@@ -35,7 +67,7 @@ namespace Lab.EF.Logic
             context.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Delete(string id)
         {
             try
             {
@@ -45,8 +77,36 @@ namespace Lab.EF.Logic
             }
             catch (Exception)
             {
-                Console.WriteLine("No se puede eliminar un shipper que este asociado a un pedido");
+                Console.WriteLine("No se puede eliminar un cliente que esté asociado a un pedido");
+            }
+        }
+
+        public CustomersDTO Find(string id)
+        {
+            var customer = context.Customers.Find(id);
+
+            if (customer != null)
+            {
+                return new CustomersDTO
+                {
+                    CustomerID = customer.CustomerID,
+                    CompanyName = customer.CompanyName,
+                    ContactName = customer.ContactName,
+                    ContactTitle = customer.ContactTitle,
+                    Address = customer.Address,
+                    City = customer.City,
+                    Region = customer.Region,
+                    PostalCode = customer.PostalCode,
+                    Country = customer.Country,
+                    Phone = customer.Phone,
+                    Fax = customer.Fax
+                };
+            }
+            else
+            {
+                return null;
             }
         }
     }
 }
+
