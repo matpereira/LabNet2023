@@ -1,0 +1,22 @@
+﻿@model List<Lab.EF.Entities.Shippers>
+
+@{
+    ViewBag.Title = "Shippers";
+}
+
+<h1>TITULO</h1>
+
+<table class="table-responsive">
+    <tr>
+        <th>CompanyName</th>
+        <th>Phone</th>
+    </tr>
+    @foreach (var shipper in Model)
+    {
+        <tr>
+            <td>@shipper.CompanyName</td>
+            <td>@shipper.Phone</td>
+        </tr>
+    }
+    <tbody>
+<</table>
