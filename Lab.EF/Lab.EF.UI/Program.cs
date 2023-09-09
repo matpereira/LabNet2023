@@ -1,5 +1,7 @@
 ﻿using System;
 using Lab.EF.Logic;
+using Lab.EF.UI.Customers;
+using Lab.EF.UI.Shippers;
 
 namespace Lab.EF.UI
 {
@@ -19,30 +21,30 @@ internal class Program
                 switch (seleccion)
                 {
                     case 1:
-                        uiFunctions.NuevoShipper(shipperLogic);
+                            ShippersUIFunctions.NuevoShipper(shipperLogic);
                         break;
                     case 2:
-                        uiFunctions.ModificarShipper(shipperLogic);
+                            ShippersUIFunctions.ModificarShipper(shipperLogic);
                         break;
                     case 3:
-                        uiFunctions.BorrarShipper(shipperLogic);
+                            ShippersUIFunctions.BorrarShipper(shipperLogic);
                         break;
                     case 4:
                         Console.Clear();
-                        uiFunctions.ObtenerShippers(shipperLogic);
+                            ShippersUIFunctions.ObtenerShippers(shipperLogic);
                         break;
                     case 5:
-                        uiFunctions.NuevoCustomer(customersLogic);
+                            CustomersUIFunctions.NuevoCustomer(customersLogic);
                         break;
                     case 6:
-                        uiFunctions.ModificarCustomer(customersLogic);
+                            CustomersUIFunctions.ModificarCustomer(customersLogic);
                         break;
                     case 7:
-                        uiFunctions.BorrarCustomer(customersLogic);
+                            CustomersUIFunctions.BorrarCustomer(customersLogic);
                         break;
                     case 8:
                         Console.Clear();
-                        uiFunctions.ObtenerCustomers(customersLogic);
+                            CustomersUIFunctions.ObtenerCustomers(customersLogic);
                         break;
                         case 0:
                         Console.ForegroundColor = ConsoleColor.Magenta;

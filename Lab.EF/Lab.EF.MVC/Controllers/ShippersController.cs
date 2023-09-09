@@ -7,12 +7,15 @@ namespace Lab.EF.MVC.Controllers
 {
     public class ShippersController : Controller
     {
-        // GET: Shippers
+        // Mostrar la lista de Shippers
         public ActionResult Index()
         {
             ShippersLogic shipperLogic = new ShippersLogic();
-            List<ShippersDTO> shippers = shipperLogic.GetAll();
+
+            var shippers = shipperLogic.GetAll();
             return View(shippers);
         }
+
+
     }
 }
