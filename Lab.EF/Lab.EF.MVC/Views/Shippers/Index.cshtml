@@ -28,6 +28,7 @@
             <td>
                 <button class="btn btn-primary edit-button" data-id="@i">Editar</button>
                 <button class="btn btn-success save-button" data-id="@i" style="display: none;">Guardar</button>
+                <input type="hidden" id="shipperId_@i" value="@Model[i].ShipperID" />
             </td>
             <td>
                 <button class="btn btn-danger delete-button" data-id="@i" data-shipperid="@Model[i].ShipperID">Eliminar</button>
@@ -38,6 +39,7 @@
 
 @section scripts {
     <script>
+        // JavaScript y jQuery para manejar la edición, guardado y eliminación
         $(document).ready(function () {
             $(".edit-button").click(function () {
                 var index = $(this).data("id");
@@ -71,7 +73,7 @@
                         $("#editCompanyName_" + index).hide();
                         $("#editPhone_" + index).hide();
                         $(".edit-button[data-id=" + index + "]").show();
-                        $(this).hide();
+                        $(".save-button[data-id=" + index + "]").hide();
                         $(".delete-button[data-id=" + index + "]").prop('disabled', false);
                     },
                     error: function () {

@@ -22,12 +22,10 @@ namespace Lab.EF.MVC.Controllers
             return View(shippersView);
         }
 
-
         public ActionResult Insert()
         {
             return View();
         }
- 
 
         [HttpPost]
         public ActionResult Insert(ShippersView shipper)
@@ -74,39 +72,11 @@ namespace Lab.EF.MVC.Controllers
             return Regex.IsMatch(numero, patron);
         }
 
-        
         public ActionResult Delete(int id)
         {
             shipperLogic.Delete(id);
             return RedirectToAction("Index");
         }
-        /*
-        [HttpPost]
-        public JsonResult Delete(int id)
-        {
-            try
-            {
-                shipperLogic.Delete(id);
-                return Json(new { success = true });
-            }
-            catch (Exception)
-            {
-                return Json(new { success = false, message = "No se puede eliminar un shipper que esté asociado a un pedido." });
-            }
-
-            public ActionResult Update(int id)
-        {
-            ShippersDTO shipper = shipperLogic.Find(id);
-
-            if (shipper == null)
-            {
-                return HttpNotFound();
-            }
-
-            ShippersView shipperView = new ShippersView { ShipperID = shipper.ShipperID, CompanyName = shipper.CompanyName, Phone = shipper.Phone };
-
-            return View(shipperView);
-        }*/
 
         [HttpPost]
         public JsonResult Update(ShippersView shipper)
