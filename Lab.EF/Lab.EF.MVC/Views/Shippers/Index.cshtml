@@ -1,12 +1,16 @@
-﻿@model List<Lab.EF.Entities>
+﻿@model List<Lab.EF.MVC.Models.ShippersView>
 
 @{
     ViewBag.Title = "Shippers";
 }
 
-<h1>TITULO</h1>
+<head>
+    <link href="~/Content/site.css" rel="stylesheet" />
+</head>
 
-<table class="table-responsive">
+<h1>Listado de Shippers</h1>
+
+<table class="table table-striped custom-table">
     <tr>
         <th>CompanyName</th>
         <th>Phone</th>
@@ -16,7 +20,12 @@
         <tr>
             <td>@shipper.CompanyName</td>
             <td>@shipper.Phone</td>
+            
+
         </tr>
     }
-    <tbody>
 </table>
+
+<div>
+    @Html.ActionLink("Agregar Shipper nuevo", "Insert", "Shippers")
+</div>

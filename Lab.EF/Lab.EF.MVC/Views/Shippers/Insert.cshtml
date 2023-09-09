@@ -1,0 +1,22 @@
+﻿@model Lab.EF.MVC.Models.ShippersView
+
+@{
+    ViewBag.Title = "Insert Page";
+}
+
+<h1>Agregar Shipper</h1>
+
+@using (Html.BeginForm("Insert", "Shippers", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.CompanyName)
+        @Html.TextBoxFor(model => model.CompanyName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Phone)
+        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+}
