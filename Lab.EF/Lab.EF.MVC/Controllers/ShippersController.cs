@@ -1,12 +1,12 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Web.Mvc;
+using Lab.EF.Entities;
 using Lab.EF.Logic;
 using Lab.EF.Logic.DTO;
-using System.Collections.Generic;
-using System.Drawing;
 using Lab.EF.MVC.Models;
-using System.Linq;
-using System;
-using System.Text.RegularExpressions;
 
 namespace Lab.EF.MVC.Controllers
 {
@@ -17,16 +17,17 @@ namespace Lab.EF.MVC.Controllers
         // Mostrar la lista de Shippers
         public ActionResult Index()
         {
-            ShippersLogic shipperLogic = new ShippersLogic();
             List<ShippersDTO> shippers = shipperLogic.GetAll();
-            List<ShippersView> shippersView = shippers.Select(s => new ShippersView { CompanyName = s.CompanyName, Phone = s.Phone }).ToList();
+            List<ShippersView> shippersView = shippers.Select(s => new ShippersView { ShipperID = s.ShipperID, CompanyName = s.CompanyName, Phone = s.Phone }).ToList();
             return View(shippersView);
         }
+
 
         public ActionResult Insert()
         {
             return View();
         }
+ 
 
         [HttpPost]
         public ActionResult Insert(ShippersView shipper)
@@ -67,26 +68,72 @@ namespace Lab.EF.MVC.Controllers
             return null; // No hay errores   
         }
 
-
         public static bool EsNumeroTelefonoValido(string numero)
         {
             string patron = @"^(?=\(?\+?\d{1,3}\)?)(?=.{1,24}$)\(?\+?\d{1,3}\)?[\s-]?\d{1,24}$";
             return Regex.IsMatch(numero, patron);
         }
-    }
 
-    public ActionResult Delete(int id)
-    {
-        try
+        
+        public ActionResult Delete(int id)
         {
             shipperLogic.Delete(id);
             return RedirectToAction("Index");
         }
-        catch (Exception ex)
+        /*
+        [HttpPost]
+        public JsonResult Delete(int id)
         {
-            ViewBag.ErrorMessage = $"Ocurrió un error al eliminar el shipper: {ex.Message}";
-            return RedirectToAction("Index", "Error");
+            try
+            {
+                shipperLogic.Delete(id);
+                return Json(new { success = true });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false, message = "No se puede eliminar un shipper que esté asociado a un pedido." });
+            }
+
+            public ActionResult Update(int id)
+        {
+            ShippersDTO shipper = shipperLogic.Find(id);
+
+            if (shipper == null)
+            {
+                return HttpNotFound();
+            }
+
+            ShippersView shipperView = new ShippersView { ShipperID = shipper.ShipperID, CompanyName = shipper.CompanyName, Phone = shipper.Phone };
+
+            return View(shipperView);
+        }*/
+
+        [HttpPost]
+        public JsonResult Update(ShippersView shipper)
+        {
+            if (shipper == null || shipper.ShipperID <= 0)
+            {
+                return Json(new { success = false, message = "ID de shipper no válido." });
+            }
+
+            string validationError = ValidateShipper(shipper);
+
+            if (!string.IsNullOrEmpty(validationError))
+            {
+                return Json(new { success = false, message = validationError });
+            }
+
+            try
+            {
+                var shipperEntity = new ShippersDTO { ShipperID = shipper.ShipperID, CompanyName = shipper.CompanyName, Phone = shipper.Phone };
+                shipperLogic.Update(shipperEntity);
+
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = $"Error al actualizar el shipper: {ex.Message}" });
+            }
         }
     }
-
 }

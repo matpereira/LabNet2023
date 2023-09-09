@@ -8,14 +8,15 @@
 
 @using (Html.BeginForm("Insert", "Shippers", FormMethod.Post))
 {
+
     <div class="form-group">
-        @Html.LabelFor(model => model.CompanyName)
-        @Html.TextBoxFor(model => model.CompanyName, new { @class = "form-control" })
+        @Html.LabelFor(shipper => shipper.CompanyName)
+        @Html.TextBoxFor(shipper => shipper.CompanyName, new { @class = "form-control" })
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Phone)
-        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+        @Html.LabelFor(shipper => shipper.Phone)
+        @Html.TextBoxFor(shipper => shipper.Phone, new { @class = "form-control" })
     </div>
 
     <button type="submit" class="btn btn-success">Guardar</button>
