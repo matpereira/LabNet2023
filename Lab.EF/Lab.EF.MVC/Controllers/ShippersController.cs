@@ -53,6 +53,11 @@ namespace Lab.EF.MVC.Controllers
 
         private string ValidateShipper(ShippersView shipper)
         {
+           if(shipper.CompanyName.Length == 0)
+            {
+                return "El nombre de la compañía no puede estar vacío.";
+            }
+
             if (shipper.CompanyName.Length > 40)
             {
                 return "El nombre de la compañía es demasiado largo.";
