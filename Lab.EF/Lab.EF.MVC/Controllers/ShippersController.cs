@@ -14,7 +14,6 @@ namespace Lab.EF.MVC.Controllers
     {
         ShippersLogic shipperLogic = new ShippersLogic();
 
-        // Mostrar la lista de Shippers
         public ActionResult Index()
         {
             List<ShippersDTO> shippers = shipperLogic.GetAll();
@@ -30,14 +29,6 @@ namespace Lab.EF.MVC.Controllers
         [HttpPost]
         public ActionResult Insert(ShippersView shipper)
         {
-            string validationError = ValidateShipper(shipper);
-
-            if (!string.IsNullOrEmpty(validationError))
-            {
-                ViewBag.ErrorMessage = validationError;
-                return RedirectToAction("Index", "Error");
-            }
-
             try
             {
                 var shipperEntity = new ShippersDTO { CompanyName = shipper.CompanyName, Phone = shipper.Phone };
@@ -51,35 +42,6 @@ namespace Lab.EF.MVC.Controllers
             }
         }
 
-        private string ValidateShipper(ShippersView shipper)
-        {
-           if(shipper.CompanyName.Length == 0)
-            {
-                return "El nombre de la compañía no puede estar vacío.";
-            }
-
-            if (shipper.CompanyName.Length > 40)
-            {
-                return "El nombre de la compañía es demasiado largo.";
-            }
-
-            if(shipper.Phone!= null)
-            {
-                if (!EsNumeroTelefonoValido(shipper.Phone))
-            {
-                    return "Número de teléfono no válido.";
-                }
-            }
-           
-
-            return null; // No hay errores   
-        }
-
-        public static bool EsNumeroTelefonoValido(string numero)
-        {
-            string patron = @"^(?=\(?\+?\d{1,3}\)?)(?=.{1,24}$)\(?\+?\d{1,3}\)?[\s-]?\d{1,24}$";
-            return Regex.IsMatch(numero, patron);
-        }
 
         public ActionResult Delete(int id)
         {
@@ -90,17 +52,6 @@ namespace Lab.EF.MVC.Controllers
         [HttpPost]
         public JsonResult Update(ShippersView shipper)
         {
-            if (shipper == null || shipper.ShipperID <= 0)
-            {
-                return Json(new { success = false, message = "ID de shipper no válido." });
-            }
-
-            string validationError = ValidateShipper(shipper);
-
-            if (!string.IsNullOrEmpty(validationError))
-            {
-                return Json(new { success = false, message = validationError });
-            }
 
             try
             {
