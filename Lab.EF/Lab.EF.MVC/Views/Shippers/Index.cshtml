@@ -23,7 +23,6 @@
             <td>
                 <button class="btn btn-primary edit-button" data-id="@i">Editar</button>
                 <button class="btn btn-success save-button" data-id="@i" style="display: none;">Guardar</button>
-                <!-- Agrega un campo oculto para almacenar el ShipperID -->
                 <input type="hidden" id="shipperId_@i" value="@Model[i].ShipperID" />
             </td>
             <td>
@@ -65,11 +64,9 @@
                     url: "/Shippers/Update",
                     data: { ShipperID: shipperId, CompanyName: companyName, Phone: phone },
                     success: function () {
-                        // Redirecciona a la misma página para recargarla
                         window.location.href = '/Shippers/Index';
                     },
                     error: function () {
-                        // Muestra un mensaje de error al usuario
                         alert("Error al guardar los cambios.");
                     }
                 });
@@ -78,8 +75,6 @@
             $(".delete-button").click(function () {
                 var index = $(this).data("id");
                 var shipperId = $(this).data("shipperid");
-
-                // Utiliza SweetAlert para mostrar un mensaje de confirmación
                 Swal.fire({
                     title: '¿Estás seguro?',
                     text: 'Esta acción no se puede deshacer.',
@@ -91,17 +86,14 @@
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Si el usuario confirma, realiza la eliminación
                         $.ajax({
                             type: "POST",
                             url: "/Shippers/Delete",
                             data: { id: shipperId },
                             success: function () {
-                                // Redirecciona a la misma página para recargarla
                                 window.location.href = '/Shippers/Index';
                             },
                             error: function () {
-                                // Muestra un mensaje de error al usuario
                                 Swal.fire('Error', 'No se pudo eliminar el registro.', 'error');
                             }
                         });

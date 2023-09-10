@@ -53,10 +53,8 @@ namespace Lab.EF.Logic
         {
             Console.WriteLine("No se puede eliminar un shipper que este asociado a un pedido");
         }
-
     }
 
-       
 
         public ShippersDTO Find(int id)
         {
@@ -73,7 +71,6 @@ namespace Lab.EF.Logic
             }
             else
             {
-                // Puedes devolver null o un valor predeterminado en lugar de 0
                 return null;
             }
         }

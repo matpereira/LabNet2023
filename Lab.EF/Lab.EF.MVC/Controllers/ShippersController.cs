@@ -27,20 +27,31 @@ namespace Lab.EF.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Insert(ShippersView shipper)
+        public JsonResult Insert(ShippersView shipper)
         {
             try
             {
+                if (shipper.CompanyName.Length > 40)
+                {
+                    return Json(new { success = false, message = "El nombre de la compañía debe tener como máximo 40 caracteres." });
+                }
+
+                if (shipper.Phone != null && shipper.Phone.Length > 24)
+                {
+                    return Json(new { success = false, message = "El número de teléfono debe tener como máximo 24 caracteres." });
+                }
+
                 var shipperEntity = new ShippersDTO { CompanyName = shipper.CompanyName, Phone = shipper.Phone };
                 shipperLogic.Add(shipperEntity);
-                return RedirectToAction("Index");
+                return Json(new { success = true });
             }
             catch (Exception ex)
             {
-                ViewBag.ErrorMessage = $"Ocurrió un error al agregar el shipper: {ex.Message}";
-                return RedirectToAction("Index", "Error");
+                return Json(new { success = false, message = $"Ocurrió un error al agregar el shipper: {ex.Message}" });
             }
         }
+
+
 
 
         public ActionResult Delete(int id)

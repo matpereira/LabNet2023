@@ -1,10 +1,7 @@
-﻿using Lab.EF.Entities;
-using Lab.EF.Logic;
+﻿using Lab.EF.Logic;
 using Lab.EF.Logic.DTO;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace Lab.EF.UI.Shippers
 {
