@@ -1,4 +1,4 @@
-﻿@model List<Lab.EF.MVC.Models.ShippersView>
+﻿﻿@model List<Lab.EF.MVC.Models.ShippersView>
 
 
 <table class="table table-striped custom-table">
@@ -18,7 +18,7 @@
             </td>
             <td>
                 <span id="phone_@i">@Model[i].Phone</span>
-                <input type="text" class="form-control" id="editPhone_@i" style="display: none;" />
+                <input type="number" class="form-control" id="editPhone_@i" style="display: none;" />
             </td>
             <td>
                 <button class="btn btn-primary edit-button" data-id="@i">Editar</button>
@@ -79,22 +79,34 @@
                 var index = $(this).data("id");
                 var shipperId = $(this).data("shipperid");
 
-                // Pregunta al usuario si realmente desea eliminar el Shipper
-                if (confirm("¿Estás seguro de que deseas eliminar este Shipper?")) {
-                    $.ajax({
-                        type: "POST",
-                        url: "/Shippers/Delete",
-                        data: { id: shipperId },
-                        success: function () {
-                            // Redirecciona a la misma página para recargarla
-                            window.location.href = '/Shippers/Index';
-                        },
-                        error: function () {
-                            // Muestra un mensaje de error al usuario
-                            alert("Error al eliminar el registro.");
-                        }
-                    });
-                }
+                // Utiliza SweetAlert para mostrar un mensaje de confirmación
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: 'Esta acción no se puede deshacer.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Si el usuario confirma, realiza la eliminación
+                        $.ajax({
+                            type: "POST",
+                            url: "/Shippers/Delete",
+                            data: { id: shipperId },
+                            success: function () {
+                                // Redirecciona a la misma página para recargarla
+                                window.location.href = '/Shippers/Index';
+                            },
+                            error: function () {
+                                // Muestra un mensaje de error al usuario
+                                Swal.fire('Error', 'No se pudo eliminar el registro.', 'error');
+                            }
+                        });
+                    }
+                });
             });
         });
     </script>
