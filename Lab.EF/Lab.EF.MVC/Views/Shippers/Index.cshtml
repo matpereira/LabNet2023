@@ -1,10 +1,5 @@
 ﻿@model List<Lab.EF.MVC.Models.ShippersView>
 
-<h1>Listado de Shippers</h1>
-
-<p>
-    @Html.ActionLink("Crear Nuevo Shipper", "Insert", null, new { @class = "btn btn-primary" })
-</p>
 
 <table class="table table-striped custom-table">
     <tr>
@@ -37,6 +32,9 @@
         </tr>
     }
 </table>
+<p>
+    @Html.ActionLink("Crear Nuevo Shipper", "Insert", null, new { @class = "btn btn-primary" })
+</p>
 
 @section scripts {
     <script>
@@ -67,10 +65,11 @@
                     url: "/Shippers/Update",
                     data: { ShipperID: shipperId, CompanyName: companyName, Phone: phone },
                     success: function () {
-                        // Recargar la página actual
-                        location.reload();
+                        // Redirecciona a la misma página para recargarla
+                        window.location.href = '/Shippers/Index';
                     },
                     error: function () {
+                        // Muestra un mensaje de error al usuario
                         alert("Error al guardar los cambios.");
                     }
                 });
@@ -80,17 +79,22 @@
                 var index = $(this).data("id");
                 var shipperId = $(this).data("shipperid");
 
-                $.ajax({
-                    type: "POST",
-                    url: "/Shippers/Delete",
-                    data: { id: shipperId },
-                    success: function () {
-                        $("#companyName_" + index).closest('tr').remove();
-                    },
-                    error: function () {
-                        alert("Error al eliminar el registro.");
-                    }
-                });
+                // Pregunta al usuario si realmente desea eliminar el Shipper
+                if (confirm("¿Estás seguro de que deseas eliminar este Shipper?")) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Shippers/Delete",
+                        data: { id: shipperId },
+                        success: function () {
+                            // Redirecciona a la misma página para recargarla
+                            window.location.href = '/Shippers/Index';
+                        },
+                        error: function () {
+                            // Muestra un mensaje de error al usuario
+                            alert("Error al eliminar el registro.");
+                        }
+                    });
+                }
             });
         });
     </script>

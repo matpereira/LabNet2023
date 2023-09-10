@@ -10,7 +10,6 @@ namespace Lab.EF.Logic
     {
         public List<CustomersDTO> GetAll()
         {
-            // Mapea la lista de entidades Customers a una lista de DTOs CustomersDTO
             return context.Customers
                 .Select(customer => new CustomersDTO
                 {
@@ -52,7 +51,6 @@ namespace Lab.EF.Logic
 
         public void Update(CustomersDTO customer)
         {
-            // Mapea el DTO a una entidad Customers
             var customerToUpdate = context.Customers.Find(customer.CustomerID);
             customerToUpdate.CompanyName = customer.CompanyName;
             customerToUpdate.ContactName = customer?.ContactName;

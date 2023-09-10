@@ -1,0 +1,27 @@
+﻿/* Estilo para el fondo de la página */
+body {
+    background-color: #adb9bd; 
+}
+
+/* Estilo para la barra de navegación */
+.navbar {
+    background-color: #007bff; 
+}
+
+    /* Estilo para los enlaces de la barra de navegación */
+    .navbar a {
+        color: #00ffd0; 
+    }
+
+        /* Estilo para los enlaces en hover */
+        .navbar a:hover {
+            color: #f8f9fa; 
+        }
+
+/* Estilo para el pie de página */
+.footer {
+    background-color: #007bff; 
+        color: #ffffff; 
+    text-align: center;
+    padding: 10px;
+}

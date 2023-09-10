@@ -58,10 +58,14 @@ namespace Lab.EF.MVC.Controllers
                 return "El nombre de la compañía es demasiado largo.";
             }
 
-            if (!EsNumeroTelefonoValido(shipper.Phone))
+            if(shipper.Phone!= null)
             {
-                return "Número de teléfono no válido.";
+                if (!EsNumeroTelefonoValido(shipper.Phone))
+            {
+                    return "Número de teléfono no válido.";
+                }
             }
+           
 
             return null; // No hay errores   
         }

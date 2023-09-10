@@ -66,6 +66,7 @@ namespace Lab.EF.UI.Customers
             }
         }
 
+
         public static void ModificarCustomer(CustomersLogic customerLogic)
         {
             Console.WriteLine("Ingrese el ID del cliente a modificar (longitud = 5):");
