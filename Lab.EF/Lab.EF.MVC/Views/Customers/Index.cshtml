@@ -1,0 +1,32 @@
+﻿@model List<Lab.EF.MVC.Models.CustomersView>
+
+<h1>Listado de Clientes</h1>
+
+<table class="table table-striped custom-table">
+    <tr>
+        <th>Nombre de la Compañía</th>
+        <th>Nombre de Contacto</th>
+        <th>Dirección</th>
+        <th>Región</th>
+    </tr>
+
+    @for (var i = 0; i < Model.Count; i++)
+    {
+        <tr>
+            <td>
+                <span id="companyName_@i">@Model[i].CompanyName</span>
+            </td>
+            <td>
+                <span id="contactName_@i">@Model[i].ContactName</span>
+            </td>
+            <td>
+                <span id="address_@i">@Model[i].Address</span>
+            </td>
+            <td>
+                <span id="region_@i">@Model[i].Region</span>
+            </td>
+            <td>
+            </td>
+        </tr>
+    }
+</table>

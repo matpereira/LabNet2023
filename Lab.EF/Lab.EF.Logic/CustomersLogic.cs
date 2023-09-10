@@ -13,7 +13,6 @@ namespace Lab.EF.Logic
             return context.Customers
                 .Select(customer => new CustomersDTO
                 {
-
                     CustomerID = customer.CustomerID,
                     CompanyName = customer.CompanyName,
                     ContactName = customer.ContactName,
@@ -65,20 +64,41 @@ namespace Lab.EF.Logic
             context.SaveChanges();
         }
 
-        public void Delete(string id)
+public void Delete(string id)
+{
+    try
+    {
+        // Buscar el cliente por su CustomerID
+        var customerToDelete = context.Customers.FirstOrDefault(x => x.CustomerID == id);
+
+        if (customerToDelete != null)
         {
-            try
+            // Verificar si hay pedidos asociados al cliente
+            var ordersWithCustomer = context.Orders.Any(o => o.CustomerID == id);
+
+            if (!ordersWithCustomer)
             {
-                var customerToDelete = context.Customers.FirstOrDefault(x => x.CustomerID == id.ToString());
+                // No hay pedidos asociados, se puede eliminar
                 context.Customers.Remove(customerToDelete);
                 context.SaveChanges();
             }
-            catch (Exception)
+            else
             {
+                // Hay pedidos asociados, mostrar un mensaje de error o tomar alguna acción adecuada
                 Console.WriteLine("No se puede eliminar un cliente que esté asociado a un pedido");
             }
         }
-
+        else
+        {
+            // El cliente no fue encontrado, mostrar un mensaje de error o tomar alguna acción adecuada
+            Console.WriteLine("Cliente no encontrado");
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error al eliminar el cliente: {ex.Message}");
+    }
+}
         public CustomersDTO Find(string id)
         {
             var customer = context.Customers.Find(id);
