@@ -98,7 +98,7 @@
 
     // Manejar el clic en el botón "Guardar" en la vista Insert
     $("#shipperForm").submit(function (e) {
-        e.preventDefault(); // Previene el envío del formulario por defecto
+        e.preventDefault(); 
 
         var companyName = $("#CompanyName").val();
         var phone = $("#Phone").val();
@@ -114,11 +114,11 @@
             return;
         }
 
-      
-            if (!ValidacionServicio.EsNumeroTelefonoValido(phone)) {
-                Swal.fire('Error', 'Número de teléfono no válido.', 'error');
-                return;
-            
+
+        if (!ValidacionServicio.EsNumeroTelefonoValido(phone)) {
+            Swal.fire('Error', 'Número de teléfono no válido.', 'error');
+            return;
+
 
 
         }
