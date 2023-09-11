@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Web.Mvc;
-using Lab.EF.Entities;
 using Lab.EF.Logic;
 using Lab.EF.Logic.DTO;
 using Lab.EF.MVC.Models;

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Lab.EF.Entities;
 using Lab.EF.Logic;
 using Lab.EF.Logic.DTO;
 using Lab.EF.MVC.Models;
@@ -33,7 +32,7 @@ namespace Lab.EF.MVC.Controllers
         {
             try
             {
-                // Tu lógica de eliminación aquí
+                //Faltaria la logica, no se completo porque me fallaba
                 return Json(new { success = true });
             }
             catch (Exception ex)
