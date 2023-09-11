@@ -11,49 +11,16 @@
 
     <div class="form-group">
         @Html.LabelFor(shipper => shipper.Phone)
-        @Html.TextBoxFor(shipper => shipper.Phone, new { @class = "form-control", type = "number", pattern = "[0-9]*" })
+        @Html.TextBoxFor(shipper => shipper.Phone, new { @class = "form-control", type = "text" })
+
+
     </div>
-    <button type="button" class="btn btn-primary" id="submitButton">Guardar</button>
+    <button type="submit" class="btn btn-primary" id="add">Guardar</button>
 }
 
 @section scripts {
-    <script>
-        $(document).ready(function () {
-            $("#submitButton").click(function () {
-                $.ajax({
-                    type: "POST",
-                    url: "/Shippers/Insert",
-                    data: {
-                        CompanyName: $("#CompanyName").val(),
-                        Phone: $("#Phone").val()
-                    },
-                    success: function (result) {
-                        if (result.success) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Éxito',
-                                text: 'El shipper se ha agregado correctamente.',
-                                timer: 2000
-                            }).then(function () {
-                                window.location.href = '/Shippers/Index';
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error',
-                                text: result.message
-                            });
-                        }
-                    },
-                    error: function () {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'Ocurrió un error al procesar la solicitud.'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="~/Scripts/ValidacionServicio.js"></script>
+    <script src="~/Scripts/ShipperScript.js"></script>
 }

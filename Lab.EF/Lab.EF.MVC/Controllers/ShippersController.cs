@@ -31,16 +31,6 @@ namespace Lab.EF.MVC.Controllers
         {
             try
             {
-                if (shipper.CompanyName.Length > 40)
-                {
-                    return Json(new { success = false, message = "El nombre de la compañía debe tener como máximo 40 caracteres." });
-                }
-
-                if (shipper.Phone != null && shipper.Phone.Length > 24)
-                {
-                    return Json(new { success = false, message = "El número de teléfono debe tener como máximo 24 caracteres." });
-                }
-
                 var shipperEntity = new ShippersDTO { CompanyName = shipper.CompanyName, Phone = shipper.Phone };
                 shipperLogic.Add(shipperEntity);
                 return Json(new { success = true });
