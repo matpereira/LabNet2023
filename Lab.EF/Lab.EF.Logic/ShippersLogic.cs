@@ -40,20 +40,28 @@ namespace Lab.EF.Logic
             shipperToUpdate.Phone = shipper?.Phone;
             context.SaveChanges();
         }
-        
+
         public void Delete(int id)
         {
             try
-        {
-            var shipperToDelete = context.Shippers.FirstOrDefault(x => x.ShipperID == id);  
-            context.Shippers.Remove(shipperToDelete);
-            context.SaveChanges();
+            {
+                var shipperToDelete = context.Shippers.FirstOrDefault(x => x.ShipperID == id);
+
+                if (shipperToDelete != null)
+                {
+                    context.Shippers.Remove(shipperToDelete);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("No se encontró el shipper para eliminar.");
+                }
+            }
+            catch 
+            {
+                throw new Exception("No se puede eliminar este Shipper");
+            }
         }
-        catch (Exception)
-        {
-            Console.WriteLine("No se puede eliminar el shipper");
-        }
-    }
 
 
         public ShippersDTO Find(int id)

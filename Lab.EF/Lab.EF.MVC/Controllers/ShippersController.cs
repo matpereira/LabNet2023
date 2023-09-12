@@ -49,12 +49,11 @@ namespace Lab.EF.MVC.Controllers
                 shipperLogic.Delete(id);
                 return Json(new { success = true });
             }
-            catch
+            catch (Exception ex)
             {
-                return Json(new { success = false, message = "No se pudo eliminar el registro." });
+                return Json(new { success = false, message = ex.Message });
             }
         }
-
         [HttpPost]
         public JsonResult Update(ShippersView shipper)
         {
