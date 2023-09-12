@@ -44,8 +44,15 @@ namespace Lab.EF.MVC.Controllers
 
         public ActionResult Delete(int id)
         {
-            shipperLogic.Delete(id);
-            return RedirectToAction("Index");
+            try
+            {
+                shipperLogic.Delete(id);
+                return Json(new { success = true });
+            }
+            catch
+            {
+                return Json(new { success = false, message = "No se pudo eliminar el registro." });
+            }
         }
 
         [HttpPost]

@@ -2,6 +2,7 @@
     function ValidacionServicio() {
     }
 
+    
     ValidacionServicio.EsNumeroTelefonoValido = function (numero) {
         if (numero == null || numero == undefined || numero == "") {
             return true;
@@ -10,5 +11,7 @@
         return patron.test(numero);
     };
 
+
     return ValidacionServicio;
 }());
+

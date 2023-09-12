@@ -35,11 +35,12 @@
     $(".save-button").click(function () {
         var index = $(this).data("id");
         var companyName = $("#editCompanyName_" + index).val();
+        var trimmedValue = companyName.trim();
         var phone = $("#editPhone_" + index).val();
         var shipperId = $("#shipperId_" + index).val();
 
-        if (companyName.length == 0) {
-            Swal.fire('Error', 'El nombre de la compañía no puede estar vacio.', 'error');
+        if (trimmedValue.length === 0) {
+            Swal.fire('Error', 'El campo no puede estar vacío o contener solo espacios en blanco.', 'error');
             return;
         }
 
@@ -85,42 +86,56 @@
                     type: "POST",
                     url: "/Shippers/Delete",
                     data: { id: shipperId },
-                    success: function () {
-                        window.location.href = '/Shippers/Index';
+                    success: function (response) {
+                        if (response.success) {
+                            // Éxito: Redirige a la página de índice o realiza otras acciones necesarias
+                            window.location.href = '/Shippers/Index';
+                        } else {
+                            // Error: Muestra el SweetAlert con el mensaje de error
+                            Swal.fire('Error', response.message, 'error');
+                        }
                     },
                     error: function () {
-                        Swal.fire('Error', 'No se pudo eliminar el registro.', 'error');
+                        // Error genérico en la solicitud AJAX
+                        Swal.fire('Error', 'Ocurrió un error al eliminar el registro.', 'error');
                     }
+                    
                 });
             }
         });
     });
 
-    // Manejar el clic en el botón "Guardar" en la vista Insert
-    $("#shipperForm").submit(function (e) {
-        e.preventDefault(); 
+    // Cierra el modal de inserción cuando se hace clic en el botón "Cerrar" o en la cruz
+  
+    $("#insertShipperModal .btn-secondary").click(function () {
+        $("#insertShipperModal").modal("hide");
+    });
+    // Abre el modal de inserción cuando se hace clic en el botón "Agregar Shipper"
+    $("#openInsertModalButton").click(function () {
+        $("#InsertCompanyName").val("");
+        $("#InsertPhone").val("");
+        $("#insertShipperModal").modal("show");
+    });
 
-        var companyName = $("#CompanyName").val();
-        var phone = $("#Phone").val();
+    // Manejar el clic en el botón "Guardar" en el modal de inserción
+    $("#saveShipper").click(function () {
+        var phone = $("#InsertPhone").val();
+        var companyName = $("#InsertCompanyName").val();
+        var trimmedValue = companyName.trim();
 
-        if (companyName.length == 0) {
-            Swal.fire('Error', 'El nombre de la compañía no puede estar vacio.', 'error');
+        if (trimmedValue.length === 0) {
+            Swal.fire('Error', 'El campo no puede estar vacío o contener solo espacios en blanco.', 'error');
             return;
         }
-
 
         if (companyName.length > 40) {
             Swal.fire('Error', 'El nombre de la compañía no puede exceder los 40 caracteres.', 'error');
             return;
         }
 
-
         if (!ValidacionServicio.EsNumeroTelefonoValido(phone)) {
             Swal.fire('Error', 'Número de teléfono no válido.', 'error');
             return;
-
-
-
         }
 
         $.ajax({

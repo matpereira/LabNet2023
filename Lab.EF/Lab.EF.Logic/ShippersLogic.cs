@@ -51,7 +51,7 @@ namespace Lab.EF.Logic
         }
         catch (Exception)
         {
-            Console.WriteLine("No se puede eliminar un shipper que este asociado a un pedido");
+            Console.WriteLine("No se puede eliminar el shipper");
         }
     }
 

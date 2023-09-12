@@ -7,6 +7,10 @@
 <head>
     <link href="~/Content/site.css" rel="stylesheet" />
 </head>
+<br />
+<button class="btn btn-primary" id="openInsertModalButton">Agregar Shipper</button>
+<br />
+<br />
 
 <h1>Listado de Shippers</h1>
 
@@ -41,9 +45,35 @@
         </tr>
     }
 </table>
-<p>
-    @Html.ActionLink("Crear Nuevo Shipper", "Insert", null, new { @class = "btn btn-primary" })
-</p>
+
+<div class="modal fade" id="insertShipperModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Shipper</h5>
+
+            </div>
+            <div class="modal-body">
+                <form id="insertShipperForm">
+                    <div class="form-group">
+                        <label for="InsertCompanyName">Nombre de la compañía:</label>
+                        <input type="text" class="form-control" id="InsertCompanyName" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="InsertPhone">Teléfono:</label>
+                        <input type="text" class="form-control" id="InsertPhone" required />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="saveShipper">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 @section scripts {
     <script src="~/Scripts/ValidacionServicio.js"></script>
