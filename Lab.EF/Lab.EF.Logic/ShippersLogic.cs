@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Lab.EF.Logic.DTO;
+using System.Text.RegularExpressions;
 
 namespace Lab.EF.Logic
 {
@@ -23,6 +24,8 @@ namespace Lab.EF.Logic
 
         public void Add(ShippersDTO shipper)
         {
+            ValidacionServicio.ValidarShipper(shipper);
+
             var shipperToAdd = new Shippers
             {
                 ShipperID = shipper.ShipperID,
@@ -33,13 +36,17 @@ namespace Lab.EF.Logic
             context.SaveChanges();
         }
 
+
         public void Update(ShippersDTO shipper)
         {
+            ValidacionServicio.ValidarShipper(shipper);
+
             var shipperToUpdate = context.Shippers.Find(shipper.ShipperID);
             shipperToUpdate.CompanyName = shipper.CompanyName;
             shipperToUpdate.Phone = shipper?.Phone;
             context.SaveChanges();
         }
+
 
         public void Delete(int id)
         {
@@ -82,6 +89,8 @@ namespace Lab.EF.Logic
                 return null;
             }
         }
+
+
 
     }
 }
