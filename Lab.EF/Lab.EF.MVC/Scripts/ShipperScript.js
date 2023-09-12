@@ -88,15 +88,12 @@
                     data: { id: shipperId },
                     success: function (response) {
                         if (response.success) {
-                            // Éxito: Redirige a la página de índice o realiza otras acciones necesarias
                             window.location.href = '/Shippers/Index';
                         } else {
-                            // Error: Muestra el SweetAlert con el mensaje de error
                             Swal.fire('Error', response.message, 'error');
                         }
                     },
                     error: function () {
-                        // Error genérico en la solicitud AJAX
                         Swal.fire('Error', 'Ocurrió un error al eliminar el registro.', 'error');
                     }
                     
@@ -105,19 +102,14 @@
         });
     });
 
-    // Cierra el modal de inserción cuando se hace clic en el botón "Cerrar" o en la cruz
-  
     $("#insertShipperModal .btn-secondary").click(function () {
         $("#insertShipperModal").modal("hide");
     });
-    // Abre el modal de inserción cuando se hace clic en el botón "Agregar Shipper"
     $("#openInsertModalButton").click(function () {
         $("#InsertCompanyName").val("");
         $("#InsertPhone").val("");
         $("#insertShipperModal").modal("show");
     });
-
-    // Manejar el clic en el botón "Guardar" en el modal de inserción
     $("#saveShipper").click(function () {
         var phone = $("#InsertPhone").val();
         var companyName = $("#InsertCompanyName").val();
