@@ -129,12 +129,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FreeToGameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShippersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomersView.cs" />
+    <Compile Include="Models\GameModel.cs" />
     <Compile Include="Models\ShippersView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -156,6 +158,8 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\CustomCSS.css" />
+    <Content Include="Content\Games\GamesCSS.css" />
+    <Content Include="Content\images\GamerBackground.jpg" />
     <Content Include="Content\images\logo.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -193,6 +197,7 @@
     <Content Include="Views\Shippers\Index.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\FreeToGame\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,6 +18,12 @@ namespace Lab.EF.MVC
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Shippers", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+             name: "FreeToGameApi",
+             url: "api/freetogame/{action}/{id}",
+             defaults: new { controller = "FreeToGame", id = UrlParameter.Optional }
+);
         }
     }
 }

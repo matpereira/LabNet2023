@@ -1,0 +1,49 @@
+﻿body {
+    background-color: black;
+}
+
+.background {
+    background-image: url('../../content/images/GamerBackground.jpg'); /* Ruta a tu imagen */
+    background-size: cover; /* Ajusta el tamaño de la imagen al contenedor */
+    background-repeat: no-repeat; /* Evita la repetición de la imagen */
+    background-attachment: fixed; /* Fija la imagen para que se desplace con la página */
+}
+
+/* Personaliza el estilo de las tarjetas de juego */
+.card {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro semi-transparente */
+    color: white;
+    border: 1px solid white;
+    margin-bottom: 20px;
+}
+
+    /* Cambia el color de los enlaces en las tarjetas */
+    .card a {
+        color: #3498db; /* Color azul claro */
+    }
+
+/* Cambia el color del botón "Filtrar" */
+.btn-primary {
+    background-color: #3498db; /* Color azul claro */
+    border: none;
+}
+
+/* Cambia el color del botón "Ver juego" */
+.card .btn-primary {
+    background-color: #3498db; /* Color azul claro */
+    border: none;
+    color: black; 
+}
+
+/* Cambia el color del título de la vista */
+h2 {
+    color: white;
+}
+
+/* Personaliza el estilo del cuadro de filtro */
+.form-group {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border: 1px solid white;
+    color: white;
+}

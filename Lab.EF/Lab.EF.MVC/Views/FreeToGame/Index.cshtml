@@ -1,0 +1,55 @@
+﻿@model List<Lab.EF.MVC.Models.GameModel>
+
+
+@using (Html.BeginForm("Index", "FreeToGame", FormMethod.Get))
+{
+    <div class="form-group">
+        @Html.Label("Filtrar por plataforma:")
+        @Html.DropDownList("platformFilter", ViewBag.AllPlatforms as SelectList)
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+    </div>
+}
+
+
+<div class="background">
+    <div class="container">
+        <h2 class="text-center text-white">Juegos Gratuitos</h2>
+        <div class="row">
+            @foreach (var game in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="@game.thumbnail" class="card-img-top" alt="Imagen del juego" />
+                        <div class="card-body">
+                            <h5 class="card-title">@game.title</h5>
+                            <p class="card-text">
+                                @if (!string.IsNullOrEmpty(game.short_description))
+                                {
+                                    @game.short_description
+                                }
+                                else
+                                {
+                                    <text>Descripción no disponible</text>
+                                }
+                            </p>
+                            <a href="@game.game_url" class="btn btn-primary" target="_blank">Link del Juego</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '@TempData["ErrorMessage"]'
+        });
+    </script>
+}
+
+<link rel="stylesheet" href="@Url.Content("~/Content/Games/GamesCSS.css")" type="text/css" />
