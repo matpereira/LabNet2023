@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Description;
 using Lab.EF.Logic;
 using Lab.EF.Logic.DTO;
 
@@ -49,6 +50,8 @@ namespace WebApi.Controllers
         }
 
         // POST: api/Customers
+
+        //Se debe especificar el CustomerID en el body del request ya que no es autoincrementable
         public IHttpActionResult Post([FromBody] CustomersDTO customer)
         {
             try
