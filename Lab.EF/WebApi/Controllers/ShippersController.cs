@@ -18,7 +18,7 @@ namespace WebApi.Controllers
                 List<ShippersDTO> shippers = shipperLogic.GetAll();
                 return Ok(shippers);
             }
-            catch (Exception ex)
+            catch (Exception ex)    
             {
                 return InternalServerError(ex);
             }
