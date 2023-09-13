@@ -1,13 +1,26 @@
 ﻿@model List<Lab.EF.MVC.Models.CustomersView>
 
-<h1>Listado de Clientes</h1>
+@{
+    ViewBag.Title = "Customers";
+}
+
+<head>
+    <link href="~/Content/site.css" rel="stylesheet" />
+</head>
+<br />
+<button class="btn btn-primary" id="openInsertModalButton">Agregar Customer</button>
+<br />
+<br />
+
+<h1>Listado de Customers</h1>
 
 <table class="table table-striped custom-table">
     <tr>
-        <th>Nombre de la Compañía</th>
-        <th>Nombre de Contacto</th>
-        <th>Dirección</th>
-        <th>Región</th>
+        <th>CompanyName</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
     </tr>
 
     @for (var i = 0; i < Model.Count; i++)
@@ -15,18 +28,65 @@
         <tr>
             <td>
                 <span id="companyName_@i">@Model[i].CompanyName</span>
-            </td>
-            <td>
-                <span id="contactName_@i">@Model[i].ContactName</span>
+                <input type="text" class="form-control" id="editCompanyName_@i" style="display: none;" />
             </td>
             <td>
                 <span id="address_@i">@Model[i].Address</span>
+                <input type="text" class="form-control" id="editAddress_@i" style="display: none;" />
             </td>
             <td>
-                <span id="region_@i">@Model[i].Region</span>
+                <span id="phone_@i">@Model[i].Phone</span>
+                <input type="text" class="form-control" id="editPhone_@i" style="display: none;" />
+            </td>
+
+            <td>
+                <button class="btn btn-primary edit-button" data-id="@i">Editar</button>
+                <button class="btn btn-success save-button" data-id="@i" style="display: none;">Guardar</button>
+                <button class="btn btn-danger cancel-button" data-id="@i" style="display: none;">Cancelar</button>
+                <input type="hidden" id="customerId_@i" value="@Model[i].CustomerID" />
             </td>
             <td>
+                <button class="btn btn-danger delete-button" data-id="@i" data-customerid="@Model[i].CustomerID">Eliminar</button>
             </td>
         </tr>
     }
 </table>
+
+<div class="modal fade" id="insertCustomerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Customer</h5>
+            </div>
+            <div class="modal-body">
+                <form id="insertCustomerForm">
+                    <div class="form-group">
+                        <label for="InsertCustomerID">ID:</label>
+                        <input type="text" class="form-control" id="InsertCustomerID" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="InsertCompanyName">Nombre de la compañía:</label>
+                        <input type="text" class="form-control" id="InsertCompanyName" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="InsertAddress">Dirección:</label>
+                        <input type="text" class="form-control" id="InsertAddress" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="InsertPhone">Teléfono:</label>
+                        <input type="text" class="form-control" id="InsertPhone" required />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="saveCustomer">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/ValidacionServicio.js"></script>
+    <script src="~/Scripts/CustomerScript.js"></script>
+}

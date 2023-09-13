@@ -54,7 +54,10 @@ namespace Lab.EF.MVC.Controllers
                 return Json(new { success = false, message = ex.Message });
             }
         }
+
+
         [HttpPost]
+
         public JsonResult Update(ShippersView shipper)
         {
 

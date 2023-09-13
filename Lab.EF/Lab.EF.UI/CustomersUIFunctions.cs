@@ -12,26 +12,23 @@ namespace Lab.EF.UI.Customers
     {
         public static void NuevoCustomer(CustomersLogic customerLogic)
         {
+            Console.WriteLine("Ingrese el ID del cliente (longitud = 5):");
+            var id = Console.ReadLine();
+
+            
+            while(id.Length!=5)
+            {
+                Console.WriteLine("El ID debe tener una longitud de 5 caracteres.");
+                Console.WriteLine("Ingrese el ID del cliente (longitud = 5):");
+                id = Console.ReadLine();
+            }
+
             Console.WriteLine("Ingrese el nombre de la compañía (máximo 40 caracteres):");
             var nombreCompania = UIFunctions.LeerCadenaConLongitudMaxima("", 40);
 
             Console.WriteLine("Ingrese el nombre de contacto (máximo 30 caracteres):");
             var nombreContacto = UIFunctions.LeerCadenaConLongitudMaxima("", 30);
 
-            Console.WriteLine("Ingrese el título de contacto (máximo 30 caracteres):");
-            var tituloContacto = UIFunctions.LeerCadenaConLongitudMaxima("", 30);
-
-            Console.WriteLine("Ingrese la dirección (máximo 60 caracteres):");
-            var direccion = UIFunctions.LeerCadenaConLongitudMaxima("", 60);
-
-            Console.WriteLine("Ingrese la ciudad (máximo 15 caracteres):");
-            var ciudad = UIFunctions.LeerCadenaConLongitudMaxima("", 15);
-
-            Console.WriteLine("Ingrese la región (máximo 15 caracteres):");
-            var region = UIFunctions.LeerCadenaConLongitudMaxima("", 15);
-
-            Console.WriteLine("Ingrese el código postal (máximo 10 caracteres):");
-            var codigoPostal = UIFunctions.LeerCadenaConLongitudMaxima("", 10);
 
             Console.WriteLine("Ingrese el país (máximo 15 caracteres):");
             var pais = UIFunctions.LeerCadenaConLongitudMaxima("", 15);
@@ -39,22 +36,23 @@ namespace Lab.EF.UI.Customers
             Console.WriteLine("Ingrese el número de teléfono (Max 24 dígitos):");
             var numeroTelefono = Console.ReadLine();
 
-            Console.WriteLine("Ingrese el número de fax (Max 24 dígitos):");
-            var numeroFax = Console.ReadLine();
 
-            customerLogic.Add(new CustomersDTO
+            try
             {
-                CompanyName = nombreCompania,
-                ContactName = nombreContacto,
-                ContactTitle = tituloContacto,
-                Address = direccion,
-                City = ciudad,
-                Region = region,
-                PostalCode = codigoPostal,
-                Country = pais,
-                Phone = numeroTelefono,
-                Fax = numeroFax
-            });
+                customerLogic.Add(new CustomersDTO
+                {
+                    CustomerID = id.ToUpper(),
+                    CompanyName = nombreCompania,
+                    ContactName = nombreContacto,
+                    Country = pais,
+                    Phone = numeroTelefono,
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al agregar el cliente: " + ex.Message);
+            }
+
         }
 
         public static void ObtenerCustomers(CustomersLogic customerLogic)
@@ -67,24 +65,36 @@ namespace Lab.EF.UI.Customers
         }
 
 
-        public static void ModificarCustomer(CustomersLogic customerLogic)
-        {
-            Console.WriteLine("Ingrese el ID del cliente a modificar (longitud = 5):");
-            string id = Console.ReadLine();
-
-            if (id.Length == 5)
+            public static void ModificarCustomer(CustomersLogic customerLogic)
             {
-                var customerDTO = customerLogic.Find(id);
-
-                if (customerDTO != null)
+                try
                 {
+                    Console.WriteLine("Ingrese el ID del cliente a modificar (longitud = 5):");
+                    string id = Console.ReadLine();
+
+                    if (id.Length != 5)
+                    {
+                        Console.WriteLine("El ID debe tener una longitud de 5 caracteres.");
+                        return;
+                    }
+
+                    var customerDTO = customerLogic.Find(id);
+
+                    if (customerDTO == null)
+                    {
+                        Console.WriteLine("El ID ingresado no existe.");
+                        return;
+                    }
+
                     Console.WriteLine("Modificar el número de teléfono? (S/N)");
                     var confirmarTelefono = Console.ReadLine();
                     string nuevoTelefono = customerDTO.Phone;
 
                     if (confirmarTelefono == "S" || confirmarTelefono == "s")
                     {
-                        nuevoTelefono = UIFunctions.LeerCadenaConLongitudMaxima("Ingrese el nuevo número de teléfono (Max 24 dígitos):", 24);
+                        Console.WriteLine("Ingrese el nuevo número de teléfono (Max 24 dígitos):");
+                        nuevoTelefono = Console.ReadLine();
+
                         if (!UIFunctions.EsNumeroTelefonoValido(nuevoTelefono))
                         {
                             Console.WriteLine("Número de teléfono no válido.");
@@ -92,10 +102,25 @@ namespace Lab.EF.UI.Customers
                         }
                     }
 
+                    Console.WriteLine("Modificar el nombre de la compañia? (S/N)");
+                    var confirmarCompania = Console.ReadLine();
+                    var compania=customerDTO.CompanyName;
+                    if (confirmarCompania == "S" || confirmarCompania == "s")
+                    {
+                       Console.WriteLine("Ingrese el nuevo nombre de la compañia (Max 40 dígitos):");
+                        compania = Console.ReadLine();
+
+                        if(compania.Length > 40)
+                        {
+                            Console.WriteLine("El nombre de la compañia no puede tener más de 40 caracteres.");
+                            return;
+                        }
+                    }
+
                     customerLogic.Update(new CustomersDTO
                     {
                         CustomerID = customerDTO.CustomerID,
-                        CompanyName = customerDTO.CompanyName,
+                        CompanyName = compania,
                         ContactName = customerDTO.ContactName,
                         ContactTitle = customerDTO.ContactTitle,
                         City = customerDTO.City,
@@ -109,18 +134,15 @@ namespace Lab.EF.UI.Customers
 
                     Console.WriteLine("Cliente actualizado exitosamente.");
                 }
-                else
+                catch (Exception ex)
                 {
-                    Console.WriteLine("El ID ingresado no existe.");
+                    Console.WriteLine("Se produjo un error al modificar el cliente: " + ex.Message);
                 }
             }
-            else
-            {
-                Console.WriteLine("Solo se aceptan ID de longitud = 5.");
-            }
-        }
 
-        public static void BorrarCustomer(CustomersLogic customerLogic)
+
+
+            public static void BorrarCustomer(CustomersLogic customerLogic)
         {
             Console.Clear();
             Console.WriteLine("Selecciona el ID del cliente a eliminar (longitud = 5):");
