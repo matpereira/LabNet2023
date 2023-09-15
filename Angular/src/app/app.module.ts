@@ -21,7 +21,7 @@
       NavbarComponent,
       ShippersComponent,
       CustomersComponent,
-      HomeComponent
+      HomeComponent,
     ],
     imports: [
       BrowserModule,

@@ -1,25 +1,60 @@
-/* Estilos para centrar el contenedor de la tabla */
-body {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-/* Estilos para el contenedor de la tabla */
+/* Estilo para el contenedor principal */
 .table-container {
-  width: 100%;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Agregar una sombra al contenedor */
-}
-
-
-/* Resto de estilos como en respuestas anteriores... */
-.text-center {
-  text-align: center;
-}
-
-.p-3 {
-  padding: 0.75rem; /* Adjust the padding value as needed */
-}
+    max-width: 2000px;
+    margin: 50;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo para el elemento select */
+  select {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+  }
+  
+  /* Estilo para el campo de entrada de texto */
+  input[type="text"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+  }
+  
+  /* Estilo para la tabla de Angular Material */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+  }
+  
+  th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  /* Estilo para filas impares */
+  tr:nth-child(odd) {
+    background-color: #f7f7f7;
+  }
+  
+  /* Estilo para filas al pasar el cursor */
+  tr:hover {
+    background-color: #e0e0e0;
+  }
+  
