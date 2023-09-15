@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface Customers {
   companyName: string;
@@ -21,19 +24,27 @@ const listCustomers: Customers[] = [
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.css']
 })
-export class CustomersComponent {
+export class CustomersComponent implements OnInit {
   displayedColumns: string[] = ['companyName', 'adress', 'phone', 'region'];
-  dataSource = listCustomers;
+  dataSource = new MatTableDataSource(listCustomers);
   filterValue: string = ''; // Propiedad para almacenar el valor del filtro
   selectedFilter: string = 'all'; // Propiedad para almacenar la opción de filtro seleccionada
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  applyFilter(): void {
+  constructor() {}
+  ngOnInit(): void {}
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+   this.dataSource.sort = this.sort;
+  }
+  
+  applyFilter() {
     if (this.selectedFilter === 'all') {
-      this.dataSource = listCustomers;
+      this.dataSource.filter = '';
     } else {
-      this.dataSource = listCustomers.filter(item =>
-        item[this.selectedFilter as keyof Customers].toLowerCase().includes(this.filterValue.toLowerCase())
-      );
+      this.dataSource.filter = this.filterValue.trim().toLowerCase();
     }
   }
 }

@@ -30,10 +30,10 @@ const listShippers: Shippers[] = [
 
 
 export class ShippersComponent implements OnInit {
-  displayedColumns: string[] = ['companyName', 'phone'];
+  displayedColumns: string[] = ['companyName', 'phone', 'actions',];
   dataSource = new MatTableDataSource(listShippers);
-  filterValue: string = ''; // Propiedad para almacenar el valor del filtro
-  selectedFilter: string = 'all'; // Propiedad para almacenar la opción de filtro seleccionada
+  filterValue: string = ''; 
+  selectedFilter: string = 'all'; 
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -54,4 +54,13 @@ export class ShippersComponent implements OnInit {
       this.dataSource.filter = this.filterValue.trim().toLowerCase();
     }
   }
+
+  editShipper(companyName : string) {
+console.log('Edit:',companyName);
+  }
+
+  deleteShipper(companyName : string) {
+    console.log('Delete:',companyName);
+  }
+
 }

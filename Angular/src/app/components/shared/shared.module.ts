@@ -25,7 +25,6 @@ import {MatSortModule} from '@angular/material/sort';
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
-
   ]
 })
 export class SharedModule { 
