@@ -1,22 +1,19 @@
 import { Component } from '@angular/core';
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+export interface Customers {
+  companyName: string;
+  adress : string;
+  phone: string;
+  region: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+const listCustomers: Customers[] = [
+  {companyName: 'asd', adress: 'Hydrogen', phone:'1231234', region: 'ARG'},
+  {companyName: 'asd', adress: 'Helium', phone:'1231234', region: 'ARG'},
+  {companyName: 'asd', adress: 'Lithium', phone:'1231234', region: 'ARG'},
+  {companyName: 'asd', adress: 'Beryllium', phone:'1231234', region: 'ARG'},
+  {companyName: 'asd', adress: 'Boron', phone:'1231234', region: 'ARG'},
+  {companyName: 'asd', adress: 'Carbon', phone:'1231234', region: 'ARG'},
+
 ];
 
 @Component({
@@ -25,6 +22,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./customers.component.css']
 })
 export class CustomersComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['companyName', 'adress', 'phone', 'region'];
+  dataSource = listCustomers;
 }

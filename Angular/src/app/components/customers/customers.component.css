@@ -1,5 +1,25 @@
-table {
-    margin: 500;
-    align: center;
-      width: 75%;
-    }
+/* Estilos para centrar el contenedor de la tabla */
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Estilos para el contenedor de la tabla */
+.table-container {
+  width: 100%;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Agregar una sombra al contenedor */
+}
+
+
+/* Resto de estilos como en respuestas anteriores... */
+.text-center {
+  text-align: center;
+}
+
+.p-3 {
+  padding: 0.75rem; /* Adjust the padding value as needed */
+}
