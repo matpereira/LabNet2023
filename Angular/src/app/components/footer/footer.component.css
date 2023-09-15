@@ -1,0 +1,24 @@
+footer {
+    background-color: #343a40; 
+    color: #fff; 
+    padding: 20px 0; 
+  }
+  
+  /* Estilos para los botones de redes sociales */
+  footer .btn-floating {
+    font-size: 20px; 
+    margin: 5px; /* Espaciado entre botones */
+  }
+  
+
+  footer a.text-white {
+    text-decoration: none; 
+    font-weight: bold; 
+  }
+  
+  /* Estilos para el fondo del copyright */
+  footer .text-center p {
+    background-color: rgba(0, 0, 0, 0.2); /* Fondo semitransparente */
+    padding: 10px; /* Espaciado interno */
+  }
+  
