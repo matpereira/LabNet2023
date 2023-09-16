@@ -57,3 +57,24 @@ tr:nth-child(odd) {
 tr:hover {
   background-color: #e0e0e0;
 }
+
+
+/* Define la animación "pulse" */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Agrega la clase "pulse" al botón para aplicar la animación */
+.pulse {
+  animation: pulse 1s infinite;
+
+}
+
