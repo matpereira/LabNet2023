@@ -2,8 +2,12 @@ import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ShipperServiceService } from '../../service/shipper.service.service';
 import { Shippers } from '../../core/models/Shippers_model';
+import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
+import { ShipperServiceService } from '../../service/shipper.service';
+import { EditShipperComponent } from 'src/app/modals/shipper/edit-shipper/edit-shipper.component';
+import { InsertShipperComponent } from 'src/app/modals/shipper/insert-shipper/insert-shipper.component';
 
 @Component({
   selector: 'app-shippers',
@@ -12,12 +16,14 @@ import { Shippers } from '../../core/models/Shippers_model';
 })
 
 export class ShippersComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['ShipperID', 'CompanyName', 'Phone', 'actions'];
+  displayedColumns: string[] = ['ShipperID', 'CompanyName', 'Phone', 'Edit', 'Delete'];
   filterValue: string = '';
   selectedFilter: string = 'all';
   listShippers: Shippers[] = [];
   dataSource = new MatTableDataSource<Shippers>();
-  constructor(private shipperService: ShipperServiceService) { }
+
+  constructor(private shipperService: ShipperServiceService, private dialog: MatDialog) {}
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -38,14 +44,8 @@ export class ShippersComponent implements OnInit, AfterViewInit {
     }
   }
 
-  editShipper(companyName: string) {
-    console.log('Edit:', companyName);
-  }
 
-  deleteShipper(companyName: string) {
-    console.log('Delete:', companyName);
-  }
-
+  //get all
   getAllShippers() {
     try {
       this.shipperService.getAllShippers().subscribe((res: any) => {
@@ -55,5 +55,64 @@ export class ShippersComponent implements OnInit, AfterViewInit {
     } catch (error) {
       console.log(error);
     }
+  }
+
+//delete
+deleteShipper(shipperId: number) {
+  Swal.fire({
+    title: '¿Estás seguro?',
+    text: 'Esta acción no se puede deshacer',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sí, eliminar',
+    cancelButtonText: 'Cancelar',
+  }).then((result) => {
+    if (result.value) {
+      // El usuario confirmó la eliminación, realiza la solicitud DELETE
+      this.shipperService.deleteShipper(shipperId).subscribe(
+        () => {
+          // La eliminación se realizó con éxito, puedes actualizar la lista o realizar otras acciones.
+          this.getAllShippers();
+          Swal.fire('Eliminado', 'El shipper ha sido eliminado', 'success');
+        },
+        (error) => {
+          console.error('Error al eliminar el shipper:', error);
+          // Captura y maneja el error aquí
+          Swal.fire('Error', 'Hubo un problema al eliminar el shipper', 'error');
+        }
+      );
+    }
+  });
+}
+
+//insert aqui
+insertShipper() {
+  const dialogRef = this.dialog.open(InsertShipperComponent, {
+    width: '400px', // Ancho del modal
+    // data: {}, // Puedes pasar datos al modal si es necesario
+  });
+
+  dialogRef.afterClosed().subscribe((result) => {
+    if (result) {
+      // Aquí puedes manejar los datos resultantes después de cerrar el modal de inserción
+      console.log('Datos de inserción:', result);
+      // Puedes realizar acciones adicionales según sea necesario
+    }
+  });
+}
+
+//edit 
+  editShipper(shipper: Shippers) {
+    const dialogRef = this.dialog.open(EditShipperComponent, {
+      width: '400px', // Ancho del modal
+      data: { shipper }, // Pasa los datos del shipper al modal
+    });
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // Aquí puedes manejar los datos actualizados después de cerrar el modal
+        console.log('Datos actualizados:', result);
+      }
+    });
   }
 }

@@ -11,7 +11,10 @@
   import { CustomersComponent } from './components/dashboard/customers/customers.component';
   import { HomeComponent } from './components/dashboard/home/home.component';
   import { HttpClientModule } from '@angular/common/http';
-
+import { EditShipperComponent } from './modals/shipper/edit-shipper/edit-shipper.component';
+import { EditCustomerComponent } from './modals/customer/edit-customer/edit-customer.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { InsertShipperComponent } from './modals/shipper/insert-shipper/insert-shipper.component';
 
 
   @NgModule({
@@ -23,6 +26,9 @@
       ShippersComponent,
       CustomersComponent,
       HomeComponent,
+      EditShipperComponent,
+      EditCustomerComponent,
+      InsertShipperComponent,
     ],
     imports: [
       BrowserModule,
@@ -30,6 +36,7 @@
       BrowserAnimationsModule,
       SharedModule,
       HttpClientModule,
+      ReactiveFormsModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

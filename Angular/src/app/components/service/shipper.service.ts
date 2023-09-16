@@ -15,11 +15,18 @@ export class ShipperServiceService {
 
   getAllShippers(): Observable<ResponseDto> {
     let url = `${this.apiUrl}/Shippers/GetAllShippers`;
-    
-    // Verifica si la URL comienza con "http://" y reemplázala por "https://"
-    if (url.startsWith("http://")) {
         url = url.replace("http://", "https://");
-    }
     return this.http.get<ResponseDto>(url); 
  }
+
+ deleteShipper(id: number): Observable<ResponseDto> {
+  const url = `${this.apiUrl}/Shippers/DeleteShipper?id=${id}`;
+  return this.http.delete<ResponseDto>(url);
+}
+
+addShipper(shipperData: any): Observable<ResponseDto> {
+  const url = `${this.apiUrl}/Shippers/AddShippers`;
+  return this.http.post<ResponseDto>(url, shipperData);
+}
+
 }

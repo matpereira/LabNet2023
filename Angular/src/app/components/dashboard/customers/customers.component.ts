@@ -2,6 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { EditCustomerComponent } from 'src/app/modals/customer/edit-customer/edit-customer.component';
+import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
+
 
 export interface Customers {
   companyName: string;
@@ -25,14 +29,14 @@ const listCustomers: Customers[] = [
   styleUrls: ['./customers.component.css']
 })
 export class CustomersComponent implements OnInit {
-  displayedColumns: string[] = ['companyName', 'adress', 'phone', 'region','actions'];
+  displayedColumns: string[] = ['companyName', 'adress', 'phone', 'region', 'edit', 'delete'];
   dataSource = new MatTableDataSource(listCustomers);
   filterValue: string = ''; // Propiedad para almacenar el valor del filtro
   selectedFilter: string = 'all'; // Propiedad para almacenar la opción de filtro seleccionada
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() {}
+  constructor(private dialog: MatDialog ) {}
   ngOnInit(): void {}
 
   ngAfterViewInit() {
@@ -48,11 +52,18 @@ export class CustomersComponent implements OnInit {
     }
   }
 
-  editCustomer(companyName : string) {
-    console.log('edit');
+  editCustomer(customer: Customers) {
+    const dialogRef = this.dialog.open(EditCustomerComponent, {
+      width: '40%' , // Ancho del modal
+      height: 'auto', // Alto del modal
+      data: { customer }, // Pasa los datos del transportista al modal
+    });
+  
+    dialogRef.afterClosed().subscribe(() => {
+    });
   }
 
-  deleteCustomer(companyName : string) {
-    console.log('delete');
-  }
+    deleteCustomer(customerId: number) {
+    }
+
 }

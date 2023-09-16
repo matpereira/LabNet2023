@@ -1,0 +1,36 @@
+<div class="back-modal" style="  background-color: rgba(32, 78, 96, 0.388);" >
+    <div class="d-flex align-items-center justify-content-center" >
+                <!-- Contenedor principal del formulario -->
+                <div class="modal-container">
+                    <br>
+                <h2>Edit Customer</h2>
+        <form>
+                <div class="form-group">
+                <label for="companyName">Company Name</label>
+                <input type="text" id="companyName" name="companyName" [(ngModel)]="data.customer.companyName" class="form-control">
+                </div>
+                <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" id="phone" name="phone" [(ngModel)]="data.customer.phone" class="form-control">
+                </div>
+                <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" [(ngModel)]="data.customer.address" class="form-control">
+                </div>
+                <div class="form-group">
+                <label for="region">Region</label>
+                <input type="text" id="region" name="region" [(ngModel)]="data.customer.region" class="form-control">
+                </div>
+                <br>
+                <br>
+                <div class="text-center d-flex justify-content-center">
+            <button type="button" class="btn btn-success mx-2" (click)="saveChanges()">Guardar</button>
+            <button type="button" class="btn btn-danger mx-2" (click)="closeDialog()">Cancelar</button>
+                </div>
+                
+        </form>
+        <br>
+                <br>    
+                </div>
+            </div>
+        </div>
