@@ -6,12 +6,15 @@ using Lab.EF.Logic.DTO;
 
 namespace WebApi.Controllers
 {
+    [RoutePrefix("api/Shippers")]
     public class ShippersController : ApiController
     {
         private ShippersLogic shipperLogic = new ShippersLogic();
 
         // GET: api/Shippers
-        public IHttpActionResult Get()
+        [HttpGet]
+        [Route("GetAllShippers")]
+        public IHttpActionResult GetAllShippers()
         {
            
             try
@@ -26,6 +29,8 @@ namespace WebApi.Controllers
         }
 
         // GET: api/Shippers/5
+        [HttpGet]
+        [Route("GetShipper")]
         public IHttpActionResult Get(int id)
         {
             try
@@ -43,6 +48,8 @@ namespace WebApi.Controllers
         }
 
         // POST: api/Shippers
+        [HttpPost]
+        [Route("AddShippers")]
         public IHttpActionResult Post([FromBody] ShippersDTO shipper)
         {
             try
@@ -57,6 +64,8 @@ namespace WebApi.Controllers
         }
 
         // PUT: api/Shippers/5
+        [HttpPut]
+        [Route("EditShipper")]
         public IHttpActionResult Put(int id, [FromBody] ShippersDTO shipper)
         {
             try
@@ -72,6 +81,8 @@ namespace WebApi.Controllers
         }
 
         // DELETE: api/Shippers/5
+        [HttpDelete]
+        [Route("DeleteShipper")]
         public IHttpActionResult Delete(int id)
         {
             try

@@ -10,6 +10,7 @@
   import { ShippersComponent } from './components/dashboard/shippers/shippers.component';
   import { CustomersComponent } from './components/dashboard/customers/customers.component';
   import { HomeComponent } from './components/dashboard/home/home.component';
+  import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -28,6 +29,7 @@
       AppRoutingModule,
       BrowserAnimationsModule,
       SharedModule,
+      HttpClientModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -25,7 +25,7 @@ const listCustomers: Customers[] = [
   styleUrls: ['./customers.component.css']
 })
 export class CustomersComponent implements OnInit {
-  displayedColumns: string[] = ['companyName', 'adress', 'phone', 'region'];
+  displayedColumns: string[] = ['companyName', 'adress', 'phone', 'region','actions'];
   dataSource = new MatTableDataSource(listCustomers);
   filterValue: string = ''; // Propiedad para almacenar el valor del filtro
   selectedFilter: string = 'all'; // Propiedad para almacenar la opción de filtro seleccionada
@@ -46,5 +46,13 @@ export class CustomersComponent implements OnInit {
     } else {
       this.dataSource.filter = this.filterValue.trim().toLowerCase();
     }
+  }
+
+  editCustomer(companyName : string) {
+    console.log('edit');
+  }
+
+  deleteCustomer(companyName : string) {
+    console.log('delete');
   }
 }

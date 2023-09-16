@@ -1,0 +1,28 @@
+/* Estilo para el contenedor principal */
+body, html {
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* Contenedor principal con flexbox */
+  app-root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+  
+  /* Estilo para el contenido principal */
+  main {
+    flex: 1; /* Hace que el contenido principal ocupe el espacio disponible */
+    padding: 20px; /* Añade espacio entre el contenido principal y el pie de página */
+    overflow-y: auto; /* Agrega desplazamiento vertical si el contenido es más grande que la ventana */
+  }
+  
+  /* Estilo para el footer */
+  app-footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+  }
+  

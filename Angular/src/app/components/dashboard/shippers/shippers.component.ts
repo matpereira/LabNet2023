@@ -2,25 +2,8 @@ import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-
-
-
-export interface Shippers {
-  companyName: string;
-  phone: string;
-}
-
-const listShippers: Shippers[] = [
-  {companyName: 'asd', phone: '12345678'},
-  {companyName: 'asd', phone: '12345678'},
-  {companyName: 'asd', phone: '12345678'},
-  {companyName: 'asd', phone: '12345678'},
-  {companyName: 'asd', phone: '12345678'},
-  {companyName: 'asd', phone: '12345678'},
-  {companyName: 'asd', phone: '12345678'},
-  {companyName: 'asd', phone: '12345678'},
-
-];
+import { ShipperServiceService } from '../../service/shipper.service.service';
+import { Shippers } from '../../core/models/Shippers_model';
 
 @Component({
   selector: 'app-shippers',
@@ -28,24 +11,24 @@ const listShippers: Shippers[] = [
   styleUrls: ['./shippers.component.css']
 })
 
-
-export class ShippersComponent implements OnInit {
-  displayedColumns: string[] = ['companyName', 'phone', 'actions',];
-  dataSource = new MatTableDataSource(listShippers);
-  filterValue: string = ''; 
-  selectedFilter: string = 'all'; 
-
+export class ShippersComponent implements OnInit, AfterViewInit {
+  displayedColumns: string[] = ['ShipperID', 'CompanyName', 'Phone', 'actions'];
+  filterValue: string = '';
+  selectedFilter: string = 'all';
+  listShippers: Shippers[] = [];
+  dataSource = new MatTableDataSource<Shippers>();
+  constructor(private shipperService: ShipperServiceService) { }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllShippers();
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-   this.dataSource.sort = this.sort;
+    this.dataSource.sort = this.sort;
   }
-  
 
   applyFilter() {
     if (this.selectedFilter === 'all') {
@@ -55,12 +38,22 @@ export class ShippersComponent implements OnInit {
     }
   }
 
-  editShipper(companyName : string) {
-console.log('Edit:',companyName);
+  editShipper(companyName: string) {
+    console.log('Edit:', companyName);
   }
 
-  deleteShipper(companyName : string) {
-    console.log('Delete:',companyName);
+  deleteShipper(companyName: string) {
+    console.log('Delete:', companyName);
   }
 
+  getAllShippers() {
+    try {
+      this.shipperService.getAllShippers().subscribe((res: any) => {
+        this.listShippers = res;
+        this.dataSource.data = this.listShippers;
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }

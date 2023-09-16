@@ -1,24 +1,25 @@
-footer {
-    background-color: #343a40; 
-    color: #fff; 
-    padding: 20px 0; 
-  }
-  
-  /* Estilos para los botones de redes sociales */
-  footer .btn-floating {
-    font-size: 20px; 
-    margin: 5px; /* Espaciado entre botones */
-  }
-  
+/* Estilo para todo el cuerpo de la página */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Establece la altura mínima del cuerpo para ocupar toda la ventana */
+  margin: 0;
+  padding: 0;
+}
 
-  footer a.text-white {
-    text-decoration: none; 
-    font-weight: bold; 
-  }
-  
-  /* Estilos para el fondo del copyright */
-  footer .text-center p {
-    background-color: rgba(0, 0, 0, 0.2); /* Fondo semitransparente */
-    padding: 10px; /* Espaciado interno */
-  }
-  
+/* Estilo para el contenido principal */
+app-main {
+  flex-grow: 1; /* Hace que el contenido principal crezca para ocupar todo el espacio disponible */
+  padding: 20px; /* Añade espacio entre el contenido principal y el pie de página */
+}
+
+/* Estilo para el footer */
+app-footer {
+  background-color: #343a40;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  position: fixed; /* Hace que el footer sea fijo en la parte inferior */
+  bottom: 0; /* Coloca el footer en la parte inferior */
+  width: 100%; /* Ancho completo */
+}
