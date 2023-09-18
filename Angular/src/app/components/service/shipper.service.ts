@@ -15,7 +15,6 @@ export class ShipperServiceService {
 
   getAllShippers(): Observable<ResponseDto> {
     let url = `${this.apiUrl}/Shippers/GetAllShippers`;
-        url = url.replace("http://", "https://");
     return this.http.get<ResponseDto>(url); 
  }
 
@@ -27,6 +26,11 @@ export class ShipperServiceService {
 addShipper(shipperData: any): Observable<ResponseDto> {
   const url = `${this.apiUrl}/Shippers/AddShippers`;
   return this.http.post<ResponseDto>(url, shipperData);
+}
+
+editShipper(shipperId: number, shipperData: any): Observable<ResponseDto> {
+  const url = `${this.apiUrl}/Shippers/UpdateShipper?id=${shipperId}`;
+  return this.http.put<ResponseDto>(url, shipperData);
 }
 
 }
