@@ -111,12 +111,10 @@ insertCustomer() {
 updateCustomer(customer: Customers) {
   const dialogRef = this.dialog.open(EditCustomerComponent, {
     width: '400px',
-    data: { customer }, // Pasa los datos del customer al modal
+    data: { customer }, 
   });
-
   dialogRef.componentInstance.customerUpdated.subscribe((result) => {
     if (result) {
-      // Agrega el id del customer que deseas editar a los datos actualizados
 
       result.CustomerId = customer.CustomerID;
 
