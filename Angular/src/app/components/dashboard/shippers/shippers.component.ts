@@ -109,17 +109,31 @@ insertShipper() {
 }
 
 
-//edit 
-  editShipper(shipper: Shippers) {
-    const dialogRef = this.dialog.open(EditShipperComponent, {
-      width: '400px', 
-      data: { shipper },
-    });
-  
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log('Datos actualizados:', result);
-      }
-    });
-  }
+updateShipper(shipper: Shippers) {
+  const dialogRef = this.dialog.open(EditShipperComponent, {
+    width: '400px',
+    data: { shipper }, // Pasa los datos del shipper al modal
+  });
+
+  dialogRef.componentInstance.shipperUpdated.subscribe((result) => {
+    if (result) {
+      // Agrega el id del shipper que deseas editar a los datos actualizados
+      result.shipperId = shipper.ShipperID;
+
+      this.shipperService.updateShipper(result.shipperId, result.shipperData).subscribe(
+        (response) => {
+          console.log('Shipper modificado con éxito:', response);
+          this.getAllShippers();
+        },
+        (error) => {
+          console.error('Error al modificar el shipper:', error);
+          Swal.fire('Error', 'Hubo un problema al modificar el shipper', 'error');
+        }
+      );
+    }
+  });
+}
+
+
+
 }

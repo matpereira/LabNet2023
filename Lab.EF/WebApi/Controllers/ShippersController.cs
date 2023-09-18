@@ -65,7 +65,7 @@ namespace WebApi.Controllers
 
         // PUT: api/Shippers/5
         [HttpPut]
-        [Route("EditShipper")]
+        [Route("UpdateShipper")]
         public IHttpActionResult Put(int id, [FromBody] ShippersDTO shipper)
         {
             try

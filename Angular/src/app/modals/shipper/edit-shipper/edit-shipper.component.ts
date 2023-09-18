@@ -1,69 +1,42 @@
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Shippers } from 'src/app/components/core/models/Shippers_model';
 import { ValidationService } from 'src/app/components/service/validation.service';
-import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'; // Importa FormBuilder y FormGroup
 
 @Component({
   selector: 'app-edit-shipper',
   templateUrl: './edit-shipper.component.html',
+  styleUrls: ['./edit-shipper.component.css'],
 })
 export class EditShipperComponent {
+  @Output() shipperUpdated = new EventEmitter<any>();
   form: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<EditShipperComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
-    private validationService: ValidationService // Inyecta el servicio de validación
+    private dialogRef: MatDialogRef<EditShipperComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { shipper: Shippers } 
   ) {
     this.form = this.fb.group({
-      companyName: [
-        data.shipper.companyName,
-        [
-          Validators.required,
-          Validators.maxLength(40),
-          (control: AbstractControl) => this.customCompanyNameValidator(control), // Declara el tipo de 'control' aquí
-        ],
-      ],
-      phone: [
-        data.shipper.phone,
-        [
-          Validators.required,
-          Validators.pattern(
-            /^(?=\(?\+?\d{1,3}\)?)(?=.{1,24}$)\(?\+?\d{1,3}\)?[\s-]?\d{1,24}$/
-          ),
-        ],
-        (control: AbstractControl) => this.customPhoneValidator(control), // Declara el tipo de 'control' aquí
-      ],
+      companyName: [data.shipper.CompanyName, [Validators.required, Validators.maxLength(40)]],
+      phone: [data.shipper.Phone],
     });
   }
 
-  customCompanyNameValidator(
-    control: AbstractControl
-  ): { [key: string]: boolean } | null {
-    const isValid = this.validationService.validateCompanyNameLength(
-      control.value,
-      40
-    );
-
-    return isValid ? null : { invalidCompanyNameLength: true };
-  }
-
-  customPhoneValidator(control: AbstractControl): { [key: string]: boolean } | null {
-    const isValid = this.validationService.validatePhoneNumber(control.value);
-
-    return isValid ? null : { invalidPhone: true };
-  }
-
   saveChanges() {
-    console.log('Botón "Guardar" clicado');
     if (this.form.valid) {
-      const updatedData = this.form.value;
-      this.dialogRef.close(updatedData);
+
+      const updatedShipperData = {
+        shipperId: this.data.shipper.ShipperID,
+        shipperData: this.form.value,
+      };
+      this.shipperUpdated.emit(updatedShipperData);
+      this.closeDialog();
     }
   }
 
   closeDialog() {
-    this.dialogRef.close();
+    this.dialogRef.close(); // Cierra el modal usando MatDialogRef
   }
 }
