@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from 'src/app/components/service/validation.service';
 import Swal from 'sweetalert2';
-import { MatDialogRef } from '@angular/material/dialog'; // Importa MatDialogRef
+import { MatDialogRef } from '@angular/material/dialog'; 
 
 @Component({
   selector: 'app-insert-shipper',
@@ -28,7 +28,6 @@ export class InsertShipperComponent {
     const companyNameValue = this.form.get('companyName')?.value;
     const phoneValue = this.form.get('phone')?.value;
   
-    // Verificar si el nombre de la compañía está vacío o tiene más de 40 caracteres
     if (!companyNameValue.trim()) {
       Swal.fire('Error', 'El nombre de la compañía no puede estar vacío.', 'error');
       return;
