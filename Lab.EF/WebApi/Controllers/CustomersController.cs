@@ -7,11 +7,15 @@ using Lab.EF.Logic.DTO;
 
 namespace WebApi.Controllers
 {
+    [RoutePrefix("api/Customers")]
+
     public class CustomersController : ApiController
     {
         private CustomersLogic customerLogic = new CustomersLogic();
 
         // GET: api/Customer
+        [HttpGet]
+        [Route("GetAllCustomers")]
         public IHttpActionResult Get()
         {
             try
@@ -26,6 +30,8 @@ namespace WebApi.Controllers
         }
 
         // GET: api/Customer/zzzz
+        [HttpGet]
+        [Route("GetCustomer")]
         public IHttpActionResult Get(string id)
         {
             try
@@ -52,6 +58,8 @@ namespace WebApi.Controllers
         // POST: api/Customers
 
         //Se debe especificar el CustomerID en el body del request ya que no es autoincrementable
+        [HttpPost]
+        [Route("AddCustomer")]
         public IHttpActionResult Post([FromBody] CustomersDTO customer)
         {
             try
@@ -67,6 +75,8 @@ namespace WebApi.Controllers
 
 
         // PUT: api/Customer/5
+        [HttpPut]
+        [Route("UpdateCustomer")]
         public IHttpActionResult Put(string id, [FromBody] CustomersDTO customer)
         {
             try
@@ -82,6 +92,8 @@ namespace WebApi.Controllers
         }
 
         // DELETE: api/Customer/5
+        [HttpDelete]
+        [Route("DeleteCustomer")]
         public IHttpActionResult Delete(string id)
         {
             try

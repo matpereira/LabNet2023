@@ -6,11 +6,15 @@ using Lab.EF.Logic;
 using Lab.EF.Logic.DTO;
 using Lab.EF.MVC.Models;
 
+
+
 namespace Lab.EF.MVC.Controllers
 {
     public class CustomersController : Controller
     {
         CustomersLogic customerLogic = new CustomersLogic();
+
+
 
         public ActionResult Index()
         {
@@ -30,7 +34,8 @@ namespace Lab.EF.MVC.Controllers
             return View();
         }
 
-        [HttpPost]
+
+
         public JsonResult Insert(CustomersView customer)
         {
             try

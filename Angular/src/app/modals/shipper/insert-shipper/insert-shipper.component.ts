@@ -16,7 +16,7 @@ export class InsertShipperComponent {
   constructor(
     private fb: FormBuilder,
     private validationService: ValidationService,
-    public dialogRef: MatDialogRef<InsertShipperComponent> // Inyecta MatDialogRef
+    public dialogRef: MatDialogRef<InsertShipperComponent> 
   ) {
     this.form = this.fb.group({
       companyName: ['', [Validators.required, Validators.maxLength(40)]],
@@ -48,8 +48,7 @@ export class InsertShipperComponent {
     Swal.fire('Éxito', 'El shipper ha sido agregado con éxito.', 'success');
   }
 
-  // Método para cerrar el modal
   closeDialog() {
-    this.dialogRef.close(); // Cierra el modal usando MatDialogRef
+    this.dialogRef.close(); 
   }
 }

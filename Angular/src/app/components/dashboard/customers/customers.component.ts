@@ -1,49 +1,41 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { EditCustomerComponent } from 'src/app/modals/customer/edit-customer/edit-customer.component';
+import { Customers } from '../../core/models/Customers_model';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
-
-
-export interface Customers {
-  companyName: string;
-  adress: string;
-  phone: string;
-  region: string;
-}
-
-const listCustomers: Customers[] = [
-  { companyName: 'asd', adress: 'Hydrogen', phone: '1231234', region: 'ARG' },
-  { companyName: 'asd', adress: 'Helium', phone: '1231234', region: 'ARG' },
-  { companyName: 'asd', adress: 'Lithium', phone: '1231234', region: 'ARG' },
-  { companyName: 'asd', adress: 'Beryllium', phone: '1231234', region: 'ARG' },
-  { companyName: 'asd', adress: 'Boron', phone: '1231234', region: 'ARG' },
-  { companyName: 'asd', adress: 'Carbon', phone: '1231234', region: 'ARG' },
-];
+import { CustomerServiceService } from '../../service/customer.service';
+import { EditCustomerComponent } from 'src/app/modals/customer/edit-customer/edit-customer.component';
+import { InsertCustomerComponent } from 'src/app/modals/customer/insert-customer/insert-customer.component';
 
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.css']
 })
-export class CustomersComponent implements OnInit {
-  displayedColumns: string[] = ['companyName', 'adress', 'phone', 'region', 'edit', 'delete'];
-  dataSource = new MatTableDataSource(listCustomers);
-  filterValue: string = ''; // Propiedad para almacenar el valor del filtro
-  selectedFilter: string = 'all'; // Propiedad para almacenar la opción de filtro seleccionada
+
+export class CustomersComponent implements OnInit, AfterViewInit {
+  displayedColumns: string[] = ['CustomerID', 'CompanyName', 'Phone', 'Address','Region','Edit', 'Delete'];
+  filterValue: string = '';
+  selectedFilter: string = 'all';
+  listCustomers: Customers[] = [];
+  dataSource = new MatTableDataSource<Customers>();
+
+  constructor(private customerService: CustomerServiceService, private dialog: MatDialog) {}
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog: MatDialog ) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllCustomers();
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-   this.dataSource.sort = this.sort;
+    this.dataSource.sort = this.sort;
   }
-  
+
   applyFilter() {
     if (this.selectedFilter === 'all') {
       this.dataSource.filter = '';
@@ -52,18 +44,96 @@ export class CustomersComponent implements OnInit {
     }
   }
 
-  editCustomer(customer: Customers) {
-    const dialogRef = this.dialog.open(EditCustomerComponent, {
-      width: '40%' , // Ancho del modal
-      height: 'auto', // Alto del modal
-      data: { customer }, // Pasa los datos del transportista al modal
-    });
-  
-    dialogRef.afterClosed().subscribe(() => {
-    });
+
+  //get all
+  getAllCustomers() {
+    try {
+      this.customerService.getAllCustomers().subscribe((res: any) => {
+        this.listCustomers = res;
+        this.dataSource.data = this.listCustomers;
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-    deleteCustomer(customerId: number) {
+//delete
+deleteCustomer(customerId: string) {
+  Swal.fire({
+    title: '¿Estás seguro?',
+    text: 'Esta acción no se puede deshacer',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sí, eliminar',
+    cancelButtonText: 'Cancelar',
+  }).then((result) => {
+    if (result.value) {
+      // El usuario confirmó la eliminación, realiza la solicitud DELETE
+      this.customerService.deleteCustomer(customerId).subscribe(
+        () => {
+          // La eliminación se realizó con éxito, puedes actualizar la lista o realizar otras acciones.
+          this.getAllCustomers();
+          Swal.fire('Eliminado', 'El customer ha sido eliminado', 'success');
+        },
+        (error) => {
+          console.error('Error al eliminar el customer:', error);
+          // Captura y maneja el error aquí
+          Swal.fire('Error', 'Hubo un problema al eliminar el customer', 'error');
+        }
+      );
     }
+  });
+}
+
+//insert aqui
+insertCustomer() {
+  const dialogRef = this.dialog.open(InsertCustomerComponent, {
+    width: '400px',
+  });
+
+  dialogRef.componentInstance.customerAdded.subscribe((result) => {
+    if (result) {
+      console.log('Datos recibidos:', result);
+      this.customerService.addCustomer(result).subscribe(
+        (response) => {
+          console.log('Customer agregado con éxito:', response);
+          this.getAllCustomers();
+        },
+        (error) => {
+          console.error('Error al agregar el customer:', error);
+          Swal.fire('Error', 'Hubo un problema al agregar el customer', 'error');
+        }
+      );
+    }
+  });
+}
+
+updateCustomer(customer: Customers) {
+  const dialogRef = this.dialog.open(EditCustomerComponent, {
+    width: '400px',
+    data: { customer }, // Pasa los datos del customer al modal
+  });
+
+  dialogRef.componentInstance.customerUpdated.subscribe((result) => {
+    if (result) {
+      // Agrega el id del customer que deseas editar a los datos actualizados
+
+      result.CustomerId = customer.CustomerID;
+
+      this.customerService.updateCustomer(result.CustomerId, result.customerData).subscribe(
+        (response) => {
+          console.log('Customer modificado con éxito:', response);
+          this.getAllCustomers();
+        },
+        (error) => {
+          console.error('Error al modificar el customer:', error);
+          Swal.fire('Error', 'Hubo un problema al modificar el customer', 'error');
+        }
+      );
+    }
+  });
+}
+
+
 
 }

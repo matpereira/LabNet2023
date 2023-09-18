@@ -1,10 +1,13 @@
-<div class="table-container">
+<div class="button-add">
+  <button class="btn btn-primary pulse" (click)="insertCustomer()">Add Customer</button>
+</div>
+
+
+<div class="container">
   <select [(ngModel)]="selectedFilter" (change)="applyFilter()" class="form-control">
     <option value="all">Todos</option>
     <option value="companyName">Nombre de la Compañía</option>
-    <option value="adress">Dirección</option>
     <option value="phone">Teléfono</option>
-    <option value="region">Región</option>
   </select>
   
   <input
@@ -15,34 +18,43 @@
     class="form-control"
     placeholder="Filtrar..."
   >
-<div class="mat-elevation-z8">
+
+  <div class="mat-elevation-z8">
 
   <table mat-table [dataSource]="dataSource" matSort >
-    <ng-container matColumnDef="companyName">
-      <th mat-header-cell *matHeaderCellDef  mat-sort-header> Company Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+    
+    <ng-container matColumnDef="CustomerID">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > ID </th>
+      <td mat-cell *matCellDef="let customer"> {{customer.CustomerID}} </td>
     </ng-container>
     
-    <ng-container matColumnDef="adress">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
-      <td mat-cell *matCellDef="let element"> {{element.adress}} </td>
+    <ng-container matColumnDef="CompanyName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Company Name </th>
+      <td mat-cell *matCellDef="let customer"> {{customer.CompanyName}} </td>
     </ng-container>
-    
-    <ng-container matColumnDef="phone">
+  
+    <ng-container matColumnDef="Phone">
       <th mat-header-cell *matHeaderCellDef> Phone </th>
-      <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+      <td mat-cell *matCellDef="let customer"> {{customer.Phone}} </td>
     </ng-container>
-    
-    <ng-container matColumnDef="region">
-      <th mat-header-cell *matHeaderCellDef  mat-sort-header> Region </th>
-      <td mat-cell *matCellDef="let element"> {{element.region}} </td>
+
+      
+    <ng-container matColumnDef="Address">
+      <th mat-header-cell *matHeaderCellDef> Address </th>
+      <td mat-cell *matCellDef="let customer"> {{customer.address}} </td>
+    </ng-container>
+
+      
+    <ng-container matColumnDef="Region">
+      <th mat-header-cell *matHeaderCellDef> Region </th>
+      <td mat-cell *matCellDef="let customer"> {{customer.Region}} </td>
     </ng-container>
 
     <div style="text-align: center;">
-      <ng-container matColumnDef="edit" >
+      <ng-container matColumnDef="Edit" >
         <th mat-header-cell *matHeaderCellDef>Edit</th>
         <td mat-cell *matCellDef="let customer" > 
-          <button mat-fab  color="primary" (click)="editCustomer(customer.companyName)">
+          <button mat-fab  color="primary" (click)="updateCustomer(customer)">
             <mat-icon>edit</mat-icon>
           </button>
         </td>
@@ -50,20 +62,21 @@
     </div>
 
 <div style="text-align: center;">
-    <ng-container matColumnDef="delete" >
+    <ng-container matColumnDef="Delete" >
       <th mat-header-cell *matHeaderCellDef>Delete</th>
       <td mat-cell *matCellDef="let customer" > 
-        <button mat-fab  color="warn" (click)="deleteCustomer(customer.companyName)">
+        <button mat-fab  color="warn" (click)="deleteCustomer(customer.CustomerID)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
     </ng-container>
   </div>
 
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10]" aria-label="Select page of users"></mat-paginator>
-</div>
+
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[10,20]" aria-label="Select page of users"></mat-paginator>
+  </div>
+
 </div>

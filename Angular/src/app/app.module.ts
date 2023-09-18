@@ -15,6 +15,7 @@ import { EditShipperComponent } from './modals/shipper/edit-shipper/edit-shipper
 import { EditCustomerComponent } from './modals/customer/edit-customer/edit-customer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InsertShipperComponent } from './modals/shipper/insert-shipper/insert-shipper.component';
+import { InsertCustomerComponent } from './modals/customer/insert-customer/insert-customer.component';
 
 
   @NgModule({
@@ -29,6 +30,7 @@ import { InsertShipperComponent } from './modals/shipper/insert-shipper/insert-s
       EditShipperComponent,
       EditCustomerComponent,
       InsertShipperComponent,
+      InsertCustomerComponent,
     ],
     imports: [
       BrowserModule,

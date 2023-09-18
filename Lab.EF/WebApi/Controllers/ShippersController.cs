@@ -49,7 +49,7 @@ namespace WebApi.Controllers
 
         // POST: api/Shippers
         [HttpPost]
-        [Route("AddShippers")]
+        [Route("AddShipper")]
         public IHttpActionResult Post([FromBody] ShippersDTO shipper)
         {
             try

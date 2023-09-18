@@ -24,7 +24,7 @@ export class ShipperServiceService {
 }
 
 addShipper(shipperData: any): Observable<ResponseDto> {
-  const url = `${this.apiUrl}/Shippers/AddShippers`;
+  const url = `${this.apiUrl}/Shippers/AddShipper`;
   return this.http.post<ResponseDto>(url, shipperData);
 }
 
