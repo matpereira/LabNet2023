@@ -15,8 +15,13 @@ import { InsertCustomerComponent } from 'src/app/modals/customer/insert-customer
   styleUrls: ['./customers.component.css']
 })
 
+// ACLARACION:
+//Dejo el CustomerID solo a fin de que puedan hacer sus pruebas con mas facilidad
+//El ID no deberia mostrarse ni solicitarse, pero en este caso no es auto-incrementado
+//y como no tenemos la logica de creacion correcta del ID, decidi realizarlo de esta manera
+
 export class CustomersComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['CustomerID', 'CompanyName', 'Phone', 'Address','Region','Edit', 'Delete'];
+  displayedColumns: string[] = ['CustomerID', 'CompanyName', 'ContactName', 'ContactTitle','Phone','Actions'];
   filterValue: string = '';
   selectedFilter: string = 'all';
   listCustomers: Customers[] = [];
@@ -113,7 +118,6 @@ updateCustomer(customer: Customers) {
   });
   dialogRef.componentInstance.customerUpdated.subscribe((result) => {
     if (result) {
-
       result.CustomerId = customer.CustomerID;
 
       this.customerService.updateCustomer(result.CustomerId, result.customerData).subscribe(

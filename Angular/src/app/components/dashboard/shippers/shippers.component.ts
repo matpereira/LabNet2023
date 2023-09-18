@@ -16,7 +16,7 @@ import { InsertShipperComponent } from 'src/app/modals/shipper/insert-shipper/in
 })
 
 export class ShippersComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['ShipperID', 'CompanyName', 'Phone', 'Edit', 'Delete'];
+  displayedColumns: string[] = ['CompanyName', 'Phone', 'Actions'];
   filterValue: string = '';
   selectedFilter: string = 'all';
  listShippers: Shippers[] = [];

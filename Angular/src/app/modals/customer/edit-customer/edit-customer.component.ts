@@ -47,11 +47,6 @@ export class EditCustomerComponent {
       return; 
     }
 
-    if (addressValue && addressValue.length > 60) {
-      Swal.fire('Error', 'La dirección no puede tener más de 60 caracteres.', 'error');
-      return;
-    }
-
     const updatedCustomerData = {
       customerId: this.data.customer.CustomerID,
       customerData: this.form.value,

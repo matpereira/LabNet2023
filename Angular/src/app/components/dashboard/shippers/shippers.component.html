@@ -1,3 +1,4 @@
+<div class="backlight">
 <div class="wrapper" >
   <button (click)="insertShipper()">
     Add Shipper
@@ -7,10 +8,11 @@
     <span></span>
   </button >
 </div>
+</div>
 <br>
 <div class="container">
   <select [(ngModel)]="selectedFilter" (change)="applyFilter()" class="form-control">
-    <option value="all">Todos</option>
+    <option value="all">Sin filtro  </option>
     <option value="companyName">Nombre de la Compañía</option>
     <option value="phone">Teléfono</option>
   </select>
@@ -23,15 +25,12 @@
     class="form-control"
     placeholder="Filtrar..."
   >
+  
+<br>
 
-  <div class="mat-elevation-z8">
+  <div class="mat-elevation-z8 table-responsive" >
 
   <table mat-table [dataSource]="dataSource" matSort >
-    
-    <ng-container matColumnDef="ShipperID">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header > ID </th>
-      <td mat-cell *matCellDef="let shipper"> {{shipper.ShipperID}} </td>
-    </ng-container>
     
     <ng-container matColumnDef="CompanyName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header > Company Name </th>
@@ -43,33 +42,22 @@
       <td mat-cell *matCellDef="let shipper"> {{shipper.Phone}} </td>
     </ng-container>
 
-    <div style="text-align: center;">
-      <ng-container matColumnDef="Edit" >
-        <th mat-header-cell *matHeaderCellDef>Edit</th>
-        <td mat-cell *matCellDef="let shipper" > 
-          <button mat-fab  color="primary" (click)="updateShipper(shipper)">
-            <mat-icon>edit</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-    </div>
-
-<div style="text-align: center;">
-    <ng-container matColumnDef="Delete" >
-      <th mat-header-cell *matHeaderCellDef>Delete</th>
-      <td mat-cell *matCellDef="let shipper" > 
-        <button mat-fab  color="warn" (click)="deleteShipper(shipper.ShipperID)">
+    <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef style="width: 150px;"> Edit / Delete</th>
+      <td mat-cell *matCellDef="let shipper" style="text-align: left;">
+        <button mat-icon-button (click)="updateShipper(shipper)" style="margin-right: 5px;">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteShipper(shipper.ShipperID)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
     </ng-container>
-  </div>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator [pageSize]="10" [pageSizeOptions]="[10,20]" aria-label="Select page of users"></mat-paginator>
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[10,20]" aria-label="Select page of users" style="background-color: rgb(76, 85, 102);"></mat-paginator>
   </div>
-
 </div>

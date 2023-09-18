@@ -9,7 +9,6 @@
   import { NavbarComponent } from './components/dashboard/navbar/navbar.component';
   import { ShippersComponent } from './components/dashboard/shippers/shippers.component';
   import { CustomersComponent } from './components/dashboard/customers/customers.component';
-  import { HomeComponent } from './components/dashboard/home/home.component';
   import { HttpClientModule } from '@angular/common/http';
 import { EditShipperComponent } from './modals/shipper/edit-shipper/edit-shipper.component';
 import { EditCustomerComponent } from './modals/customer/edit-customer/edit-customer.component';
@@ -26,7 +25,6 @@ import { InsertCustomerComponent } from './modals/customer/insert-customer/inser
       NavbarComponent,
       ShippersComponent,
       CustomersComponent,
-      HomeComponent,
       EditShipperComponent,
       EditCustomerComponent,
       InsertShipperComponent,

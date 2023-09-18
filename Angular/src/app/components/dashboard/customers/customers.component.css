@@ -1,190 +1,239 @@
 /* Estilo para el contenedor principal */
 .container {
-    max-width: 2000px;
-    margin: 50;
-    padding: 20px;
-    background-color: rgb(48, 54, 65);
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border: 3px solid #00b2e9;
+  max-width: 2000px;
+  margin: 50;
+  padding: 20px;
+  background-color: rgb(48, 54, 65);
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border: 3px solid #00b2e9;
   
-  }
+  color: white!important;
+}
+
+
+/* Estilo para el elemento select */
+select {
+  padding: 10px;
+  margin: 0 auto; 
+  margin-bottom: 10px;
+  width: 50%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #fff;
+  display: block; 
+}
+
+
+/* Estilo para el campo de entrada de texto */
+input[type="text"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  margin: 0 auto; 
+  width: 50%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #fff;
+  display: block; 
+
+}
+
+/* Estilo para la tabla de Angular Material */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fafafa;
   
-  /* Estilo para el elemento select */
-  select {
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #fff;
-  }
-  
-  /* Estilo para el campo de entrada de texto */
-  input[type="text"] {
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #fff;
-  }
-  
-  /* Estilo para la tabla de Angular Material */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #000000;
-  }
-  
-  th, td {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #ffffff;
-    font-weight: bold;
-  }
-  
-  /* Estilo para filas impares */
-  tr:nth-child(odd) {
-    background-color: #747474;
-  }
-  
-  /* Estilo para filas al pasar el cursor */
-  tr:hover {
-    background-color: #7e9794;
-  }
-  
-  
-  /* Define la animación "pulse" */
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-  
-  
-  .wrapper{
-    display: flex;
-    justify-content: center;
-  }
-  
-  button{
-  width:auto ;
-  height:50px;
-  background: linear-gradient(to left top, #0f2437 50%, #061f20 50%);
-  border-style: none;
-  color:#fff;
-  font-size: 15px;
-  letter-spacing: 3px;
-  font-family: 'Lato';
-  font-weight: 600;
-  outline: none;
-  cursor: pointer;
-  position: relative;
-  padding: 4px;
-  overflow: hidden;
-  transition: all .5s;
-  box-shadow: 0px 1px 2px rgba(0,0,0,.2);
-  }
-  button span{
-  position: absolute;
-  display: block;
-  }
-  button span:nth-child(1){
-  height: 3px;
-  width:200px;
-  top:0px;
-  left:-200px;
-  background: linear-gradient(to right, rgba(0,0,0,0), #00e1ff);
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-  animation: span1 2s linear infinite;
-  animation-delay: 1s;
-  }
-  
-  @keyframes span1{
-  0%{
-    left:-200px
-  }
-  100%{
-    left:200px;
-  }
-  }
-  button span:nth-child(2){
-  height: 70px;
-  width: 3px;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+}
+
+th {
+  background-color: #ffffff;
+  font-weight: bold;
+}
+
+/* Estilo para filas impares */
+tr:nth-child(odd) {
+  background-color: #8e97a5;
+}
+
+/* Estilo para filas pares */
+tr:nth-child(even) {
+  background-color: #5c6e7e;
+}
+
+/* Estilo para filas al pasar el cursor */
+tr:hover {
+  background-color: #a7c8ee;
+}
+
+
+.wrapper{
+  display: flex;
+  justify-content: center;
+}
+
+button{
+width:auto ;
+height:50px;
+background: linear-gradient(to left top, #0f2437 50%, #061f20 50%);
+border-style: none;
+color:#fff;
+font-size: 15px;
+letter-spacing: 3px;
+font-family: 'Lato';
+font-weight: 600;
+outline: none;
+cursor: pointer;
+position: relative;
+padding: 4px;
+overflow: hidden;
+transition: all .5s;
+box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+}
+button span{
+position: absolute;
+display: block;
+}
+button span:nth-child(1){
+height: 3px;
+width:200px;
+top:0px;
+left:-200px;
+background: linear-gradient(to right, rgba(0,0,0,0), #00e1ff);
+border-top-right-radius: 2px;
+border-bottom-right-radius: 2px;
+animation: span1 2s linear infinite;
+animation-delay: 1s;
+}
+
+@keyframes span1{
+0%{
+  left:-200px
+}
+100%{
+  left:200px;
+}
+}
+button span:nth-child(2){
+height: 70px;
+width: 3px;
+top:-70px;
+right:0px;
+background: linear-gradient(to bottom, rgba(0,0,0,0), #fffb00);
+border-bottom-left-radius: 2px;
+border-bottom-right-radius: 2px;
+animation: span2 2s linear infinite;
+animation-delay: 2s;
+}
+@keyframes span2{
+0%{
   top:-70px;
-  right:0px;
-  background: linear-gradient(to bottom, rgba(0,0,0,0), #fffb00);
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
-  animation: span2 2s linear infinite;
-  animation-delay: 2s;
-  }
-  @keyframes span2{
-  0%{
-    top:-70px;
-  }
-  100%{
-    top:70px;
-  }
-  }
-  button span:nth-child(3){
-  height:3px;
-  width:200px;
+}
+100%{
+  top:70px;
+}
+}
+button span:nth-child(3){
+height:3px;
+width:200px;
+right:-200px;
+bottom: 0px;
+background: linear-gradient(to left, rgba(0,0,0,0), #00e1ff);
+border-top-left-radius: 2px;
+border-bottom-left-radius: 2px;
+animation: span3 2s linear infinite;
+animation-delay: 3s;
+}
+@keyframes span3{
+0%{
   right:-200px;
-  bottom: 0px;
-  background: linear-gradient(to left, rgba(0,0,0,0), #00e1ff);
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
-  animation: span3 2s linear infinite;
-  animation-delay: 3s;
-  }
-  @keyframes span3{
-  0%{
-    right:-200px;
-  }
-  100%{
-    right: 200px;
-  }
-  }
+}
+100%{
+  right: 200px;
+}
+}
+
+button span:nth-child(4){
+height:70px;
+width:3px;
+bottom:-70px;
+left:0px;
+background: linear-gradient(to top, rgba(0,0,0,0), #fffb00);
+border-top-right-radius: 2px;
+border-top-left-radius: 2px;
+animation: span4 2s linear infinite;
+animation-delay: 4s;
+}
+@keyframes span4{
+0%{
+  bottom: -70px;
+}
+100%{
+  bottom:70px;
+}
+}
+
+button:hover{
+transition: all .5s;
+transform: rotate(-3deg) scale(1.1);
+box-shadow: 0px 3px 5px rgba(0,0,0,.4);
+}
+
+
+.backlight {
+  overflow: hidden;
+  --sp: 10s; /*** speed ***/
+  --b1: #384a4f;
+  --b2: #1c1b18;
+  --b3: #0c0b0a;
+  --b4: #0c0b0ae0;
+  --c1: #bb00ff;
+}
+
+div {
+  background:
+    /* black shadows */
+    radial-gradient(circle at 50% 50%, var(--b4) calc(var(--sz) * 1), #fff0 calc(var(--sz) * 8)) var(--ts),
+    radial-gradient(circle at 0% 0%, var(--b4) calc(var(--sz) * 1), #fff0 calc(var(--sz) * 8)) var(--ts),
+    radial-gradient(circle at 0% 100%, var(--b4) calc(var(--sz) * 1), #fff0 calc(var(--sz) * 8)) var(--ts),
+    radial-gradient(circle at 100% 0%, var(--b4) calc(var(--sz) * 1), #fff0 calc(var(--sz) * 8)) var(--ts),
+    radial-gradient(circle at 100% 100%, var(--b4) calc(var(--sz) * 1), #fff0 calc(var(--sz) * 8)) var(--ts),
   
-  button span:nth-child(4){
-  height:70px;
-  width:3px;
-  bottom:-70px;
-  left:0px;
-  background: linear-gradient(to top, rgba(0,0,0,0), #fffb00);
-  border-top-right-radius: 2px;
-  border-top-left-radius: 2px;
-  animation: span4 2s linear infinite;
-  animation-delay: 4s;
-  }
-  @keyframes span4{
-  0%{
-    bottom: -70px;
-  }
-  100%{
-    bottom:70px;
-  }
-  }
-  
-  button:hover{
-  transition: all .5s;
-  transform: rotate(-3deg) scale(1.1);
-  box-shadow: 0px 3px 5px rgba(0,0,0,.4);
-  }
-  
-  
+    conic-gradient(from 90deg at 97.5% 67%, var(--c1) 0 87.5deg, #fff0 88deg 100%) var(--ts), /*repeated*/
+    conic-gradient(from 90deg at 97.5% 67%, var(--c1) 0 87.5deg, #fff0 88deg 100%) var(--ts),
+    conic-gradient(from 182.5deg at 2.5% 67%, #fff0 0 0deg, var(--c1) 0.5deg 90deg, #fff0 0 100%) var(--ts), /*repeated*/
+    conic-gradient(from 182.5deg at 2.5% 67%, #fff0 0 0deg, var(--c1) 0.5deg 90deg, #fff0 0 100%) var(--ts), 
+      /* central gradient */
+    conic-gradient(
+      from 0deg at 50% 50%, #fff0 0 2deg, 
+      var(--b2) 2.5deg 57.5deg, 
+      #fff0 58deg 62.5deg, 
+      var(--b1) 63deg 117.5deg, 
+      #fff0 118deg 122.5deg, 
+      var(--b3) 123deg 177.5deg, 
+      #fff0 178deg 182deg, 
+      var(--b2) 182.5deg 237.5deg, 
+      #fff0 0 242.5deg, 
+      var(--b1) 243deg 297.5deg, 
+      #fff0 298deg 302.5deg, 
+      var(--b3) 303deg 357.5deg,
+      #fff0 358deg 360deg
+    ) var(--ts),
+    /* bg */
+    var(--c1);
+  animation: colors var(--sp) linear 0s infinite;
+}
+
+@keyframes colors {
+  100% { filter: hue-rotate(360deg); }
+}
+
+
