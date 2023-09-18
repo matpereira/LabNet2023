@@ -1,8 +1,13 @@
-<div class="button-add">
-  <button class="btn btn-primary pulse" (click)="insertShipper()">Add Shipper</button>
+<div class="wrapper" >
+  <button (click)="insertShipper()">
+    Add Shipper
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </button >
 </div>
-
-
+<br>
 <div class="container">
   <select [(ngModel)]="selectedFilter" (change)="applyFilter()" class="form-control">
     <option value="all">Todos</option>

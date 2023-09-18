@@ -15,11 +15,12 @@ app-main {
 
 /* Estilo para el footer */
 app-footer {
-  background-color: #343a40;
-  color: #fff;
+  background-color: #161616;
+  color: #121212;
   padding: 20px 0;
   text-align: center;
   position: fixed; /* Hace que el footer sea fijo en la parte inferior */
   bottom: 0; /* Coloca el footer en la parte inferior */
   width: 100%; /* Ancho completo */
 }
+

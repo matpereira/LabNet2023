@@ -1,11 +1,5 @@
-/* Estilo para el fondo oscuro y transparente del modal */
-.modal-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro y transparente */
-    z-index: 1050; /* Z-index mayor que el modal */
-  }
+.back-modal{
+  background-color: rgb(32, 32, 32);
+  color:aliceblue
   
+}

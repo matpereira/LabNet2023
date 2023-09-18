@@ -19,7 +19,7 @@ export class ShippersComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['ShipperID', 'CompanyName', 'Phone', 'Edit', 'Delete'];
   filterValue: string = '';
   selectedFilter: string = 'all';
-  listShippers: Shippers[] = [];
+ listShippers: Shippers[] = [];
   dataSource = new MatTableDataSource<Shippers>();
 
   constructor(private shipperService: ShipperServiceService, private dialog: MatDialog) {}
@@ -49,7 +49,7 @@ export class ShippersComponent implements OnInit, AfterViewInit {
   getAllShippers() {
     try {
       this.shipperService.getAllShippers().subscribe((res: any) => {
-        this.listShippers = res;
+       this.listShippers = res;
         this.dataSource.data = this.listShippers;
       });
     } catch (error) {

@@ -1,11 +1,13 @@
 /* Estilo para el contenedor principal */
-.table-container {
+.container {
     max-width: 2000px;
     margin: 50;
     padding: 20px;
-    background-color: #f7f7f7;
+    background-color: rgb(48, 54, 65);
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border: 3px solid #00b2e9;
+  
   }
   
   /* Estilo para el elemento select */
@@ -34,7 +36,7 @@
   table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #fff;
+    background-color: #000000;
   }
   
   th, td {
@@ -44,17 +46,145 @@
   }
   
   th {
-    background-color: #f2f2f2;
+    background-color: #ffffff;
     font-weight: bold;
   }
   
   /* Estilo para filas impares */
   tr:nth-child(odd) {
-    background-color: #f7f7f7;
+    background-color: #747474;
   }
   
   /* Estilo para filas al pasar el cursor */
   tr:hover {
-    background-color: #e0e0e0;
+    background-color: #7e9794;
   }
+  
+  
+  /* Define la animación "pulse" */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  
+  .wrapper{
+    display: flex;
+    justify-content: center;
+  }
+  
+  button{
+  width:auto ;
+  height:50px;
+  background: linear-gradient(to left top, #0f2437 50%, #061f20 50%);
+  border-style: none;
+  color:#fff;
+  font-size: 15px;
+  letter-spacing: 3px;
+  font-family: 'Lato';
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  padding: 4px;
+  overflow: hidden;
+  transition: all .5s;
+  box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+  }
+  button span{
+  position: absolute;
+  display: block;
+  }
+  button span:nth-child(1){
+  height: 3px;
+  width:200px;
+  top:0px;
+  left:-200px;
+  background: linear-gradient(to right, rgba(0,0,0,0), #00e1ff);
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  animation: span1 2s linear infinite;
+  animation-delay: 1s;
+  }
+  
+  @keyframes span1{
+  0%{
+    left:-200px
+  }
+  100%{
+    left:200px;
+  }
+  }
+  button span:nth-child(2){
+  height: 70px;
+  width: 3px;
+  top:-70px;
+  right:0px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0), #fffb00);
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  animation: span2 2s linear infinite;
+  animation-delay: 2s;
+  }
+  @keyframes span2{
+  0%{
+    top:-70px;
+  }
+  100%{
+    top:70px;
+  }
+  }
+  button span:nth-child(3){
+  height:3px;
+  width:200px;
+  right:-200px;
+  bottom: 0px;
+  background: linear-gradient(to left, rgba(0,0,0,0), #00e1ff);
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  animation: span3 2s linear infinite;
+  animation-delay: 3s;
+  }
+  @keyframes span3{
+  0%{
+    right:-200px;
+  }
+  100%{
+    right: 200px;
+  }
+  }
+  
+  button span:nth-child(4){
+  height:70px;
+  width:3px;
+  bottom:-70px;
+  left:0px;
+  background: linear-gradient(to top, rgba(0,0,0,0), #fffb00);
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
+  animation: span4 2s linear infinite;
+  animation-delay: 4s;
+  }
+  @keyframes span4{
+  0%{
+    bottom: -70px;
+  }
+  100%{
+    bottom:70px;
+  }
+  }
+  
+  button:hover{
+  transition: all .5s;
+  transform: rotate(-3deg) scale(1.1);
+  box-shadow: 0px 3px 5px rgba(0,0,0,.4);
+  }
+  
   

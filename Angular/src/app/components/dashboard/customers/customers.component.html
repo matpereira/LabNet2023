@@ -1,7 +1,13 @@
-<div class="button-add">
-  <button class="btn btn-primary pulse" (click)="insertCustomer()">Add Customer</button>
+<div class="wrapper" >
+  <button (click)="insertCustomer()">
+    Add Customer
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </button >
 </div>
-
+<br> 
 
 <div class="container">
   <select [(ngModel)]="selectedFilter" (change)="applyFilter()" class="form-control">
@@ -19,7 +25,8 @@
     placeholder="Filtrar..."
   >
 
-  <div class="mat-elevation-z8">
+
+    <div class="mat-elevation-z8">
 
   <table mat-table [dataSource]="dataSource" matSort >
     

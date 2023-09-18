@@ -68,10 +68,8 @@ deleteCustomer(customerId: string) {
     cancelButtonText: 'Cancelar',
   }).then((result) => {
     if (result.value) {
-      // El usuario confirmó la eliminación, realiza la solicitud DELETE
       this.customerService.deleteCustomer(customerId).subscribe(
         () => {
-          // La eliminación se realizó con éxito, puedes actualizar la lista o realizar otras acciones.
           this.getAllCustomers();
           Swal.fire('Eliminado', 'El customer ha sido eliminado', 'success');
         },
@@ -85,7 +83,7 @@ deleteCustomer(customerId: string) {
   });
 }
 
-//insert aqui
+//insert 
 insertCustomer() {
   const dialogRef = this.dialog.open(InsertCustomerComponent, {
     width: '400px',
