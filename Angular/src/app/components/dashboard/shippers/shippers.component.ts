@@ -88,29 +88,36 @@ deleteShipper(shipperId: number) {
 //insert aqui
 insertShipper() {
   const dialogRef = this.dialog.open(InsertShipperComponent, {
-    width: '400px', // Ancho del modal
-    // data: {}, // Puedes pasar datos al modal si es necesario
+    width: '400px',
   });
 
-  dialogRef.afterClosed().subscribe((result) => {
+  dialogRef.componentInstance.shipperAdded.subscribe((result) => {
     if (result) {
-      // Aquí puedes manejar los datos resultantes después de cerrar el modal de inserción
-      console.log('Datos de inserción:', result);
-      // Puedes realizar acciones adicionales según sea necesario
+      console.log('Datos recibidos:', result);
+      this.shipperService.addShipper(result).subscribe(
+        (response) => {
+          console.log('Shipper agregado con éxito:', response);
+          this.getAllShippers();
+        },
+        (error) => {
+          console.error('Error al agregar el shipper:', error);
+          Swal.fire('Error', 'Hubo un problema al agregar el shipper', 'error');
+        }
+      );
     }
   });
 }
 
+
 //edit 
   editShipper(shipper: Shippers) {
     const dialogRef = this.dialog.open(EditShipperComponent, {
-      width: '400px', // Ancho del modal
-      data: { shipper }, // Pasa los datos del shipper al modal
+      width: '400px', 
+      data: { shipper },
     });
   
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        // Aquí puedes manejar los datos actualizados después de cerrar el modal
         console.log('Datos actualizados:', result);
       }
     });
