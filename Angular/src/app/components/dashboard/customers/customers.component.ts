@@ -49,7 +49,6 @@ export class CustomersComponent implements OnInit, AfterViewInit {
     }
   }
 
-
   //get all
   getAllCustomers() {
     try {
@@ -95,8 +94,7 @@ insertCustomer() {
   });
 
   dialogRef.componentInstance.customerAdded.subscribe((result) => {
-    if (result) {
-      console.log('Datos recibidos:', result);
+    if (result) { 
       this.customerService.addCustomer(result).subscribe(
         (response) => {
           console.log('Customer agregado con éxito:', response);

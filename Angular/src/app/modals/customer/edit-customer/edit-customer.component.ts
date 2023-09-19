@@ -30,7 +30,6 @@ export class EditCustomerComponent {
   saveChanges() {
     const companyNameValue = this.form.get('companyName')?.value;
     const phoneValue = this.form.get('phone')?.value;
-    const addressValue = this.form.get('address')?.value;
   
     if (!companyNameValue.trim()) {
       Swal.fire('Error', 'El nombre de la compañía no puede estar vacío.', 'error');

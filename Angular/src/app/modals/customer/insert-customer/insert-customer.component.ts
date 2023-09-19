@@ -36,11 +36,18 @@ if (!customerIDValue.trim()) {
       Swal.fire('Error', 'El ID del cliente no puede estar vacío.', 'error');
       return;
     }
-  
+
     if(customerIDValue.length != 5){
       Swal.fire('Error', 'El ID del cliente debe tener 5 caracteres.', 'error');
       return;
     }
+
+    var alphanumericRegex = /^[a-zA-Z0-9]+$/;
+
+if (!alphanumericRegex.test(customerIDValue)) {
+  Swal.fire('Error', 'El ID del cliente solo puede contener letras y números.', 'error');
+  return;
+}
 
     if (!companyNameValue.trim()) {
       Swal.fire('Error', 'El nombre de la compañía no puede estar vacío.', 'error');
