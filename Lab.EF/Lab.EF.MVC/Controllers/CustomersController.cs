@@ -12,9 +12,10 @@ namespace Lab.EF.MVC.Controllers
 {
     public class CustomersController : Controller
     {
-        CustomersLogic customerLogic = new CustomersLogic();
+        private readonly ICustomersLogic customerLogic;
 
-
+        public CustomersController(ICustomersLogic customersLogic) =>
+            this.customerLogic = customersLogic;
 
         public ActionResult Index()
         {
@@ -34,8 +35,7 @@ namespace Lab.EF.MVC.Controllers
             return View();
         }
 
-
-
+        [HttpPost]
         public JsonResult Insert(CustomersView customer)
         {
             try

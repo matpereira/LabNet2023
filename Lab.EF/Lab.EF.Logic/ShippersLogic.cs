@@ -3,11 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Lab.EF.Logic.DTO;
-using System.Text.RegularExpressions;
 
 namespace Lab.EF.Logic
 {
-    public class ShippersLogic : BaseLogic, ILogic<Shippers, ShippersDTO>
+    public class ShippersLogic : BaseLogic, IShippersLogic
     {
 
         public List<ShippersDTO> GetAll()
@@ -24,7 +23,7 @@ namespace Lab.EF.Logic
 
         public void Add(ShippersDTO shipper)
         {
-            ValidacionServicio.ValidarShipper(shipper);
+            ValidateService.ValidateShipper(shipper);
 
             var shipperToAdd = new Shippers
             {
@@ -39,7 +38,7 @@ namespace Lab.EF.Logic
 
         public void Update(ShippersDTO shipper)
         {
-            ValidacionServicio.ValidarShipper(shipper);
+            ValidateService.ValidateShipper(shipper);
 
             var shipperToUpdate = context.Shippers.Find(shipper.ShipperID);
             shipperToUpdate.CompanyName = shipper.CompanyName;
@@ -64,8 +63,9 @@ namespace Lab.EF.Logic
                     throw new Exception("No se encontró el shipper para eliminar.");
                 }
             }
-            catch 
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 throw new Exception("No se puede eliminar este Shipper");
             }
         }

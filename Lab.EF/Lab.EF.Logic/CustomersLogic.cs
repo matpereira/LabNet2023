@@ -6,7 +6,7 @@ using Lab.EF.Logic.DTO;
 
 namespace Lab.EF.Logic
 {
-    public class CustomersLogic : BaseLogic, ILogic<Customers, CustomersDTO>
+    public class CustomersLogic : BaseLogic, ICustomersLogic
     {
         public List<CustomersDTO> GetAll()
         {
@@ -32,7 +32,7 @@ namespace Lab.EF.Logic
         {
             try
             {
-                ValidacionServicio.ValidaCustomer(customer);
+                ValidateService.ValidateCustomer(customer);
 
                 if (Find(customer.CustomerID)!= null)
                 {
@@ -43,15 +43,15 @@ namespace Lab.EF.Logic
                 {
                     CustomerID = customer.CustomerID,
                     CompanyName = customer.CompanyName,
-                    ContactName = customer.ContactName,
-                    ContactTitle = customer.ContactTitle,
-                    Address = customer.Address,
-                    City = customer.City,
-                    Region = customer.Region,
-                    PostalCode = customer.PostalCode,
-                    Country = customer.Country,
-                    Phone = customer.Phone,
-                    Fax = customer.Fax
+                    ContactName = customer?.ContactName,
+                    ContactTitle = customer?.ContactTitle,
+                    Address = customer?.Address,
+                    City = customer?.City,
+                    Region = customer?.Region,
+                    PostalCode = customer?.PostalCode,
+                    Country = customer?.Country,
+                    Phone = customer?.Phone,
+                    Fax = customer?.Fax
                 };
 
                 context.Customers.Add(customerToAdd);
@@ -66,7 +66,7 @@ namespace Lab.EF.Logic
         public void Update(CustomersDTO customer)
         {
 
-            ValidacionServicio.ValidaCustomer(customer);
+            ValidateService.ValidateCustomer(customer);
 
             var customerToUpdate = context.Customers.Find(customer.CustomerID);
             customerToUpdate.CompanyName = customer.CompanyName;

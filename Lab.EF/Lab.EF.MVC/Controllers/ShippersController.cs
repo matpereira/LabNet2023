@@ -6,11 +6,16 @@ using Lab.EF.Logic;
 using Lab.EF.Logic.DTO;
 using Lab.EF.MVC.Models;
 
+
 namespace Lab.EF.MVC.Controllers
 {
     public class ShippersController : Controller
     {
-        ShippersLogic shipperLogic = new ShippersLogic();
+
+        private readonly IShippersLogic shipperLogic;
+
+        public ShippersController(IShippersLogic shippersLogic) =>
+            this.shipperLogic = shippersLogic;
 
         public ActionResult Index()
         {
@@ -23,6 +28,7 @@ namespace Lab.EF.MVC.Controllers
         {
             return View();
         }
+
 
         [HttpPost]
         public JsonResult Insert(ShippersView shipper)
@@ -47,6 +53,7 @@ namespace Lab.EF.MVC.Controllers
             try
             {
                 shipperLogic.Delete(id);
+                
                 return Json(new { success = true });
             }
             catch (Exception ex)

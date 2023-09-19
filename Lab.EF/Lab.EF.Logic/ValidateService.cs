@@ -5,9 +5,9 @@ using Lab.EF.Logic;
 
 namespace Lab.EF.Logic
 {
-    public class ValidacionServicio
+    public class ValidateService
     {
-        public static void ValidarShipper(ShippersDTO shipper)
+        public static void ValidateShipper(ShippersDTO shipper)
         {
             if (string.IsNullOrWhiteSpace(shipper.CompanyName))
             {
@@ -19,14 +19,14 @@ namespace Lab.EF.Logic
                 throw new ArgumentException("El nombre de la compañía no puede exceder los 40 caracteres.", nameof(shipper.CompanyName));
             }
 
-            if (!EsNumeroTelefonoValido(shipper.Phone))
+            if (!IsPhoneNumberValid(shipper.Phone))
             {
                 throw new ArgumentException("Número de teléfono no válido.", nameof(shipper.Phone));
             }
         }
 
 
-    public static bool ValidaCustomer(CustomersDTO customer)
+    public static bool ValidateCustomer(CustomersDTO customer)
     {
         if (customer == null)
         {
@@ -88,12 +88,12 @@ namespace Lab.EF.Logic
             throw new ArgumentException("Country no puede tener más de 15 caracteres.", nameof(customer.Country));
         }
 
-        if (!EsNumeroTelefonoValido(customer.Phone))
+        if (!IsPhoneNumberValid(customer.Phone))
         {
             throw new ArgumentException("Número de teléfono no válido.", nameof(customer.Phone));
         }
 
-        if (!EsNumeroTelefonoValido(customer.Fax))
+        if (!IsPhoneNumberValid(customer.Fax))
         {
             throw new ArgumentException("Número de teléfono no válido.", nameof(customer.Fax));
         }
@@ -101,7 +101,7 @@ namespace Lab.EF.Logic
         return true; 
     }
 
-        public static bool EsNumeroTelefonoValido(string phoneNumber)
+        public static bool IsPhoneNumberValid(string phoneNumber)
         {
             if (string.IsNullOrWhiteSpace(phoneNumber))
             {
